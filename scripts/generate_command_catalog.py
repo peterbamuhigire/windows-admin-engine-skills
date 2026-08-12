@@ -9,7 +9,7 @@ PATTERN=re.compile(r"bin\\wsa\.ps1'\)\s+([a-z0-9-]+)")
 
 def build()->dict:
     records=[]
-    for path in sorted((REPO/'commands').glob('[0-9][0-9]-*/*/wsa-*.ps1')):
+    for path in sorted((REPO/'commands').glob('*/*/wsa-*.ps1')):
         rel=path.relative_to(REPO).as_posix();parts=path.relative_to(REPO/'commands').parts
         match=PATTERN.search(path.read_text(encoding='utf-8-sig'))
         action=match.group(1) if match else 'unknown'

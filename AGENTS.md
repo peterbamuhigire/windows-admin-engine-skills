@@ -9,7 +9,7 @@ boundary; the Python package owns catalogue, routing, schema, and report work.
 
 ## Start here
 
-1. Read this file and `windows-sysadmin/SKILL.md`.
+1. Read this file and `skills/windows-sysadmin/SKILL.md`.
 2. Route to the narrowest specialist listed in `engine/catalog.yaml`.
 3. Inspect the target and management-plane owner before suggesting a change.
 4. Default to read-only discovery. A mutation requires explicit target,

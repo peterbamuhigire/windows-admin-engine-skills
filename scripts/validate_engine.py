@@ -30,6 +30,18 @@ def frontmatter(text: str) -> tuple[str | None, str | None]:
     return (name.group(1).strip() if name else None, description.group(1).strip() if description else None)
 
 
+def validate_local_links(path: Path, text: str) -> list[str]:
+    errors: list[str] = []
+    for target in re.findall(r"\]\(([^)]+)\)", text):
+        target = target.strip().split("#", 1)[0]
+        if not target or "://" in target or target.startswith(("#", "mailto:")):
+            continue
+        resolved = (path.parent / target).resolve()
+        if not resolved.is_file():
+            errors.append(f"{path.relative_to(REPO).as_posix()}: broken local link {target}")
+    return errors
+
+
 def main() -> int:
     errors: list[str] = []
     try:
@@ -54,17 +66,30 @@ def main() -> int:
         for section in REQUIRED_SECTIONS:
             if not re.search(rf"^## {re.escape(section)}\s*$", text, re.MULTILINE | re.IGNORECASE):
                 errors.append(f"{skill.path}: missing section '{section}'")
+        errors.extend(validate_local_links(path, text))
         missing_sources = set(skill.sources) - source_ids
         if missing_sources:
             errors.append(f"{skill.id}: unknown source ids {sorted(missing_sources)}")
     catalogue_paths = {skill.path for skill in skills}
-    actual = {path.relative_to(REPO).as_posix() for path in REPO.glob("[0-9][0-9]-*/**/SKILL.md")}
+    actual = {
+        path.relative_to(REPO).as_posix()
+        for path in (REPO / "skills").glob("*/*/SKILL.md")
+    }
     unlisted = actual - catalogue_paths
     if unlisted:
         errors.append(f"unlisted specialist skills: {sorted(unlisted)}")
-    for required in ("AGENTS.md", "windows-sysadmin/SKILL.md", "engine/catalog.schema.json", "engine/schemas/operation-envelope.schema.json"):
+    misplaced = sorted(path.name for path in REPO.glob("[0-9][0-9]-*") if path.is_dir())
+    if misplaced:
+        errors.append(f"numbered public directories belong under docs/plans: {misplaced}")
+    for skill_path in catalogue_paths:
+        if not skill_path.startswith("skills/"):
+            errors.append(f"specialist skill outside skills/: {skill_path}")
+    for required in ("AGENTS.md", "skills/windows-sysadmin/SKILL.md", "engine/catalog.schema.json", "engine/schemas/operation-envelope.schema.json"):
         if not (REPO / required).is_file():
             errors.append(f"missing required artifact: {required}")
+    hub = REPO / "skills" / "windows-sysadmin" / "SKILL.md"
+    if hub.is_file():
+        errors.extend(validate_local_links(hub, hub.read_text(encoding="utf-8-sig")))
     for error in errors:
         print(f"ERROR: {error}")
     print(f"validated_skills={len(skills)} findings={len(errors)}")

@@ -17,6 +17,10 @@ class CatalogTests(unittest.TestCase):
     def test_risk_classes_are_explicit(self):
         self.assertTrue(all(skill.risk_class.startswith("R") for skill in load_catalog(REPO)))
 
+    def test_skills_use_public_semantic_paths(self):
+        self.assertTrue(all(skill.path.startswith("skills/") for skill in load_catalog(REPO)))
+        self.assertTrue((REPO / "skills" / "windows-sysadmin" / "SKILL.md").is_file())
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -32,7 +32,7 @@ Generate README listings, routing index, script inventory, platform matrix, and 
 ## Required artifacts
 
 - AGENTS.md
-- windows-sysadmin/SKILL.md
+- skills/windows-sysadmin/SKILL.md
 - catalog schema and catalog
 - skill template
 - reference template

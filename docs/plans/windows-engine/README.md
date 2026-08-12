@@ -77,14 +77,13 @@ WindowsSkills.Engine safety and evidence module
 target resolver -> operation -> verification -> evidence pack -> release verdict
 ~~~
 
-## Proposed repository shape
+## Repository shape
 
 ~~~text
 AGENTS.md
 README.md
-windows-sysadmin/SKILL.md
-meta/{powershell-engineering,python-automation,skill-writing,skill-safety-audit}/
-01-*/.../SKILL.md
+skills/windows-sysadmin/SKILL.md
+skills/<domain>/<specialist>/SKILL.md
 engine/{catalog.yaml,catalog.schema.json,platform-matrix.yaml,source-register.yaml}
 powershell/WindowsSkills.Engine/{Public,Private,Classes,Tests}
 python/windows_admin/{cli,collectors,normalizers,reporting,adapters}
