@@ -1,0 +1,10 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "type":"object",
+  "required":["schema_version","manifest_id","environment","tenant","approved_by","expires_at","max_hosts","targets"],
+  "properties":{
+    "schema_version":{"const":"1.0"},"manifest_id":{"type":"string","minLength":8},"environment":{"type":"string","minLength":1},
+    "tenant":{"type":["string","null"]},"approved_by":{"type":"string","minLength":1},"expires_at":{"type":"string"},
+    "max_hosts":{"type":"integer","minimum":1},"targets":{"type":"array","items":{"type":"object","required":["hostname","device_id","owner","site","platform","management_plane","risk_tier","maintenance_window"],"properties":{"hostname":{"type":"string"},"device_id":{"type":"string"},"owner":{"type":"string"},"site":{"type":"string"},"platform":{"type":"string"},"management_plane":{"type":"string"},"risk_tier":{"enum":["R0","R1","R2","R3","R4","R5"]},"maintenance_window":{"type":"string"}}}}
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://techguypeter.com/windows-skills/operation-envelope.schema.json",
+  "type": "object",
+  "required": ["SchemaVersion","OperationId","Command","Target","IdentityContext","Status","Changed","RebootRequired","DisconnectRisk","StartedAt","FinishedAt","Before","After","Verification","RollbackArtifact","EvidencePath","Errors","Warnings"],
+  "properties": {
+    "SchemaVersion":{"const":"1.0"},
+    "OperationId":{"type":"string","minLength":8},
+    "Command":{"type":"string","minLength":1},
+    "Target":{"type":"object","required":["Kind","Name"],"properties":{"Kind":{"enum":["Local","Computer","Domain","Tenant","Fleet"]},"Name":{"type":"string","minLength":1},"Fingerprint":{"type":["string","null"]}},"additionalProperties":true},
+    "IdentityContext":{"type":"object"},
+    "Status":{"enum":["NoChange","Succeeded","Failed","PendingReboot","PartiallySucceeded","Aborted"]},
+    "Changed":{"type":"boolean"}, "RebootRequired":{"type":"boolean"}, "DisconnectRisk":{"type":"boolean"},
+    "StartedAt":{"type":"string"}, "FinishedAt":{"type":"string"},
+    "Before":{}, "After":{}, "Verification":{}, "RollbackArtifact":{"type":["object","null"]},
+    "EvidencePath":{"type":["string","null"]},
+    "Errors":{"type":"array"}, "Warnings":{"type":"array"}
+  },
+  "additionalProperties":true
+}

@@ -1,0 +1,296 @@
+{
+  "checked_at": "2026-08-12T10:07:32.678221+00:00",
+  "scope": "URL identity and liveness only; semantic claim support remains manual",
+  "total": 36,
+  "reachable": 36,
+  "results": [
+    {
+      "id": "MS-WINDOWS-MGMT",
+      "url": "https://learn.microsoft.com/en-us/windows-server/administration/overview",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows-server/administration/overview",
+      "error": null
+    },
+    {
+      "id": "MS-POWERSHELL",
+      "url": "https://learn.microsoft.com/en-us/powershell/",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/powershell/",
+      "error": null
+    },
+    {
+      "id": "MS-PS-REMIT",
+      "url": "https://learn.microsoft.com/en-us/powershell/scripting/security/remoting/running-remote-commands",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/powershell/scripting/security/remoting/running-remote-commands",
+      "error": null
+    },
+    {
+      "id": "MS-JEA",
+      "url": "https://learn.microsoft.com/en-us/powershell/scripting/security/remoting/jea/overview",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/powershell/scripting/security/remoting/jea/overview",
+      "error": null
+    },
+    {
+      "id": "MS-ADDS",
+      "url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview",
+      "error": null
+    },
+    {
+      "id": "MS-DCDIAG",
+      "url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/dcdiag",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/dcdiag",
+      "error": null
+    },
+    {
+      "id": "MS-REPADMIN",
+      "url": "https://learn.microsoft.com/en-us/troubleshoot/windows-server/active-directory/replication-error-1722-rpc-server-unavailable",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/troubleshoot/windows-server/active-directory/replication-error-1722-rpc-server-unavailable",
+      "error": null
+    },
+    {
+      "id": "MS-SCT",
+      "url": "https://learn.microsoft.com/en-us/windows/security/operating-system-security/device-management/windows-security-configuration-framework/security-compliance-toolkit-10",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows/security/operating-system-security/device-management/windows-security-configuration-framework/security-compliance-toolkit-10",
+      "error": null
+    },
+    {
+      "id": "MS-SYSINTERNALS",
+      "url": "https://learn.microsoft.com/en-us/sysinternals/",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/sysinternals/",
+      "error": null
+    },
+    {
+      "id": "MS-WAC",
+      "url": "https://learn.microsoft.com/en-us/windows-server/manage/windows-admin-center/overview",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows-server/manage/windows-admin-center/overview",
+      "error": null
+    },
+    {
+      "id": "MS-EVENTLOG",
+      "url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent",
+      "error": null
+    },
+    {
+      "id": "MS-NETTCPIP",
+      "url": "https://learn.microsoft.com/en-us/powershell/module/nettcpip/",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/powershell/module/nettcpip/",
+      "error": null
+    },
+    {
+      "id": "MS-WINRM",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/winrm/portal",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows/win32/winrm/portal",
+      "error": null
+    },
+    {
+      "id": "MS-LAPS",
+      "url": "https://learn.microsoft.com/en-us/windows-server/identity/laps/laps-overview",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows-server/identity/laps/laps-overview",
+      "error": null
+    },
+    {
+      "id": "MS-GROUP-POLICY",
+      "url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-overview",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-overview",
+      "error": null
+    },
+    {
+      "id": "MS-DEFENDER",
+      "url": "https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-antivirus-windows",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-antivirus-windows",
+      "error": null
+    },
+    {
+      "id": "MS-BITLOCKER",
+      "url": "https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/bitlocker/",
+      "error": null
+    },
+    {
+      "id": "MS-WINDOWS-UPDATE",
+      "url": "https://learn.microsoft.com/en-us/windows/deployment/update/windows-update-overview",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows/deployment/update/windows-update-overview",
+      "error": null
+    },
+    {
+      "id": "MS-WINGET",
+      "url": "https://learn.microsoft.com/en-us/windows/package-manager/winget/",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows/package-manager/winget/",
+      "error": null
+    },
+    {
+      "id": "MS-STORAGE",
+      "url": "https://learn.microsoft.com/en-us/windows-server/storage/storage",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows-server/storage/storage",
+      "error": null
+    },
+    {
+      "id": "MS-SMB",
+      "url": "https://learn.microsoft.com/en-us/windows-server/storage/file-server/file-server-smb-overview",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows-server/storage/file-server/file-server-smb-overview",
+      "error": null
+    },
+    {
+      "id": "MS-SERVICE",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/services/services",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows/win32/services/services",
+      "error": null
+    },
+    {
+      "id": "MS-IIS",
+      "url": "https://learn.microsoft.com/en-us/iis/get-started/introduction-to-iis/introduction-to-iis-architecture",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/iis/get-started/introduction-to-iis/introduction-to-iis-architecture",
+      "error": null
+    },
+    {
+      "id": "MS-HTTPSYS",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/http/http-api-start-page",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows/win32/http/http-api-start-page",
+      "error": null
+    },
+    {
+      "id": "MS-HYPERV",
+      "url": "https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-overview",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-overview",
+      "error": null
+    },
+    {
+      "id": "MS-CONTAINERS",
+      "url": "https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/virtualization/windowscontainers/about/",
+      "error": null
+    },
+    {
+      "id": "MS-WSL",
+      "url": "https://learn.microsoft.com/en-us/windows/wsl/about",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows/wsl/about",
+      "error": null
+    },
+    {
+      "id": "MS-WPR",
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/test/wpt/windows-performance-recorder",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows-hardware/test/wpt/windows-performance-recorder",
+      "error": null
+    },
+    {
+      "id": "MS-WINDBG",
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/",
+      "error": null
+    },
+    {
+      "id": "MS-WINDOWS-BACKUP",
+      "url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-server-backup-command-reference",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-server-backup-command-reference",
+      "error": null
+    },
+    {
+      "id": "MS-VSS",
+      "url": "https://learn.microsoft.com/en-us/windows-server/storage/file-server/volume-shadow-copy-service",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows-server/storage/file-server/volume-shadow-copy-service",
+      "error": null
+    },
+    {
+      "id": "MS-AD-RECOVERY",
+      "url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-guide",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/forest-recovery-guide/ad-forest-recovery-guide",
+      "error": null
+    },
+    {
+      "id": "MS-ARC",
+      "url": "https://learn.microsoft.com/en-us/azure/azure-arc/servers/overview",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/azure/azure-arc/servers/overview",
+      "error": null
+    },
+    {
+      "id": "MS-INTUNE",
+      "url": "https://learn.microsoft.com/en-us/mem/intune/fundamentals/what-is-intune",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/mem/intune/fundamentals/what-is-intune",
+      "error": null
+    },
+    {
+      "id": "MS-GRAPH",
+      "url": "https://learn.microsoft.com/en-us/graph/overview",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/graph/overview",
+      "error": null
+    },
+    {
+      "id": "CODE-AD-COOKBOOK",
+      "url": "https://github.com/PacktPublishing/Active-Directory-Administration-Cookbook-Second-Edition",
+      "reachable": true,
+      "status": 200,
+      "final_url": "https://github.com/PacktPublishing/Active-Directory-Administration-Cookbook-Second-Edition",
+      "error": null
+    }
+  ]
+}

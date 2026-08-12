@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "statuses": ["SUPPORTED", "LAB_VALIDATED", "PARTIAL", "EXPERIMENTAL", "BLOCKED", "NOT_ASSESSED", "DEPRECATED"],
+  "platforms": [
+    {"id": "windows-client", "scope": "Windows 11 supported channels", "status": "LAB_VALIDATED", "evidence": "local Windows 11 PowerShell 5.1 static and read-only smoke tests", "last_tested": "2026-08-12"},
+    {"id": "windows-server-2025", "scope": "Desktop Experience and Server Core", "status": "NOT_ASSESSED", "evidence": null, "last_tested": null},
+    {"id": "windows-server-2022", "scope": "Desktop Experience, Server Core, member server", "status": "NOT_ASSESSED", "evidence": null, "last_tested": null},
+    {"id": "windows-server-2019", "scope": "compatibility only", "status": "NOT_ASSESSED", "evidence": null, "last_tested": null},
+    {"id": "domain-controller", "scope": "multi-DC disposable forest", "status": "NOT_ASSESSED", "evidence": null, "last_tested": null},
+    {"id": "hyper-v-host", "scope": "standalone Hyper-V", "status": "NOT_ASSESSED", "evidence": null, "last_tested": null},
+    {"id": "powershell-5.1", "scope": "module compatibility baseline", "status": "LAB_VALIDATED", "evidence": "local import and smoke tests", "last_tested": "2026-08-12"},
+    {"id": "powershell-7", "scope": "preferred cross-platform runtime", "status": "NOT_ASSESSED", "evidence": "pwsh absent on development host", "last_tested": "2026-08-12"},
+    {"id": "python-3.12", "scope": "catalogue, routing, schema, CLI", "status": "LAB_VALIDATED", "evidence": "unittest and CLI smoke tests", "last_tested": "2026-08-12"},
+    {"id": "non-english-locale", "scope": "culture-neutral collectors", "status": "NOT_ASSESSED", "evidence": null, "last_tested": null},
+    {"id": "remote-winrm", "scope": "domain and workgroup", "status": "NOT_ASSESSED", "evidence": null, "last_tested": null}
+  ]
+}

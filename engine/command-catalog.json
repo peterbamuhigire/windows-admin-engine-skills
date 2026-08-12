@@ -1,0 +1,438 @@
+{
+  "schema_version": "1.0",
+  "generated_from": "commands/**/*.ps1",
+  "commands": [
+    {
+      "command": "wsa-list",
+      "path": "commands/00-engine/catalog/wsa-list.ps1",
+      "category": "00-engine",
+      "subcategory": "catalog",
+      "action": "list",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-route",
+      "path": "commands/00-engine/routing/wsa-route.ps1",
+      "category": "00-engine",
+      "subcategory": "routing",
+      "action": "route",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-doctor",
+      "path": "commands/00-engine/validation/wsa-doctor.ps1",
+      "category": "00-engine",
+      "subcategory": "validation",
+      "action": "doctor",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-evidence-validate",
+      "path": "commands/00-engine/validation/wsa-evidence-validate.ps1",
+      "category": "00-engine",
+      "subcategory": "validation",
+      "action": "evidence-validate",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-validate",
+      "path": "commands/00-engine/validation/wsa-validate.ps1",
+      "category": "00-engine",
+      "subcategory": "validation",
+      "action": "validate",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-certificates",
+      "path": "commands/01-inventory/certificates/wsa-certificates.ps1",
+      "category": "01-inventory",
+      "subcategory": "certificates",
+      "action": "certificates",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-drivers",
+      "path": "commands/01-inventory/drivers/wsa-drivers.ps1",
+      "category": "01-inventory",
+      "subcategory": "drivers",
+      "action": "drivers",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-health",
+      "path": "commands/01-inventory/health/wsa-health.ps1",
+      "category": "01-inventory",
+      "subcategory": "health",
+      "action": "health",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-software",
+      "path": "commands/01-inventory/software/wsa-software.ps1",
+      "category": "01-inventory",
+      "subcategory": "software",
+      "action": "software",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-inventory",
+      "path": "commands/01-inventory/system/wsa-inventory.ps1",
+      "category": "01-inventory",
+      "subcategory": "system",
+      "action": "inventory",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-listeners",
+      "path": "commands/02-networking/connectivity/wsa-listeners.ps1",
+      "category": "02-networking",
+      "subcategory": "connectivity",
+      "action": "listeners",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-port-test",
+      "path": "commands/02-networking/connectivity/wsa-port-test.ps1",
+      "category": "02-networking",
+      "subcategory": "connectivity",
+      "action": "port-test",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-dns-test",
+      "path": "commands/02-networking/dns/wsa-dns-test.ps1",
+      "category": "02-networking",
+      "subcategory": "dns",
+      "action": "dns-test",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-network",
+      "path": "commands/02-networking/state/wsa-network.ps1",
+      "category": "02-networking",
+      "subcategory": "state",
+      "action": "network",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-time-status",
+      "path": "commands/02-networking/time/wsa-time-status.ps1",
+      "category": "02-networking",
+      "subcategory": "time",
+      "action": "time-status",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-ad-dcs",
+      "path": "commands/03-identity/active-directory/wsa-ad-dcs.ps1",
+      "category": "03-identity",
+      "subcategory": "active-directory",
+      "action": "ad-dcs",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-ad-fsmo",
+      "path": "commands/03-identity/active-directory/wsa-ad-fsmo.ps1",
+      "category": "03-identity",
+      "subcategory": "active-directory",
+      "action": "ad-fsmo",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-ad-health",
+      "path": "commands/03-identity/active-directory/wsa-ad-health.ps1",
+      "category": "03-identity",
+      "subcategory": "active-directory",
+      "action": "ad-health",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-ad-replication",
+      "path": "commands/03-identity/active-directory/wsa-ad-replication.ps1",
+      "category": "03-identity",
+      "subcategory": "active-directory",
+      "action": "ad-replication",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-local-accounts",
+      "path": "commands/03-identity/local/wsa-local-accounts.ps1",
+      "category": "03-identity",
+      "subcategory": "local",
+      "action": "local-accounts",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-local-admins",
+      "path": "commands/03-identity/local/wsa-local-admins.ps1",
+      "category": "03-identity",
+      "subcategory": "local",
+      "action": "local-admins",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-gp-result",
+      "path": "commands/04-policy/group-policy/wsa-gp-result.ps1",
+      "category": "04-policy",
+      "subcategory": "group-policy",
+      "action": "gp-result",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-audit-policy",
+      "path": "commands/05-security/audit/wsa-audit-policy.ps1",
+      "category": "05-security",
+      "subcategory": "audit",
+      "action": "audit-policy",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-bitlocker-status",
+      "path": "commands/05-security/posture/wsa-bitlocker-status.ps1",
+      "category": "05-security",
+      "subcategory": "posture",
+      "action": "bitlocker-status",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-defender-status",
+      "path": "commands/05-security/posture/wsa-defender-status.ps1",
+      "category": "05-security",
+      "subcategory": "posture",
+      "action": "defender-status",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-firewall-status",
+      "path": "commands/05-security/posture/wsa-firewall-status.ps1",
+      "category": "05-security",
+      "subcategory": "posture",
+      "action": "firewall-status",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-security",
+      "path": "commands/05-security/posture/wsa-security.ps1",
+      "category": "05-security",
+      "subcategory": "posture",
+      "action": "security",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-hotfixes",
+      "path": "commands/06-patching/discovery/wsa-hotfixes.ps1",
+      "category": "06-patching",
+      "subcategory": "discovery",
+      "action": "hotfixes",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-pending-reboot",
+      "path": "commands/06-patching/discovery/wsa-pending-reboot.ps1",
+      "category": "06-patching",
+      "subcategory": "discovery",
+      "action": "pending-reboot",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-service-state",
+      "path": "commands/07-storage/services/wsa-service-state.ps1",
+      "category": "07-storage",
+      "subcategory": "services",
+      "action": "service-state",
+      "risk_class": "R2",
+      "mutation": true
+    },
+    {
+      "command": "wsa-service",
+      "path": "commands/07-storage/services/wsa-service.ps1",
+      "category": "07-storage",
+      "subcategory": "services",
+      "action": "service",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-open-files",
+      "path": "commands/07-storage/shares/wsa-open-files.ps1",
+      "category": "07-storage",
+      "subcategory": "shares",
+      "action": "open-files",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-shares",
+      "path": "commands/07-storage/shares/wsa-shares.ps1",
+      "category": "07-storage",
+      "subcategory": "shares",
+      "action": "shares",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-smb-sessions",
+      "path": "commands/07-storage/shares/wsa-smb-sessions.ps1",
+      "category": "07-storage",
+      "subcategory": "shares",
+      "action": "smb-sessions",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-storage",
+      "path": "commands/07-storage/storage/wsa-storage.ps1",
+      "category": "07-storage",
+      "subcategory": "storage",
+      "action": "storage",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-tasks",
+      "path": "commands/07-storage/tasks/wsa-tasks.ps1",
+      "category": "07-storage",
+      "subcategory": "tasks",
+      "action": "tasks",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-iis-status",
+      "path": "commands/08-web/iis/wsa-iis-status.ps1",
+      "category": "08-web",
+      "subcategory": "iis",
+      "action": "iis-status",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-containers-status",
+      "path": "commands/09-virtualization/containers/wsa-containers-status.ps1",
+      "category": "09-virtualization",
+      "subcategory": "containers",
+      "action": "containers-status",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-hyperv-status",
+      "path": "commands/09-virtualization/hyper-v/wsa-hyperv-status.ps1",
+      "category": "09-virtualization",
+      "subcategory": "hyper-v",
+      "action": "hyperv-status",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-wsl-status",
+      "path": "commands/09-virtualization/wsl/wsa-wsl-status.ps1",
+      "category": "09-virtualization",
+      "subcategory": "wsl",
+      "action": "wsl-status",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-events",
+      "path": "commands/10-observability/events/wsa-events.ps1",
+      "category": "10-observability",
+      "subcategory": "events",
+      "action": "events",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-performance-sample",
+      "path": "commands/10-observability/performance/wsa-performance-sample.ps1",
+      "category": "10-observability",
+      "subcategory": "performance",
+      "action": "performance-sample",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-processes",
+      "path": "commands/10-observability/processes/wsa-processes.ps1",
+      "category": "10-observability",
+      "subcategory": "processes",
+      "action": "processes",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-startup",
+      "path": "commands/10-observability/startup/wsa-startup.ps1",
+      "category": "10-observability",
+      "subcategory": "startup",
+      "action": "startup",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-backup-status",
+      "path": "commands/11-recovery/backup/wsa-backup-status.ps1",
+      "category": "11-recovery",
+      "subcategory": "backup",
+      "action": "backup-status",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-vss-status",
+      "path": "commands/11-recovery/vss/wsa-vss-status.ps1",
+      "category": "11-recovery",
+      "subcategory": "vss",
+      "action": "vss-status",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-toolchain",
+      "path": "commands/12-development/toolchain/wsa-toolchain.ps1",
+      "category": "12-development",
+      "subcategory": "toolchain",
+      "action": "toolchain",
+      "risk_class": "R0",
+      "mutation": false
+    },
+    {
+      "command": "wsa-fleet-validate",
+      "path": "commands/13-fleet/manifests/wsa-fleet-validate.ps1",
+      "category": "13-fleet",
+      "subcategory": "manifests",
+      "action": "fleet-validate",
+      "risk_class": "R0",
+      "mutation": false
+    }
+  ]
+}

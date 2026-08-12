@@ -1,0 +1,18 @@
+[
+  {"prompt":"inventory this Windows 11 laptop","expected":"windows-system-inventory"},
+  {"prompt":"why is this server reporting a pending reboot and low disk capacity","expected":"windows-health-assessment"},
+  {"prompt":"DNS resolves incorrectly and the route to the gateway fails","expected":"windows-network-admin"},
+  {"prompt":"WinRM authentication fails with a workgroup machine","expected":"windows-remote-management"},
+  {"prompt":"check AD replication and domain controller health","expected":"windows-active-directory-health"},
+  {"prompt":"offboard a domain user and remove privileged group membership","expected":"windows-identity-lifecycle"},
+  {"prompt":"show resultant set of policy and GPO precedence","expected":"windows-group-policy"},
+  {"prompt":"assess Defender BitLocker and security baseline drift","expected":"windows-security-analysis"},
+  {"prompt":"plan a patch ring and reboot maintenance window","expected":"windows-patch-management"},
+  {"prompt":"diagnose an SMB share ACL and a stopped Windows service","expected":"windows-storage-files-services"},
+  {"prompt":"IIS app pool returns 503 after certificate binding change","expected":"windows-iis"},
+  {"prompt":"inspect Hyper-V VM checkpoints and virtual switch health","expected":"windows-hyper-v"},
+  {"prompt":"the machine hangs with high CPU and no known subsystem","expected":"windows-troubleshooting"},
+  {"prompt":"prove the system state backup can meet the RTO","expected":"windows-backup-recovery"},
+  {"prompt":"apply this change to all machines through Intune canary rings","expected":"windows-fleet-management"},
+  {"prompt":"set up a repeatable developer workstation with WSL and SDKs","expected":"windows-development-workstation"}
+]

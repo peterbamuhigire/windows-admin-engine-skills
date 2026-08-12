@@ -1,105 +1,96 @@
-# Windows Skills Engine
+# Windows Administration Skills Engine
 
-A portable, AI-assisted skills engine for Windows system administration, networking, security, and development.
+A runner-neutral Windows operations engine for workstations, servers, Active
+Directory, network services, security, storage, virtualisation, recovery, and
+bounded fleet administration.
 
-It is designed as a hub-and-specialist system: a small routing layer classifies a request, then hands it to the right skill. Each skill owns one clear workflow, with manual procedures, optional PowerShell acceleration, and explicit safety rules
+The engine separates three concerns:
 
-## What it is
+- `windows-sysadmin/` and numbered specialist `SKILL.md` files hold human- and
+  agent-readable operating procedures.
+- `powershell/WindowsSkills.Engine/` owns Windows-native target, operation,
+  redaction, evidence, inventory, health, and controlled-change primitives.
+- `python/windows_admin/` owns catalogue validation, routing, schema checks,
+  fleet-safe planning, and cross-platform CLI behaviour.
 
-Windows Skills Engine is a repository of focused administrative skills for Windows environments. It is intended to help operators and AI agents perform tasks safely, consistently, and with strong evidence trails
+## Current release boundary
 
-The engine emphasizes:
-- Clear routing to the right specialist skill.
-- Read-only discovery before mutation.
-- Structured output instead of ad hoc text.
-- Reboot and disconnect-risk awareness.
-- Idempotent, testable workflows.
-- Evidence packs for change and compliance operations
+Release 0.1 implements the control plane and useful read-only local inventory,
+health, network, event, security, storage, service, IIS, Hyper-V, AD discovery,
+and routing workflows. It includes one bounded service-state mutation to prove
+the R2 contract. Domain, GPO, firewall, storage-destructive, patch/reboot,
+certificate, backup-restore, and fleet mutations remain gated until their lab
+rows have executable evidence.
 
-## Why it exists
+This is deliberate: a catalogue entry or script example is not proof that an
+operation is safe on a real estate.
 
-Windows administration has many first-class dimensions that deserve explicit handling: server vs client, Server Core vs Desktop Experience, PowerShell 5.1 vs PowerShell 7, local vs remote execution, GPO vs MDM, and operations that may require reboot or risk lockout
+## Quick start
 
-This project exists to turn that complexity into a controlled, trustworthy system rather than a loose collection of scripts.
+```powershell
+# Validate the checkout without changing the host
+python -X utf8 scripts/validate_engine.py
+python -X utf8 scripts/routing_smoke_test.py
 
-## Core principles
+# Discover routes
+python -X utf8 -m windows_admin.cli --repo . list
+python -X utf8 -m windows_admin.cli --repo . route "check AD replication health"
 
-- One skill, one responsibility.
-- Manual truth first, scripts as accelerators.
-- Schema-driven inventory, not duplicated documentation.
-- Safety gates for destructive or disconnect-risk changes.
-- Structured records by default.
-- Every validated workflow has evidence
+# Native local inventory; writes a redacted evidence pack under .evidence/
+Import-Module .\powershell\WindowsSkills.Engine\WindowsSkills.Engine.psd1 -Force
+Get-WseSystemInventory -EvidenceRoot .\.evidence
+```
 
-## Repository structure
+When running the Python module directly, either install the local package or set
+`PYTHONPATH` to the repository's `python` directory. The wrapper
+`scripts/windows-admin.ps1` handles that automatically.
 
-A recommended structure includes:
-- `windows-skills/` for the repository root.
-- `windows-sysadmin/` for the routing hub.
-- `SKILL.md` files for each specialist skill.
-- `engine/catalog.yaml` as the authoritative inventory.
-- `engine/catalog.schema.json` for validation.
-- `powershell/WindowsSkills.Engine/` for shared automation primitives.
-- `references/` for curated guidance and decision aids.
-- `tests/` for unit, contract, integration, and lab validation.
-- `docs/` for architecture, roadmaps, and quality gates
+## Repository map
 
-## Example skills
-
-Initial high-value skills may include:
-- `windows-system-inventory`
-- `windows-health-assessment`
-- `windows-network-admin`
-- `windows-security-analysis`
-- `windows-event-logs`
-- `windows-active-directory`
-
-Over time, the engine can grow into provisioning, identity, policy, storage, virtualization, observability, recovery, patching, compliance, endpoint management, and hybrid cloud workflows.
+```text
+AGENTS.md                         repository policy and safety boundary
+windows-sysadmin/SKILL.md         default router
+01-*/.../SKILL.md                 specialist procedures
+engine/                           catalogue, schemas, platforms, sources
+powershell/WindowsSkills.Engine/  Windows-native module and Pester tests
+python/windows_admin/             catalogue/router/schema CLI package
+scripts/                          validation, CLI, install and test wrappers
+templates/                        skill, change, rollback, evidence templates
+tests/                            routing, schema, fixture and Python tests
+labs/                             declared disposable lab topologies
+docs/                             decisions, research, audits and operations
+```
 
 ## Safety model
 
-The engine is built to avoid unsafe assumptions:
-- Discovery happens before mutation.
-- Remote lockout-risk changes require special care.
-- Reboots are explicit, not implicit.
-- Rollback paths are documented where possible.
-- Secrets and sensitive values are redacted from evidence.
-- Unsupported platform combinations are clearly marked
+The default is R0 read-only discovery. Changes use R1-R5 controls defined in
+`AGENTS.md` and `docs/safety-model.md`. The engine refuses an ambiguous target,
+unknown policy owner, missing change authority, unsupported platform, or missing
+recovery prerequisite. It never treats request wording as approval.
 
-## Output model
+Every operation uses the versioned result fields in
+`engine/schemas/operation-envelope.schema.json`, including `Changed`,
+`RebootRequired`, `DisconnectRisk`, `Before`, `After`, `Verification`,
+`RollbackArtifact`, `EvidencePath`, `Errors`, and `Warnings`.
 
-Skills should return structured data where possible, such as:
-- `Changed`
-- `RebootRequired`
-- `RollbackAvailable`
-- `Verification`
-- `EvidencePath`
+## Source policy
 
-Human-friendly formatting should stay at the presentation layer, not inside every function
+The supplied PowerShell, Active Directory, Sysinternals, and Windows Internals
+books informed topic coverage and failure hypotheses. No raw book text or code
+was copied into this repository. `docs/research/source-synthesis.md` records the
+independent synthesis and its limits; `engine/source-register.yaml` records
+provenance and freshness. Current product behaviour must be rechecked against
+official documentation and a disposable target before promotion.
 
-## Installation
+## Validation
 
-The recommended distribution model is:
-1. Use the repository directly for agent-based workflows.
-2. Publish the engine as a versioned PowerShell module.
-3. Provide an installer for trusted local or offline deployment.
-4. Verify signatures, hashes, and installed version metadata.
-5. Support install, update, repair, uninstall, and test operations
+```powershell
+python -X utf8 scripts/validate_engine.py
+python -X utf8 scripts/routing_smoke_test.py
+python -X utf8 scripts/source_ingestion_guardrail.py
+python -X utf8 -m unittest discover -s tests/python -v
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-powershell.ps1
+```
 
-## Quality gates
-
-A skill should not be marked validated unless it has:
-- A clear responsibility and handoff boundary.
-- A platform support matrix.
-- Required inputs and identity context.
-- Read-only discovery before mutation.
-- Idempotency or an explicit exception.
-- Pre-change capture and post-change verification.
-- Rollback handling or an honest fallback statement.
-- Positive, negative, and second-run tests.
-- A sanitized exemplar workflow.
-- Fresh, authoritative references
-
-## Status
-
-This project is a blueprint for a production-grade Windows skills engine. The next step is to finalize the repository name, scope, and supported platforms, then implement the core hub, catalog, and shared PowerShell engine
+See `docs/testing/test-plan.md` for live lab gates and
+`docs/release/delivery-evidence-pack.md` for the current verdict.

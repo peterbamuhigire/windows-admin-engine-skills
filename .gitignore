@@ -1,0 +1,13 @@
+.evidence/
+dist/
+build/
+*.egg-info/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+TestResults/
+*.trx
+*.nupkg
+*.zip

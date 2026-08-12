@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0",
+  "engine_version": "0.1.0",
+  "skills": [
+    {
+      "id": "windows-system-inventory",
+      "path": "09-inventory-health-and-diagnostics/windows-system-inventory/SKILL.md",
+      "category": "inventory",
+      "trigger": "Collect a read-only Windows host fingerprint, software and role inventory, or drift baseline.",
+      "exclusions": ["health diagnosis", "software installation"],
+      "dependencies": [],
+      "platforms": ["windows-client", "windows-server", "server-core"],
+      "risk_class": "R0", "script_tier": "read-only", "maturity": "LAB_VALIDATED",
+      "owner": "Peter Bamuhigire", "last_verified": "2026-08-12",
+      "sources": ["MS-WINDOWS-MGMT", "BOOK-WIN-INTERNALS", "BOOK-PS-TOOLMAKING"],
+      "keywords": ["inventory", "fingerprint", "installed software", "roles", "features", "uptime"]
+    },
+    {
+      "id": "windows-health-assessment",
+      "path": "09-inventory-health-and-diagnostics/windows-health-assessment/SKILL.md",
+      "category": "health", "trigger": "Assess role-aware Windows health, pending reboot, services, capacity, updates, and recent critical events.",
+      "exclusions": ["root-cause investigation", "automatic repair"], "dependencies": ["windows-system-inventory"],
+      "platforms": ["windows-client", "windows-server", "server-core"], "risk_class": "R0", "script_tier": "read-only", "maturity": "LAB_VALIDATED",
+      "owner": "Peter Bamuhigire", "last_verified": "2026-08-12", "sources": ["MS-WINDOWS-MGMT", "MS-EVENTLOG"],
+      "keywords": ["health", "pending reboot", "critical events", "capacity", "unhealthy"]
+    },
+    {
+      "id": "windows-network-admin",
+      "path": "10-networking-and-remote-management/windows-network-admin/SKILL.md",
+      "category": "networking", "trigger": "Diagnose or plan Windows IP, route, DNS, firewall, port, proxy, VPN, or name-resolution work.",
+      "exclusions": ["application-layer IIS diagnosis", "unapproved remote firewall mutation"], "dependencies": ["windows-system-inventory"],
+      "platforms": ["windows-client", "windows-server", "server-core"], "risk_class": "R3", "script_tier": "read-only", "maturity": "PARTIAL",
+      "owner": "Peter Bamuhigire", "last_verified": "2026-08-12", "sources": ["MS-NETTCPIP", "MS-WINRM"],
+      "keywords": ["dns", "network", "firewall", "route", "port", "ip address", "proxy", "vpn"]
+    },
+    {
+      "id": "windows-remote-management",
+      "path": "10-networking-and-remote-management/windows-remote-management/SKILL.md",
+      "category": "remoting", "trigger": "Diagnose WinRM, CIM, PowerShell remoting, SSH, RDP health, authentication, trust, or delegation boundaries.",
+      "exclusions": ["general network diagnosis", "credential retrieval"], "dependencies": ["windows-network-admin"],
+      "platforms": ["windows-client", "windows-server", "server-core"], "risk_class": "R3", "script_tier": "blocked", "maturity": "PARTIAL",
+      "owner": "Peter Bamuhigire", "last_verified": "2026-08-12", "sources": ["MS-PS-REMIT", "MS-JEA", "MS-WINRM"],
+      "keywords": ["winrm", "remoting", "cim session", "rdp", "ssh", "double hop", "credssp"]
+    },
+    {
+      "id": "windows-active-directory-health",
+      "path": "11-identity-active-directory-and-access/windows-active-directory-health/SKILL.md",
+      "category": "identity", "trigger": "Assess AD DS forest, domain, domain controller, replication, DNS, time, trust, FSMO, Kerberos, or secure-channel health.",
+      "exclusions": ["object lifecycle mutation", "Entra-only identity"], "dependencies": ["windows-network-admin"],
+      "platforms": ["domain-controller", "domain-member", "management-workstation"], "risk_class": "R0", "script_tier": "read-only", "maturity": "PARTIAL",
+      "owner": "Peter Bamuhigire", "last_verified": "2026-08-12", "sources": ["MS-ADDS", "MS-DCDIAG", "MS-REPADMIN", "BOOK-AD-ADMIN-2022", "CODE-AD-COOKBOOK"],
+      "keywords": ["active directory", "ad ds", "replication", "domain controller", "fsmo", "kerberos", "secure channel", "trust"]
+    },
+    {
+      "id": "windows-identity-lifecycle",
+      "path": "11-identity-active-directory-and-access/windows-identity-lifecycle/SKILL.md",
+      "category": "identity", "trigger": "Plan or execute gated local or AD user, group, computer, gMSA, SPN, LAPS, join, disable, move, or offboarding work.",
+      "exclusions": ["health-only assessment", "ordinary secret disclosure"], "dependencies": ["windows-active-directory-health"],
+      "platforms": ["windows-client", "windows-server", "domain-controller", "management-workstation"], "risk_class": "R4", "script_tier": "blocked", "maturity": "NOT_ASSESSED",
+      "owner": "Peter Bamuhigire", "last_verified": "2026-08-12", "sources": ["MS-ADDS", "MS-LAPS", "MS-JEA", "BOOK-AD-ADMIN-2022", "CODE-AD-COOKBOOK"],
+      "keywords": ["user", "group", "computer account", "laps", "gmsa", "spn", "join domain", "offboard"]
+    },
+    {
+      "id": "windows-group-policy",
+      "path": "12-policy-security-and-compliance/windows-group-policy/SKILL.md",
+      "category": "policy", "trigger": "Analyse GPO ownership, scope, precedence, inheritance, filtering, results, backup, or staged policy change.",
+      "exclusions": ["MDM-only policy", "blind registry hardening"], "dependencies": ["windows-active-directory-health"],
+      "platforms": ["domain-controller", "domain-member", "management-workstation"], "risk_class": "R4", "script_tier": "blocked", "maturity": "NOT_ASSESSED",
+      "owner": "Peter Bamuhigire", "last_verified": "2026-08-12", "sources": ["MS-GROUP-POLICY", "BOOK-GROUP-POLICY", "CODE-AD-COOKBOOK"],
+      "keywords": ["gpo", "group policy", "gpresult", "rsop", "inheritance", "wmi filter"]
+    },
+    {
+      "id": "windows-security-analysis",
+      "path": "12-policy-security-and-compliance/windows-security-analysis/SKILL.md",
+      "category": "security", "trigger": "Produce a read-only Windows security posture, control ownership, drift, exception, or baseline assessment.",
+      "exclusions": ["automatic hardening", "formal compliance certification"], "dependencies": ["windows-system-inventory"],
+      "platforms": ["windows-client", "windows-server", "server-core"], "risk_class": "R0", "script_tier": "read-only", "maturity": "PARTIAL",
+      "owner": "Peter Bamuhigire", "last_verified": "2026-08-12", "sources": ["MS-SCT", "MS-DEFENDER", "MS-BITLOCKER"],
+      "keywords": ["security", "defender", "bitlocker", "secure boot", "wdac", "applocker", "audit policy", "baseline", "compliance"]
+    },
+    {
+      "id": "windows-patch-management",
+      "path": "13-patching-software-and-endpoint-management/windows-patch-management/SKILL.md",
+      "category": "patching", "trigger": "Discover or plan Windows update, servicing, installed-software, maintenance-window, patch-ring, or reboot readiness work.",
+      "exclusions": ["implicit reboot", "unowned application upgrade"], "dependencies": ["windows-health-assessment"],
+      "platforms": ["windows-client", "windows-server", "server-core"], "risk_class": "R2", "script_tier": "blocked", "maturity": "NOT_ASSESSED",
+      "owner": "Peter Bamuhigire", "last_verified": "2026-08-12", "sources": ["MS-WINDOWS-UPDATE", "MS-WINGET"],
+      "keywords": ["patch", "update", "hotfix", "winget", "software", "reboot", "servicing"]
+    },
+    {
+      "id": "windows-storage-files-services",
+      "path": "14-storage-files-services-and-web/windows-storage-files-services/SKILL.md",
+      "category": "workloads", "trigger": "Diagnose or plan Windows disks, volumes, NTFS/ReFS, SMB/DFS, ACLs, services, scheduled tasks, handles, or VSS work.",
+      "exclusions": ["database-owned storage", "unapproved format or destructive cleanup"], "dependencies": ["windows-system-inventory"],
+      "platforms": ["windows-client", "windows-server", "server-core"], "risk_class": "R2", "script_tier": "controlled-mutation", "maturity": "PARTIAL",
+      "owner": "Peter Bamuhigire", "last_verified": "2026-08-12", "sources": ["MS-STORAGE", "MS-SMB", "MS-SERVICE", "BOOK-SYSINTERNALS"],
+      "keywords": ["disk", "volume", "ntfs", "refs", "smb", "share", "acl", "service", "scheduled task", "vss"]
+    },
+    {
+      "id": "windows-iis",
+      "path": "14-storage-files-services-and-web/windows-iis/SKILL.md",
+      "category": "workloads", "trigger": "Inventory, diagnose, or plan IIS sites, application pools, bindings, certificates, HTTP.sys, logs, deployment, or rollback.",
+      "exclusions": ["application code changes", "DNS or CA ownership"], "dependencies": ["windows-network-admin", "windows-storage-files-services"],
+      "platforms": ["windows-server", "server-core"], "risk_class": "R2", "script_tier": "blocked", "maturity": "NOT_ASSESSED",
+      "owner": "Peter Bamuhigire", "last_verified": "2026-08-12", "sources": ["MS-IIS", "MS-HTTPSYS"],
+      "keywords": ["iis", "app pool", "binding", "http.sys", "website", "503", "certificate"]
+    },
+    {
+      "id": "windows-hyper-v",
+      "path": "15-virtualization-containers-and-development/windows-hyper-v/SKILL.md",
+      "category": "virtualisation", "trigger": "Inventory or diagnose Hyper-V hosts, virtual switches, VMs, checkpoints, replication, cluster boundaries, containers, or WSL.",
+      "exclusions": ["guest application health", "checkpoint as backup"], "dependencies": ["windows-health-assessment"],
+      "platforms": ["hyper-v-host", "windows-client"], "risk_class": "R2", "script_tier": "read-only", "maturity": "NOT_ASSESSED",
+      "owner": "Peter Bamuhigire", "last_verified": "2026-08-12", "sources": ["MS-HYPERV", "MS-CONTAINERS", "MS-WSL"],
+      "keywords": ["hyper-v", "vm", "virtual switch", "checkpoint", "cluster", "container", "wsl"]
+    },
+    {
+      "id": "windows-troubleshooting",
+      "path": "16-observability-performance-and-troubleshooting/windows-troubleshooting/SKILL.md",
+      "category": "troubleshooting", "trigger": "Investigate an unexplained Windows symptom across processes, services, events, performance, boot, crash, hang, or multiple subsystems.",
+      "exclusions": ["known single-domain task", "unapproved containment or repair"], "dependencies": ["windows-system-inventory", "windows-health-assessment"],
+      "platforms": ["windows-client", "windows-server", "server-core"], "risk_class": "R0", "script_tier": "read-only", "maturity": "PARTIAL",
+      "owner": "Peter Bamuhigire", "last_verified": "2026-08-12", "sources": ["MS-SYSINTERNALS", "MS-WPR", "MS-WINDBG", "BOOK-SYSINTERNALS", "BOOK-WIN-INTERNALS"],
+      "keywords": ["troubleshoot", "slow", "crash", "hang", "high cpu", "memory", "procmon", "procdump", "event log", "etw"]
+    },
+    {
+      "id": "windows-backup-recovery",
+      "path": "17-backup-recovery-and-business-continuity/windows-backup-recovery/SKILL.md",
+      "category": "recovery", "trigger": "Assess backup protection or plan a file, volume, system-state, bare-metal, VM, AD, or configuration restore test.",
+      "exclusions": ["checkpoint as backup", "restore over an unapproved target"], "dependencies": ["windows-storage-files-services"],
+      "platforms": ["windows-client", "windows-server", "domain-controller", "hyper-v-host"], "risk_class": "R5", "script_tier": "blocked", "maturity": "NOT_ASSESSED",
+      "owner": "Peter Bamuhigire", "last_verified": "2026-08-12", "sources": ["MS-WINDOWS-BACKUP", "MS-VSS", "MS-AD-RECOVERY"],
+      "keywords": ["backup", "restore", "recovery", "rpo", "rto", "system state", "bare metal", "vss"]
+    },
+    {
+      "id": "windows-fleet-management",
+      "path": "18-fleet-hybrid-and-management-planes/windows-fleet-management/SKILL.md",
+      "category": "fleet", "trigger": "Plan bounded multi-host, canary, Intune, Entra, Arc, WAC, WinRM, CIM, drift, or mixed-management-plane work.",
+      "exclusions": ["single-host operation", "unbounded all-machines request"], "dependencies": ["windows-system-inventory", "windows-remote-management"],
+      "platforms": ["mixed-fleet", "hybrid"], "risk_class": "R4", "script_tier": "blocked", "maturity": "NOT_ASSESSED",
+      "owner": "Peter Bamuhigire", "last_verified": "2026-08-12", "sources": ["MS-WAC", "MS-ARC", "MS-INTUNE", "MS-GRAPH"],
+      "keywords": ["fleet", "all machines", "intune", "entra", "azure arc", "windows admin center", "canary", "drift"]
+    },
+    {
+      "id": "windows-development-workstation",
+      "path": "15-virtualization-containers-and-development/windows-development-workstation/SKILL.md",
+      "category": "development", "trigger": "Inventory or plan a repeatable Windows developer workstation with PowerShell, Python, Git, SDKs, WSL, certificates, and test VMs.",
+      "exclusions": ["production server provisioning", "surprise package ownership"], "dependencies": ["windows-system-inventory"],
+      "platforms": ["windows-client"], "risk_class": "R1", "script_tier": "blocked", "maturity": "NOT_ASSESSED",
+      "owner": "Peter Bamuhigire", "last_verified": "2026-08-12", "sources": ["MS-POWERSHELL", "MS-WINGET", "MS-WSL", "BOOK-PS-2024", "BOOK-PS-TOOLMAKING"],
+      "keywords": ["developer workstation", "dev machine", "sdk", "python", "git", "wsl", "visual studio code"]
+    }
+  ]
+}

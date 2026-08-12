@@ -1,0 +1,25 @@
+name: windows-engine-ci
+on:
+  push:
+  pull_request:
+
+jobs:
+  structural:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -X utf8 scripts\validate_engine.py
+      - run: python -X utf8 scripts\routing_smoke_test.py
+      - run: python -X utf8 scripts\source_ingestion_guardrail.py
+      - run: python -X utf8 scripts\validate_command_tree.py
+      - run: python -X utf8 scripts\validate_fleet_manifest.py tests\fixtures\fleet-manifest.valid.json
+      - run: python -X utf8 -m unittest discover -s tests\python -v
+      - shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File scripts\test-powershell-syntax.ps1
+      - shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File scripts\test-powershell.ps1
+      - shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File scripts\install-windows-admin.ps1 -WhatIf
