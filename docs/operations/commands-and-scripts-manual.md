@@ -35,10 +35,20 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\install-windows-ad
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\install-windows-admin.ps1 -Confirm:$false
 ```
 
-The installer adds `commands` and all of its current subdirectories to the user
-`PATH`, sets `WINDOWS_ADMIN_ENGINE_ROOT`, checks for command-name collisions,
-deduplicates entries, and stops if the proposed user `PATH` exceeds the
-8,191-character compatibility gate. Open a new terminal after installation.
+The installer is the single install, update, and repair command. It removes
+stale engine-owned entries from the current and previously registered checkout,
+adds `commands` and all current subdirectories to the user `PATH`, sets
+`WINDOWS_ADMIN_ENGINE_ROOT`, checks command-name collisions, deduplicates
+entries, verifies the written state, and restores the prior environment if the
+write or verification fails. It stops if the proposed user `PATH` exceeds the
+8,191-character compatibility gate. Unrelated `PATH` entries are preserved.
+Open a new terminal after installation.
+
+Run the same installer after an update that adds, renames, or removes a command
+directory, or after moving the checkout. Existing commands are read directly
+from the checkout, and new commands inside an already registered directory need
+no refresh. Skill-only changes do not affect `PATH`. Do not uninstall before an
+update; the uninstall script is only for removing the engine integration.
 
 Use `-ForceCollision` only after reviewing every reported collision. Use
 `-SkipPathLengthCheck` only when the affected shells and deployment tooling are
@@ -286,8 +296,8 @@ Run these from the repository root unless a row says otherwise.
 | `scripts\validate_operator_manual.py` | Confirms that every catalogued command, dispatcher, exported module function, and script in `scripts` is named in this manual: `python -X utf8 scripts\validate_operator_manual.py`. |
 | `scripts\verify_source_urls.py` | Makes network requests to verify registered official-source URLs. Print JSON to stdout or use `--out PATH`: `python -X utf8 scripts\verify_source_urls.py --out .\source-url-report.json`. This is not part of offline CI because network state is variable. |
 | `scripts\test-powershell-syntax.ps1` | Parses every repository `.ps1` and fails on PowerShell syntax errors: `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\test-powershell-syntax.ps1`. |
-| `scripts\test-powershell.ps1` | Imports the module, runs doctor and local inventory, proves the service mutation remains unchanged under `-WhatIf`, and runs Pester when installed: `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\test-powershell.ps1`. It reads live local state but its service test is preview-only. |
-| `scripts\install-windows-admin.ps1` | Previews or applies the user `PATH` and `WINDOWS_ADMIN_ENGINE_ROOT` installation described in section 2. Supports `-WhatIf`, `-Confirm`, `-ForceCollision`, and `-SkipPathLengthCheck`. |
+| `scripts\test-powershell.ps1` | Imports the module, runs doctor and local inventory, proves the service mutation remains unchanged under `-WhatIf`, and runs module plus installer-reconciliation Pester tests when installed: `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\test-powershell.ps1`. It reads live local state but its service and installer tests are preview-only. |
+| `scripts\install-windows-admin.ps1` | Idempotently installs, updates, or repairs the user `PATH` and `WINDOWS_ADMIN_ENGINE_ROOT` state described in section 2. It cleans stale paths and rolls back failed writes. Supports `-WhatIf`, `-Confirm`, `-ForceCollision`, and `-SkipPathLengthCheck`. |
 | `scripts\uninstall-windows-admin.ps1` | Previews or removes only this engine's user-environment entries. It never deletes repository files. Supports `-WhatIf` and `-Confirm`. |
 | `scripts\windows-admin.ps1` | PowerShell wrapper for the Python operator CLI described in section 20. |
 | `scripts\windows-admin.cmd` | Command Prompt wrapper for `scripts\windows-admin.ps1`; returns its exit code. |

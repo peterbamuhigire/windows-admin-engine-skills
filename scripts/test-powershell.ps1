@@ -12,8 +12,13 @@ if ($inventory.Changed) { throw 'Read-only inventory reported a change.' }
 $preview = Invoke-WseServiceState -Name 'EventLog' -DesiredState 'Stopped' -ChangeAuthority 'static-test' -MaintenanceWindow 'none' -WhatIf -Confirm:$false
 if ($preview.Changed) { throw 'WhatIf service test reported a change.' }
 if (Get-Command Invoke-Pester -ErrorAction SilentlyContinue) {
-    $pesterPath = Join-Path $repo 'powershell\WindowsSkills.Engine\Tests\WindowsSkills.Engine.Tests.ps1'
-    $pesterResult = Invoke-Pester -Script $pesterPath -PassThru
-    if ($pesterResult.FailedCount -gt 0) { throw "Pester failed: $($pesterResult.FailedCount) tests" }
+    $pesterPaths = @(
+        (Join-Path $repo 'powershell\WindowsSkills.Engine\Tests\WindowsSkills.Engine.Tests.ps1')
+        (Join-Path $repo 'tests\powershell\Install-WindowsAdmin.Tests.ps1')
+    )
+    foreach ($pesterPath in $pesterPaths) {
+        $pesterResult = Invoke-Pester -Script $pesterPath -PassThru
+        if ($pesterResult.FailedCount -gt 0) { throw "Pester failed in $pesterPath`: $($pesterResult.FailedCount) tests" }
+    }
 }
 Write-Output "powershell_smoke=PASS inventory=$($inventory.Status) preview=$($preview.Verification.State)"

@@ -75,9 +75,18 @@ environment change first:
 ./scripts/install-windows-admin.ps1
 ```
 
-The installer changes the user `PATH` and sets `WINDOWS_ADMIN_ENGINE_ROOT`; it
-does not copy repository files. Use `scripts/uninstall-windows-admin.ps1` to
-remove those environment entries.
+The same command installs, updates, or repairs the integration. It removes stale
+engine-owned `PATH` entries, registers every current command directory, sets
+`WINDOWS_ADMIN_ENGINE_ROOT`, verifies the result, and restores the previous
+environment if the update fails. It preserves unrelated `PATH` entries and does
+not copy repository files.
+
+After pulling repository changes, run `install-windows-admin.ps1` again if
+command directories were added, renamed, removed, or the checkout moved. An
+edited command is available immediately, a new command placed in an already
+registered directory is available immediately, and a skill-only change needs no
+Windows environment update. You do not need to uninstall before updating. Use
+`scripts/uninstall-windows-admin.ps1` only when removing the engine integration.
 
 ## Find the right skill
 

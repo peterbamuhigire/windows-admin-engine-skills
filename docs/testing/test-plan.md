@@ -18,11 +18,17 @@
 - Catalogue validator: 16 specialist skills, zero findings.
 - Routing smoke: 16 fixtures, zero failures.
 - Source ingestion: zero findings.
-- Python unittest: executed on Python 3.12.
+- Python unittest: 10 passed on Python 3.12.
+- PowerShell syntax: 71 files, zero findings.
 - PowerShell smoke: Windows PowerShell 5.1 module import, local inventory, and
   EventLog stop preview; the service remained unchanged.
-- Command installer preview: 51 directories, 49 discoverable `wsa*` command
-  names, no collision on the development host, proposed user PATH 4,213 chars.
+- Pester: 3 module contract tests and 4 installer-reconciliation tests passed.
+- Current command installer preview: `Mode=NoChange`, 51 reused directories, 49
+  discoverable `wsa*` names, zero stale or added directories, zero collisions,
+  and a proposed user `PATH` length of 4,069 characters.
+- Synthetic installer previews replaced stale numbered paths, preserved an
+  unrelated path, cleaned a previously registered checkout, and returned
+  `NoChange` on the second run. No environment write occurred.
 
 These are structural and one-machine results. Windows Server, PowerShell 7,
 Server Core, AD, Hyper-V, IIS, non-English locale, remoting, restore, and fleet
