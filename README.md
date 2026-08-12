@@ -94,3 +94,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-powershell.ps1
 
 See `docs/testing/test-plan.md` for live lab gates and
 `docs/release/delivery-evidence-pack.md` for the current verdict.
+
+Use the complete [command and script operator manual](docs/operations/commands-and-scripts-manual.md)
+for grouped syntax, prerequisites, privileges, output interpretation, and
+troubleshooting. Its coverage is enforced by
+[`scripts/validate_operator_manual.py`](scripts/validate_operator_manual.py).

@@ -3,6 +3,10 @@
 All commands are stored under `commands/<category>/<subcategory>/` and use the
 `wsa-` prefix. They work without an AI session.
 
+For command syntax, prerequisites, privileges, output interpretation, module
+functions, installers, and repository scripts, use the full
+[command and script manual](commands-and-scripts-manual.md).
+
 | Category | Commands | Mutation |
 |---|---|---|
 | Engine | `wsa-list`, `wsa-route`, `wsa-validate`, `wsa-doctor`, `wsa-evidence-validate`, `wsa <subcommand>` | no |

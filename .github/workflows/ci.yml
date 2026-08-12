@@ -15,6 +15,7 @@ jobs:
       - run: python -X utf8 scripts\routing_smoke_test.py
       - run: python -X utf8 scripts\source_ingestion_guardrail.py
       - run: python -X utf8 scripts\validate_command_tree.py
+      - run: python -X utf8 scripts\validate_operator_manual.py
       - run: python -X utf8 scripts\validate_fleet_manifest.py tests\fixtures\fleet-manifest.valid.json
       - run: python -X utf8 -m unittest discover -s tests\python -v
       - shell: powershell

@@ -99,7 +99,7 @@ switch ($Command.ToLowerInvariant()) {
     'list' { & (Join-Path $repo 'scripts\windows-admin.ps1') list; exit $LASTEXITCODE }
     'route' { & (Join-Path $repo 'scripts\windows-admin.ps1') route @RemainingArguments; exit $LASTEXITCODE }
     'validate' {
-        foreach($script in @('validate_engine.py','routing_smoke_test.py','source_ingestion_guardrail.py','validate_command_tree.py')){& python -X utf8 (Join-Path $repo ('scripts\'+$script));if($LASTEXITCODE){exit $LASTEXITCODE}}
+        foreach($script in @('validate_engine.py','routing_smoke_test.py','source_ingestion_guardrail.py','validate_command_tree.py','validate_operator_manual.py')){& python -X utf8 (Join-Path $repo ('scripts\'+$script));if($LASTEXITCODE){exit $LASTEXITCODE}}
         & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $repo 'scripts\test-powershell-syntax.ps1');exit $LASTEXITCODE
     }
     'evidence-validate' { if(-not $RemainingArguments){throw 'Usage: wsa-evidence-validate <evidence-directory>'};& (Join-Path $repo 'scripts\windows-admin.ps1') validate-evidence @RemainingArguments; exit $LASTEXITCODE }
