@@ -13,6 +13,10 @@ The project serves two audiences:
 The default posture is read-only discovery. A procedure being present in the
 catalogue does not mean that its mutation path is approved or lab-validated.
 
+This repository is the eleventh canonical skill engine in the shared
+[`skills-web-dev` control plane](docs/control-plane-adoption.md). Its Windows
+doctrine and safety rules remain local to this repository.
+
 ## Project status
 
 Version `0.1.0` provides the control plane, 16 routed specialist skills, and 48

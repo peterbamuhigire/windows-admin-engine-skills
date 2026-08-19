@@ -64,6 +64,9 @@ is absent, record `NOT_ASSESSED`; static checks do not replace them.
 
 ## Cross-engine routes
 
+- Shared agent, hook, evidence, and handoff contract:
+  `docs/control-plane-adoption.md`; this repository is registered as the
+  eleventh canonical engine in `skills-web-dev/docs/engine-control-plane.json`.
 - Software implementation, APIs, Python, CI, or packaging: `skills-web-dev`.
 - Formal requirements, test, deployment, or governance artefacts: `srs-skills`.
 - Current or uncertain platform/security claims: `digital-research-skills`.
