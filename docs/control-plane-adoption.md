@@ -40,3 +40,11 @@ verification, and rollback contract.
 
 The shared control plane coordinates ownership and handoffs. It does not grant
 authority for a Windows mutation or override this engine's safety model.
+
+## Human approval adapter
+
+Windows mutation controls are detailed in
+[`approval-enforcement.md`](approval-enforcement.md) and catalogued in
+[`approval-adapter.json`](approval-adapter.json). The shared gate supplements,
+but never replaces, target authority, management-owner detection,
+`ShouldProcess`, recovery, and per-target verification.
