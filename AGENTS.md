@@ -7,6 +7,21 @@ domain, fleet, and hybrid administration. `SKILL.md` files are operational
 procedures; `WindowsSkills.Engine` is the shared PowerShell safety and evidence
 boundary; the Python package owns catalogue, routing, schema, and report work.
 
+## Mandatory Digital Research currentness gate for Kaizen
+
+Every Kaizen audit, skill edit, reference update, validator change, and
+standardisation decision MUST begin with the Digital Research Engine at
+`C:\wamp64\www\digital-research-skills`. Read its `source-evaluation` and
+`source-verification` skills and the currentness gate reference
+`docs/continuous-improvement/kaizen-currentness-gate.md`.
+
+Before admitting any standard, policy, law, technology, platform capability,
+software version, command, security control, benchmark, or lifecycle claim,
+record source scope, publication/version date, access date, freshness class,
+review date, support status, and uncertainty. Use current authoritative
+primary sources; quarantine stale/ambiguous/unsupported claims and mark them
+`NOT_ASSESSED`. Books are durable concept inputs only.
+
 ## Start here
 
 1. Read this file and `skills/windows-sysadmin/SKILL.md`.

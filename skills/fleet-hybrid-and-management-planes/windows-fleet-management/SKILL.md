@@ -87,4 +87,5 @@ local outcome verification are mandatory.
 
 - [`docs/safety-model.md`](../../../docs/safety-model.md)
 - [`docs/threat-model.md`](../../../docs/threat-model.md)
+- [`docs/research/book-driven-kaizen-operating-system.md`](../../../docs/research/book-driven-kaizen-operating-system.md)
 <!-- dual-compat-end -->

@@ -85,4 +85,5 @@ data and recovery material are omitted from normal evidence.
 
 - [`engine/source-register.yaml`](../../../engine/source-register.yaml)
 - [`docs/threat-model.md`](../../../docs/threat-model.md)
+- [`docs/research/book-driven-kaizen-operating-system.md`](../../../docs/research/book-driven-kaizen-operating-system.md)
 <!-- dual-compat-end -->

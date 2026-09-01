@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "policy": {"official_current_source_required_for_volatile_claims": true, "book_text_committed": false, "review_interval_days": 90},
+  "policy": {"official_current_source_required_for_volatile_claims": true, "book_text_committed": false, "review_interval_days": 90, "portfolio_currentness_manifest":"C:\\wamp64\\www\\skills-web-dev\\docs\\source-registers\\skills-engine-currentness-2026-09.json", "portfolio_gate":"C:\\wamp64\\www\\digital-research-skills\\docs\\continuous-improvement\\kaizen-currentness-gate.md"},
   "sources": [
     {"id":"MS-WINDOWS-MGMT","tier":1,"title":"Windows Server management overview","url":"https://learn.microsoft.com/en-us/windows-server/administration/overview","scope":"current Windows Server management surfaces","status":"current-check-required","accessed":"2026-08-12"},
     {"id":"MS-POWERSHELL","tier":1,"title":"PowerShell documentation","url":"https://learn.microsoft.com/en-us/powershell/","scope":"PowerShell editions and language","status":"current-check-required","accessed":"2026-08-12"},
