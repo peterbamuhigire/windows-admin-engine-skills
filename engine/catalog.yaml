@@ -149,6 +149,19 @@
       "platforms": ["windows-client"], "risk_class": "R1", "script_tier": "blocked", "maturity": "NOT_ASSESSED",
       "owner": "Peter Bamuhigire", "last_verified": "2026-08-12", "sources": ["MS-POWERSHELL", "MS-WINGET", "MS-WSL", "BOOK-PS-2024", "BOOK-PS-TOOLMAKING"],
       "keywords": ["developer workstation", "dev machine", "sdk", "python", "git", "wsl", "visual studio code"]
+    },
+    {
+      "id": "windows-kaizen-engine-and-product-improvement",
+      "path": "skills/meta/kaizen-engine-and-product-improvement/SKILL.md",
+      "category": "meta",
+      "trigger": "Audit or improve the Windows administration engine or a Windows operational product using a currentness-gated Kaizen loop.",
+      "exclusions": ["single-domain Windows diagnosis", "unapproved mutation"],
+      "dependencies": [],
+      "platforms": ["windows-client", "windows-server", "server-core"],
+      "risk_class": "R0", "script_tier": "read-only", "maturity": "PARTIAL",
+      "owner": "Peter Bamuhigire", "last_verified": "2026-09-02",
+      "sources": ["MS-WINDOWS-MGMT", "MS-POWERSHELL", "MS-EVENTLOG", "BOOK-WIN-INTERNALS"],
+      "keywords": ["kaizen", "improvement", "audit", "continuous improvement", "currentness", "engine"]
     }
   ]
 }

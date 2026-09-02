@@ -14,5 +14,6 @@
   {"prompt":"the machine hangs with high CPU and no known subsystem","expected":"windows-troubleshooting"},
   {"prompt":"prove the system state backup can meet the RTO","expected":"windows-backup-recovery"},
   {"prompt":"apply this change to all machines through Intune canary rings","expected":"windows-fleet-management"},
-  {"prompt":"set up a repeatable developer workstation with WSL and SDKs","expected":"windows-development-workstation"}
+  {"prompt":"set up a repeatable developer workstation with WSL and SDKs","expected":"windows-development-workstation"},
+  {"prompt":"run a currentness-gated Kaizen audit of the Windows administration engine","expected":"windows-kaizen-engine-and-product-improvement"}
 ]
