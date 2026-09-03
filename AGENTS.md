@@ -11,7 +11,7 @@ boundary; the Python package owns catalogue, routing, schema, and report work.
 
 Every Kaizen audit, skill edit, reference update, validator change, and
 standardisation decision MUST begin with the Digital Research Engine at
-`C:\wamp64\www\digital-research-skills`. Read its `source-evaluation` and
+`C:\wamp64\www\digital-research-engine`. Read its `source-evaluation` and
 `source-verification` skills and the currentness gate reference
 `docs/continuous-improvement/kaizen-currentness-gate.md`.
 
@@ -115,3 +115,7 @@ Preserve user work and unrelated changes. Add a skill only for a repeated,
 distinct responsibility. Update its catalogue entry, routing fixtures, source
 map, tests, and safety audit in the same change. Do not weaken a validator by
 adding findings to a baseline.
+
+## PORTFOLIO CRAFT CONTRACT
+
+Load `C:\wamp64\www\chwezi-engine-agents\docs\operations\portfolio-craft-standard-2026-09-04.md` when available. Run administration work as small controlled slices: frame the target and consequence, select one change, inspect the management owner and current state, preview it, apply only the bounded mutation, verify health and failure behaviour, refine the procedure, and record rollback evidence. Do not generate a full fleet change or runbook as an opaque batch. Apply `Observe -> Baseline -> Select -> Experiment -> Check -> Standardise -> Teach -> Re-measure` to kaizen itself. Missing host, lab, source, live, or recovery evidence is `NOT ASSESSED`, never a pass.

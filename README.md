@@ -1,8 +1,11 @@
 # Windows Administration Skills Engine
 
-An open-source catalogue of safety-first procedures and tooling for Windows
-workstations, servers, Active Directory, networking, security, storage,
-virtualisation, recovery, and fleet administration.
+This is an open-source Windows administration engine for safety-first procedures
+and tooling across workstations, servers, Active Directory, networking,
+security, storage, virtualisation, recovery, and fleet administration. It
+develops one target-resolved change at a time, preserving authority, preview,
+before/after state, health verification, recovery, and rollback evidence for
+operators and automation.
 
 The project serves two audiences:
 
