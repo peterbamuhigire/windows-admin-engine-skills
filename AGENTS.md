@@ -79,6 +79,16 @@ is absent, record `NOT_ASSESSED`; static checks do not replace them.
 
 ## Cross-engine routes
 
+### Machine-error editorial gate (ME1-ME7)
+
+Apply Digital Research's `docs/continuous-improvement/machine-errors-editorial-gate-2026-09-03.md`
+to administration runbooks, findings, change records, and operator explanations. Check ME1-ME7 for
+repeated meaning, decorative symmetry, over-explanation, inflated consequence, generic examples,
+rhetorical mannerisms, and insight-shaped filler. Preserve repeated command syntax, safety warnings,
+rollback steps, target fields, and evidence labels when their operational function is documented;
+otherwise cut or merge. Missing live or lab evidence remains `NOT_ASSESSED`.
+Coverage record: ME1, ME2, ME3, ME4, ME5, ME6, and ME7.
+
 - Shared agent, hook, evidence, and handoff contract:
   `docs/control-plane-adoption.md`; this repository is registered as the
   eleventh canonical engine in `skills-web-dev/docs/engine-control-plane.json`.
