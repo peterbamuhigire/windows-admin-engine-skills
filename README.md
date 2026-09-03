@@ -20,6 +20,16 @@ This repository is the eleventh canonical skill engine in the shared
 [`skills-web-dev` control plane](docs/control-plane-adoption.md). Its Windows
 doctrine and safety rules remain local to this repository.
 
+## Capability map
+
+| Need | Primary route |
+|---|---|
+| Host discovery, health, inventory, and diagnostics | `skills/inventory-health-and-diagnostics/` |
+| Identity, Active Directory, access, and security | `skills/identity-active-directory-and-access/` and `skills/policy-security-and-compliance/` |
+| Patching, software, services, storage, files, and IIS | `skills/patching-software-and-endpoint-management/` and `skills/storage-files-services-and-web/` |
+| Virtualisation, containers, development workstations, and fleet management | `skills/virtualization-containers-and-development/` and `skills/fleet-hybrid-and-management-planes/` |
+| Safe evidence, recovery, and cross-engine operations | `skills/windows-sysadmin/`, `engine/`, and the control-plane handoff routes |
+
 ## Project status
 
 Version `0.1.0` provides the control plane, 16 routed specialist skills, and 48
