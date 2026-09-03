@@ -89,6 +89,17 @@ rollback steps, target fields, and evidence labels when their operational functi
 otherwise cut or merge. Missing live or lab evidence remains `NOT_ASSESSED`.
 Coverage record: ME1, ME2, ME3, ME4, ME5, ME6, and ME7.
 
+### Impeccable-derived AS overlay
+
+When a runbook, dashboard, presentation, or rendered change record contains visual output, apply
+AS1-AS7. Purple gradients, glassmorphism, neon glow, AI-beige defaults, decorative editorial
+scaffolding, and decorative motion are no-ship choices. For text-only operations use AS1, AS3, AS5,
+and AS6; mark visual checks `not_applicable`. Preserve repeated command syntax, safety warnings,
+rollback steps, target fields, and evidence labels when their operational function is documented;
+unavailable lab, browser, or render evidence remains `NOT_ASSESSED`.
+AS1-AS7 coverage is explicit: AS2, AS4, and AS7 are `not_applicable` for text-only operations, while
+visual or rendered operational artefacts require the full overlay.
+
 - Shared agent, hook, evidence, and handoff contract:
   `docs/control-plane-adoption.md`; this repository is registered as the
   eleventh canonical engine in `skills-web-dev/docs/engine-control-plane.json`.
