@@ -242,3 +242,10 @@ provenance and freshness.
 
 This project is licensed under the GNU General Public License v3.0. See
 [`LICENSE`](LICENSE).
+
+## Agent runtime safety — 2026-09-07
+
+[`docs/agent-runtime-safety.md`](docs/agent-runtime-safety.md) records the
+runner-neutral execution boundary for Windows work: untrusted repository and
+tool content, disposable handoffs, approval gates, least agency, per-target
+telemetry, process-group stop, and independently verified recovery.
