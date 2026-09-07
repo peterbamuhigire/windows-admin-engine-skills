@@ -200,6 +200,19 @@ is unavailable, record `NOT_ASSESSED`; static validation is not a substitute.
 The current results and limitations are recorded in the
 [delivery evidence pack](docs/release/delivery-evidence-pack.md).
 
+## Kaizen P0 implementation status — 2026-09-07
+
+The fleet manifest validator now requires an explicit `authority` object with
+owner, approver, change window, and a bounded status value. The synthetic lab
+fixture and `tests/python/test_fleet_manifest.py` cover accepted and rejected
+authority states. This validates manifest shape only; approval authenticity,
+target reachability, canary execution, rollback, and fleet readiness remain
+NOT_ASSESSED.
+
+Validated with `python -B -X utf8 -m unittest discover -s tests/python -v`: 20
+tests passed. Next action is to bind the manifest to a real review record and
+read-only per-target preflight evidence before enabling fleet operations.
+
 ## Contributing
 
 Contributions should add a distinct, repeated Windows administration

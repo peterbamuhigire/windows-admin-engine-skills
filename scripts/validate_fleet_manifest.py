@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 REQUIRED_ROOT={"schema_version","manifest_id","environment","tenant","approved_by","expires_at","max_hosts","targets"}
+REQUIRED_AUTHORITY={"owner","approver","change_window","status"}
 REQUIRED_TARGET={"hostname","device_id","owner","site","platform","management_plane","risk_tier","maintenance_window"}
 
 def validate_data(data, now=None)->list[str]:
@@ -13,6 +14,16 @@ def validate_data(data, now=None)->list[str]:
     errors=[]
     missing=REQUIRED_ROOT-data.keys()
     if missing:errors.append(f"missing root fields: {sorted(missing)}")
+    authority=data.get("authority")
+    if not isinstance(authority,dict):
+        errors.append("authority must be an object")
+    else:
+        absent=REQUIRED_AUTHORITY-authority.keys()
+        if absent:errors.append(f"authority missing fields: {sorted(absent)}")
+        invalid=[field for field in REQUIRED_AUTHORITY if not isinstance(authority.get(field),str) or not authority[field].strip()]
+        if invalid:errors.append(f"authority requires non-empty text: {sorted(invalid)}")
+        if authority.get("status") not in {"synthetic-test-only","approved","revoked"}:
+            errors.append("authority.status must be synthetic-test-only, approved, or revoked")
     if data.get("schema_version")!="1.0":errors.append("schema_version must be 1.0")
     for field in ("manifest_id","environment","approved_by"):
         if not isinstance(data.get(field),str) or not data[field].strip():

@@ -22,6 +22,13 @@ class FleetManifestTests(unittest.TestCase):
     def test_valid_fixture(self):
         self.assertEqual(MODULE.validate_data(self.data, self.now), [])
 
+    def test_authority_manifest_is_required_and_bounded(self):
+        data = copy.deepcopy(self.data)
+        data["authority"]["status"] = ""
+        self.assertIn("authority requires non-empty text: ['status']", MODULE.validate_data(data, self.now))
+        data["authority"]["status"] = "unverified"
+        self.assertIn("authority.status must be synthetic-test-only, approved, or revoked", MODULE.validate_data(data, self.now))
+
     def test_malformed_roots_and_fields(self):
         for root in (None, [], True):
             self.assertTrue(MODULE.validate_data(root, self.now))
