@@ -32,7 +32,9 @@ doctrine and safety rules remain local to this repository.
 
 ## Project status
 
-## Prompt-generation capability — September 2026
+## Prompt-generation capability — 2026-09-17
+
+This release adds evidence-first candidate testing, failure-slice review, and explicit `NOT_ASSESSED` handling for volatile prompt claims.
 
 Windows administration prompts now include host and PowerShell context, exact
 targets, approved verbs, WhatIf/Confirm or equivalent safeguards, per-target
