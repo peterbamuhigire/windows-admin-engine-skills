@@ -140,6 +140,10 @@ distinct responsibility. Update its catalogue entry, routing fixtures, source
 map, tests, and safety audit in the same change. Do not weaken a validator by
 adding findings to a baseline.
 
+## DOMAIN PROMPT GENERATION CONTRACT
+
+For a prompt handoff, read the local [domain prompt contract](docs/ai-prompting/domain-prompt-compilation-contract.md). Generate a ready-to-paste administration prompt with exact target, management owner, current state, one operation, risk class, approval boundary, staged commands, before/after evidence, health checks, rollback, and stop conditions. Never guess credentials, targets, versions, or live state. **Ready-to-paste prompt:** include assumptions and NOT ASSESSED gaps. **Failure action:** stop, recover, or revise one reversible step.
+
 ## PORTFOLIO CRAFT CONTRACT
 
 Load `C:\wamp64\www\chwezi-engine-agents\docs\operations\portfolio-craft-standard-2026-09-04.md` when available. Run administration work as small controlled slices: frame the target and consequence, select one change, inspect the management owner and current state, preview it, apply only the bounded mutation, verify health and failure behaviour, refine the procedure, and record rollback evidence. Do not generate a full fleet change or runbook as an opaque batch. Apply `Observe -> Baseline -> Select -> Experiment -> Check -> Standardise -> Teach -> Re-measure` to kaizen itself. Missing host, lab, source, live, or recovery evidence is `NOT ASSESSED`, never a pass.

@@ -32,6 +32,13 @@ doctrine and safety rules remain local to this repository.
 
 ## Project status
 
+## Prompt-generation capability — September 2026
+
+Windows administration prompts now include host and PowerShell context, exact
+targets, approved verbs, WhatIf/Confirm or equivalent safeguards, per-target
+outcomes, logging, rollback, and explicit authority through the local [domain
+prompt contract](docs/ai-prompting/domain-prompt-compilation-contract.md).
+
 Version `0.1.0` provides the control plane, 16 routed specialist skills, and 48
 direct commands. Windows 11, Windows PowerShell 5.1, and the Python 3.12 tooling
 have local lab evidence dated 2026-08-12. Windows Server, domain-controller,
