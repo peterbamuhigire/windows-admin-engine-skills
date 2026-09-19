@@ -1,0 +1,15 @@
+{
+  "fixture_id": "windows-pipeline-entity-mismatch-v1",
+  "data_classification": "fictional-test-data",
+  "execution_mode": "read-only-simulation",
+  "host_mutation": false,
+  "expected_entity": {"Kind": "Service", "Namespace": "Windows.Service"},
+  "cases": [
+    {"name": "direct-valid", "binding": "direct", "entity": {"Kind": "Service", "Namespace": "Windows.Service", "Name": "fictional-service"}, "expected": "ACCEPT"},
+    {"name": "by-value-valid", "binding": "ByValue", "entity": {"Kind": "Service", "Namespace": "Windows.Service", "Name": "fictional-service"}, "expected": "ACCEPT"},
+    {"name": "by-property-valid", "binding": "ByPropertyName", "entity": {"Kind": "Service", "Namespace": "Windows.Service", "Name": "fictional-service"}, "expected": "ACCEPT"},
+    {"name": "process-id-mismatch", "binding": "ByPropertyName", "entity": {"Kind": "Process", "Namespace": "Windows.Process", "Id": 42}, "expected": "REJECT_SEMANTIC_MISMATCH", "mutation_called": false},
+    {"name": "empty-target", "binding": "direct", "entity": {"Kind": "Service", "Namespace": "Windows.Service", "Name": ""}, "expected": "REJECT_INVALID_TARGET", "mutation_called": false},
+    {"name": "trace-unapproved-nested-mutation", "binding": "trace", "entity": {"Kind": "Service", "Namespace": "Windows.Service", "Name": "fictional-service"}, "expected": "REJECT_NO_EXECUTION", "mutation_called": false}
+  ]
+}

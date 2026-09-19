@@ -1,0 +1,28 @@
+{
+  "fixture_id": "windows-typed-controller-results-v1",
+  "data_classification": "fictional-test-data",
+  "execution_mode": "read-only-simulation",
+  "host_mutation": false,
+  "domain_result": {
+    "PSTypeName": "WindowsSkills.OperationResult",
+    "SchemaVersion": "1.0",
+    "OperationId": "operation-fixture-001",
+    "Command": "Get-FictionalInventory",
+    "Target": {"Kind": "Local", "Name": "fictional-host", "Fingerprint": "fixture-host-001", "EntityKind": "Inventory", "Namespace": "fictional"},
+    "Status": "Succeeded",
+    "Changed": false,
+    "Before": {"state": "fictional-before"},
+    "After": {"state": "fictional-after"},
+    "Verification": {"State": "VERIFIED"},
+    "RollbackArtifact": null,
+    "Errors": [],
+    "Warnings": [],
+    "PerTarget": [{"Target": "fictional-host", "Status": "Succeeded"}]
+  },
+  "presentation": {"format": "table", "text": "fictional rendered view", "source_operation_id": "operation-fixture-001"},
+  "invariants": {"formatter_is_not_domain_result": true, "direct_status": "Succeeded", "presentation_status": "Succeeded", "read_only_changed": false},
+  "failure_cases": [
+    {"case": "formatter-as-input", "expected": "BLOCKED"},
+    {"case": "partial-fleet", "status": "PartiallySucceeded", "target_results": [{"target": "fictional-a", "status": "Succeeded"}, {"target": "fictional-b", "status": "Failed"}], "expected": "PARTIAL_RETAINED"}
+  ]
+}

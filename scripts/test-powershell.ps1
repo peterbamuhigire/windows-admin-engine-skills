@@ -15,6 +15,7 @@ if (Get-Command Invoke-Pester -ErrorAction SilentlyContinue) {
     $pesterPaths = @(
         (Join-Path $repo 'powershell\WindowsSkills.Engine\Tests\WindowsSkills.Engine.Tests.ps1')
         (Join-Path $repo 'tests\powershell\Install-WindowsAdmin.Tests.ps1')
+        (Join-Path $repo 'tests\powershell\Kaizen-Semantics.Tests.ps1')
     )
     foreach ($pesterPath in $pesterPaths) {
         $pesterResult = Invoke-Pester -Script $pesterPath -PassThru

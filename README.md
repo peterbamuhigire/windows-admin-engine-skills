@@ -222,6 +222,31 @@ Validated with `python -B -X utf8 -m unittest discover -s tests/python -v`: 20
 tests passed. Next action is to bind the manifest to a real review record and
 read-only per-target preflight evidence before enabling fleet operations.
 
+## September 2026 B26 contract extensions
+
+The Phase 1 fixture wave adds three bounded Windows contracts:
+
+- [`tool-controller-contract.md`](docs/kaizen/tool-controller-contract.md)
+  separates typed `WindowsSkills.OperationResult` domain objects from display
+  formatting and preserves partial outcomes.
+- [`pipeline-binding-review.md`](docs/kaizen/pipeline-binding-review.md)
+  requires semantic entity kind/namespace checks and keeps trace diagnostics
+  behind target validation and `ShouldProcess`/`-WhatIf`.
+- `tests/fixtures/kaizen/powershell-semantics.json` and
+  `tests/powershell/Kaizen-Semantics.Tests.ps1` cover array-switch behaviour,
+  membership semantics, cancellation, and partial results.
+
+Run the normal and failure-path checks with:
+
+~~~powershell
+python -X utf8 -m unittest tests/python/test_kaizen_contracts.py -v
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-powershell.ps1
+~~~
+
+These are synthetic local checks. Remote binding, management ownership,
+PowerShell 7 parity, live trace capture, and production mutation evidence
+remain `NOT_ASSESSED`.
+
 ## Contributing
 
 Contributions should add a distinct, repeated Windows administration

@@ -1,0 +1,9 @@
+{
+  "fixture_id": "windows-powershell-semantics-v1",
+  "data_classification": "fictional-test-data",
+  "execution_mode": "read-only-simulation",
+  "host_mutation": false,
+  "switch_array": {"input": ["alpha", "beta"], "expected_output": ["A", "B"], "runtime_claim": "each synthetic element is processed"},
+  "membership": {"collection": ["DC01", "APP01"], "query": "DC", "expected": false, "comparison": "membership"},
+  "cancellation": {"targets": ["fictional-a", "fictional-b", "fictional-c"], "cancel_after": 1, "results": [{"target": "fictional-a", "status": "Succeeded"}, {"target": "fictional-b", "status": "NotProcessed"}, {"target": "fictional-c", "status": "NotProcessed"}], "aggregate_status": "PartiallySucceeded", "global_success": false}
+}
