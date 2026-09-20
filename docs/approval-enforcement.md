@@ -2,7 +2,7 @@
 
 Windows administration actions are declared in
 [`approval-adapter.json`](approval-adapter.json) and use the shared contract
-from `skills-web-dev/docs/approval-contract.md`, in addition to this engine's
+from `chwezi-dev-engine/docs/approval-contract.md`, in addition to this engine's
 R0-R5 safety model.
 
 ## Required change preview

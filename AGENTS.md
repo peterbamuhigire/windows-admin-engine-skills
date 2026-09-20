@@ -133,8 +133,8 @@ visual or rendered operational artefacts require the full overlay.
 
 - Shared agent, hook, evidence, and handoff contract:
   `docs/control-plane-adoption.md`; this repository is registered as the
-  eleventh canonical engine in `skills-web-dev/docs/engine-control-plane.json`.
-- Software implementation, APIs, Python, CI, or packaging: `skills-web-dev`.
+  eleventh canonical engine in `chwezi-dev-engine/docs/engine-control-plane.json`.
+- Software implementation, APIs, Python, CI, or packaging: `chwezi-dev-engine`.
 - Formal requirements, test, deployment, or governance artefacts: `srs-skills`.
 - Current or uncertain platform/security claims: `digital-research-skills`.
 - Linux hosts: `linux-skills`.
