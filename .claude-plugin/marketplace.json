@@ -1,0 +1,21 @@
+{
+  "name": "chwezi-windows-admin",
+  "owner": { "name": "Peter Bamuhigire", "email": "peter.bamuhigire@gmail.com" },
+  "metadata": { "description": "Chwezi Windows administration engine — Windows hosts, Active Directory, PowerShell, networking, security, storage, recovery, fleet, and hybrid administration" },
+  "plugins": [
+    {
+      "name": "windows-admin",
+      "source": "./",
+      "description": "18 skills for Windows administration: identity/Active Directory, fleet and hybrid management, networking, patching, policy/security/compliance, storage/IIS, virtualization, backup/recovery, and diagnostics",
+      "version": "1.0.0",
+      "author": { "name": "Peter Bamuhigire" },
+      "homepage": "https://github.com/chwezi/windows-admin-engine-skills",
+      "repository": "https://github.com/chwezi/windows-admin-engine-skills",
+      "license": "MIT",
+      "keywords": ["windows", "active-directory", "powershell", "sysadmin"],
+      "category": "infrastructure",
+      "tags": ["windows", "sysadmin", "infrastructure"],
+      "strict": false
+    }
+  ]
+}

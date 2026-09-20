@@ -31,6 +31,13 @@ domain, fleet, and hybrid administration. `SKILL.md` files are operational
 procedures; `WindowsSkills.Engine` is the shared PowerShell safety and evidence
 boundary; the Python package owns catalogue, routing, schema, and report work.
 
+## Rules
+
+Always-on cross-cutting principles live in `rules/` — see `rules/README.md`.
+Load `rules/common/core.md` alongside the routed skill for any non-trivial task;
+it is short and does not replace the skill, only sets the baseline the skill
+operates within.
+
 ## Mandatory Digital Research currentness gate for Kaizen
 
 Every Kaizen audit, skill edit, reference update, validator change, and

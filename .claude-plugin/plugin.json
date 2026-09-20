@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0",
+  "skills": [
+    "./skills/backup-recovery-and-business-continuity/windows-backup-recovery/",
+    "./skills/fleet-hybrid-and-management-planes/windows-fleet-management/",
+    "./skills/identity-active-directory-and-access/windows-active-directory-health/",
+    "./skills/identity-active-directory-and-access/windows-identity-lifecycle/",
+    "./skills/inventory-health-and-diagnostics/windows-health-assessment/",
+    "./skills/inventory-health-and-diagnostics/windows-system-inventory/",
+    "./skills/meta/kaizen-engine-and-product-improvement/",
+    "./skills/meta/windows-portability-doctrine/",
+    "./skills/networking-and-remote-management/windows-network-admin/",
+    "./skills/networking-and-remote-management/windows-remote-management/",
+    "./skills/observability-performance-and-troubleshooting/windows-troubleshooting/",
+    "./skills/patching-software-and-endpoint-management/windows-patch-management/",
+    "./skills/policy-security-and-compliance/windows-group-policy/",
+    "./skills/policy-security-and-compliance/windows-security-analysis/",
+    "./skills/storage-files-services-and-web/windows-iis/",
+    "./skills/storage-files-services-and-web/windows-storage-files-services/",
+    "./skills/virtualization-containers-and-development/windows-desktop-e2e-testing/",
+    "./skills/virtualization-containers-and-development/windows-development-workstation/",
+    "./skills/virtualization-containers-and-development/windows-hyper-v/",
+    "./skills/windows-sysadmin/"
+  ],
+  "mcpServers": {},
+  "userConfig": {
+    "hooks_enabled": {
+      "type": "boolean",
+      "title": "Enable Chwezi hooks",
+      "description": "Run this engine's enforcement hooks (e.g. destructive-command gate, banned-font gate where applicable). Disable to install skills only, with no local automation.",
+      "default": true
+    }
+  }
+}
