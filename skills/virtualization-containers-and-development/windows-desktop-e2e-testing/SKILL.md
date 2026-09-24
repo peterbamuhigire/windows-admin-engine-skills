@@ -170,6 +170,13 @@ XPath, in that order, every time a locator is written.
 - Asserting on `rectangle().left == 120`. Fix: assert on visible text or control state.
 - Enabling `E2E_TRACE_INCLUDE_TEXT=1` on a login/payment flow "just to debug once." Fix: redacted tracing stays on; never flip it for a credential flow.
 
+## References
+
+- [`references/pywinauto-core-patterns.md`](references/pywinauto-core-patterns.md) — load when writing locators, waits, fixtures, tracing, or the screenshot fallback.
+- [`references/framework-notes.md`](references/framework-notes.md) — load when the app is WinForms, Win32/MFC, or Qt rather than WPF.
+- [`docs/safety-model.md`](../../../docs/safety-model.md) — risk classes and approval boundaries for launching and killing processes.
+- Microsoft UI Automation overview (source `MS-UIA`): https://learn.microsoft.com/en-us/windows/win32/winauto/entry-uiauto-win32
+
 ## Related skills
 
 - `windows-development-workstation` — provisions the Python/pywinauto/ffmpeg toolchain this skill assumes already exists.

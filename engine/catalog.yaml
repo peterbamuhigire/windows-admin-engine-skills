@@ -162,6 +162,24 @@
       "owner": "Peter Bamuhigire", "last_verified": "2026-09-02",
       "sources": ["MS-WINDOWS-MGMT", "MS-POWERSHELL", "MS-EVENTLOG", "BOOK-WIN-INTERNALS"],
       "keywords": ["kaizen", "improvement", "audit", "continuous improvement", "currentness", "engine"]
+    },
+    {
+      "id": "windows-portability-doctrine",
+      "path": "skills/meta/windows-portability-doctrine/SKILL.md",
+      "category": "meta", "trigger": "Audit whether an installer, hook, or agent tool that claims cross-platform support actually works on Windows (Git Bash/MSYS2 paths, symlink shims, background-process survival, line endings).",
+      "exclusions": ["Windows host administration", "static-only portability sign-off"], "dependencies": ["windows-development-workstation"],
+      "platforms": ["windows-client", "windows-server"], "risk_class": "R0", "script_tier": "none", "maturity": "PARTIAL",
+      "owner": "Peter Bamuhigire", "last_verified": "2026-09-24", "sources": ["MS-POWERSHELL", "MS-JOB-OBJECTS", "MS-WSL"],
+      "keywords": ["cross-platform", "portability", "git bash", "msys2", "cygpath", "install.sh", "symlink", "crlf", "line endings", "job object", "hook"]
+    },
+    {
+      "id": "windows-desktop-e2e-testing",
+      "path": "skills/virtualization-containers-and-development/windows-desktop-e2e-testing/SKILL.md",
+      "category": "development", "trigger": "Set up or diagnose end-to-end UI tests for a Windows desktop application (WPF, WinForms, Win32/MFC, Qt) with pywinauto and UI Automation.",
+      "exclusions": ["toolchain provisioning", "web browser end-to-end testing"], "dependencies": ["windows-development-workstation"],
+      "platforms": ["windows-client", "windows-server"], "risk_class": "R1", "script_tier": "none", "maturity": "PARTIAL",
+      "owner": "Peter Bamuhigire", "last_verified": "2026-09-24", "sources": ["MS-UIA"],
+      "keywords": ["desktop e2e", "end-to-end test", "pywinauto", "ui automation", "uia", "wpf", "winforms", "qt", "automationid", "desktop app test"]
     }
   ]
 }

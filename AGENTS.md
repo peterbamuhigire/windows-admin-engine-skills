@@ -31,6 +31,13 @@ domain, fleet, and hybrid administration. `SKILL.md` files are operational
 procedures; `WindowsSkills.Engine` is the shared PowerShell safety and evidence
 boundary; the Python package owns catalogue, routing, schema, and report work.
 
+## Never store book extractions
+
+Book extractions, summaries and chapter-by-chapter notes must never be stored in this repository
+(no `book-extractions/`, `extracted-books/` or `book-study/` folder, no `*-extraction.md` book
+digests). Books enter only as paraphrased, task-oriented skill content with a short citation.
+The portfolio check `chwezi-engine-agents/scripts/validate-no-book-extractions.py` enforces this.
+
 ## Rules
 
 Always-on cross-cutting principles live in `rules/` — see `rules/README.md`.

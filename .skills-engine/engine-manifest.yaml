@@ -1,0 +1,59 @@
+schema_version: "1.0"
+engine_id: windows-admin-engine-skills
+display_name: Windows Administration Skills
+contract_version: "1.0"
+router:
+  path: AGENTS.md
+skills:
+  discovery_glob: skills/**/SKILL.md
+validation:
+  - id: release-gate
+    command: >-
+      python -X utf8 scripts/validate_engine.py
+    working_directory: .
+    platforms:
+      - windows
+      - linux
+      - macos
+  - id: routing-smoke
+    command: >-
+      python -X utf8 scripts/routing_smoke_test.py
+    working_directory: .
+    platforms:
+      - windows
+      - linux
+      - macos
+  - id: source-ingestion-guardrail
+    command: >-
+      python -X utf8 scripts/source_ingestion_guardrail.py
+    working_directory: .
+    platforms:
+      - windows
+      - linux
+      - macos
+  - id: python-unit-tests
+    command: >-
+      python -X utf8 -m unittest discover -s tests/python -v
+    working_directory: .
+    platforms:
+      - windows
+      - linux
+      - macos
+  - id: powershell-tests
+    command: >-
+      powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-powershell.ps1
+    working_directory: .
+    platforms:
+      - windows
+agent_integration:
+  supported_modes: [full, sequential, read_only, not_assessed]
+  local_context_files: [AGENTS.md, rules/common/core.md, .skills-engine/AGENTS-INTEGRATION.md]
+  mcp_safe_tools: [discover_engine, read_router, read_skill, validate_documented_checks]
+  approval_required_for: [write_files, pull, update, publish, external_message, host_mutation, remote_execution]
+  forbidden_operations: [git_reset, git_clean, force_push, arbitrary_shell, broad_delete, credential_in_arguments]
+  fork_behavior: inspect_local_router_without_inventing_validators
+source_of_truth:
+  router: AGENTS.md
+  skills: skills/**/SKILL.md
+  references: skills/**/references/**
+  catalog: engine/catalog.yaml

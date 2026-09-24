@@ -30,6 +30,22 @@ metadata:
   necessary but insufficient check; this skill's stop condition (below) still applies:
   a portability claim is not "done" until actually run on Windows.
 
+## Inputs
+
+- The artefact under review: `install.sh`, `install.ps1`, hook script, npm bin shim,
+  or background-process launcher, with its repository and commit.
+- The claimed support matrix (native Windows via Git Bash/MSYS2, PowerShell 5.1,
+  PowerShell 7, WSL2, Linux, macOS).
+- Access, or its absence, to a real Windows host on which the artefact can be run.
+
+## Platform and privilege boundary
+
+Applies to Windows 10/11 and Windows Server hosts running Git for Windows (MSYS2
+runtime), Windows PowerShell 5.1, PowerShell 7, or WSL2. The audit itself is R0
+(read-only review and a disposable run in a user profile). Running an installer
+against a shared or production profile is at least R1 and needs the owning engine's
+approval; never run it elevated to "make it work".
+
 ## Why this engine owns this doctrine
 
 Every other Chwezi engine writes `install.sh` and `install.ps1` and asserts
@@ -173,7 +189,9 @@ citable rule rather than an unwritten convention, and extends it: CRLF corruptio
 be reintroduced by any *subsequent* Windows-native edit, so it is a per-edit
 discipline, not a one-time install-time fix.
 
-## Workflow — auditing another engine's "cross-platform" claim
+## Workflow
+
+Auditing another engine's "cross-platform" claim:
 
 1. Read the actual `install.sh` / `install.ps1`, not just their existence. Check for
    the `cygpath` guard (incident 1) if the script shells out to a native binary with a
@@ -188,6 +206,40 @@ discipline, not a one-time install-time fix.
    sufficient; state explicitly whether step 5 was actually done, per this engine's
    own `rules/common/core.md` ("Missing evidence is `NOT_ASSESSED`, never inferred
    success").
+
+## Mutation, verification, and recovery
+
+The audit reads code and runs the artefact in a disposable user profile or VM. A fix
+to another engine's script is a change to that engine and follows its own change
+discipline. Verification is an observed run on each claimed shell (Git Bash, Windows
+PowerShell 5.1, PowerShell 7) with exit code, resolved paths, and resulting files
+recorded; exit code 0 alone is not proof. Recovery: remove whatever the trial run
+installed (use the installer's own uninstall path where one exists) and restore the
+profile snapshot if it was used.
+
+## Capability contract and degraded mode
+
+Full mode: repository read access plus a Windows host where the artefact can be run.
+Degraded mode: static review only (steps 1-4 of the workflow). Report every incident
+check as passed, failed, or `NOT_ASSESSED`, and mark the portability claim as a
+whole `NOT_ASSESSED` until step 5 has actually been done.
+
+## Outputs
+
+A portability finding per artefact: the four incident checks with evidence (file and
+line), the shells and OS builds actually exercised, observed results, required fixes,
+and an overall verdict of `PORTABLE_VERIFIED`, `DEFECTS_FOUND`, or `NOT_ASSESSED`.
+
+## Decision rules
+
+| Condition | Action |
+|---|---|
+| Shell script passes a self-resolved path to a native binary | Require the `cygpath -w` guard (incident 1) |
+| Script locates itself through `$0` and may be invoked via a shim | Require the full symlink-chain walk (incident 2) |
+| Hook spawns a background or long-lived process | Scope it away from native Windows, or prove survival with a Windows-native mechanism (incident 3) |
+| Any `.sh` was edited with a Windows-native tool | Re-check LF endings; enforce with `.gitattributes` (incident 4) |
+| A `.ps1` must run on stock Windows | Test under Windows PowerShell 5.1 as well as PowerShell 7 |
+| No Windows host available | Deliver the static findings and mark the claim `NOT_ASSESSED` |
 
 ## Stop conditions
 
@@ -216,6 +268,13 @@ guard, if it shells out to a native binary.
 - Editing a vendored `.sh` file with a Windows-native tool and skipping a line-ending
   check afterward. Fix: re-verify LF endings as part of the edit, not just at initial
   vendoring time.
+
+## References
+
+- [`rules/common/core.md`](../../../rules/common/core.md) — the estate verification rule this doctrine applies.
+- [`docs/safety-model.md`](../../../docs/safety-model.md) — risk classes for trial runs of installers.
+- Microsoft Job Objects documentation (source `MS-JOB-OBJECTS`): https://learn.microsoft.com/en-us/windows/win32/procthread/job-objects
+- Windows PowerShell 5.1 vs PowerShell 7 differences (source `MS-POWERSHELL`).
 
 ## Related skills
 

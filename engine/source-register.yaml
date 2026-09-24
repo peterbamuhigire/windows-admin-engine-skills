@@ -47,6 +47,8 @@
     {"id":"BOOK-PS-2024","tier":2,"title":"PowerShell 7 Workshop","author":"Nick Parlow","publisher":"Packt","year":2024,"scope":"PowerShell 7 programming and module foundations","status":"currentness-check-required"},
     {"id":"BOOK-PS-MASTERING-2024","tier":2,"title":"Mastering PowerShell Scripting, Fifth Edition","author":"Chris Dent","publisher":"Packt","year":2024,"scope":"toolmaking, classes, testing, remoting, and automation","status":"currentness-check-required"},
     {"id":"BOOK-SYSINTERNALS","tier":2,"title":"Troubleshooting with the Windows Sysinternals Tools","author":"Mark Russinovich and Aaron Margosis","publisher":"Microsoft Press","year":2016,"scope":"hypothesis-led diagnostics and tool selection","status":"verify-tool-version"},
-    {"id":"BOOK-WIN-INTERNALS","tier":4,"title":"Microsoft Windows Internals, Fourth Edition","author":"Mark Russinovich and David Solomon","publisher":"Microsoft Press","year":2005,"scope":"historical system concepts, never current implementation detail","status":"historical-only"}
+    {"id":"BOOK-WIN-INTERNALS","tier":4,"title":"Microsoft Windows Internals, Fourth Edition","author":"Mark Russinovich and David Solomon","publisher":"Microsoft Press","year":2005,"scope":"historical system concepts, never current implementation detail","status":"historical-only"},
+    {"id":"MS-JOB-OBJECTS","tier":1,"title":"Job Objects (Win32)","url":"https://learn.microsoft.com/en-us/windows/win32/procthread/job-objects","scope":"process-tree lifetime, breakaway and kill-on-close semantics","status":"current-check-required","accessed":"2026-09-24"},
+    {"id":"MS-UIA","tier":1,"title":"UI Automation (Win32)","url":"https://learn.microsoft.com/en-us/windows/win32/winauto/entry-uiauto-win32","scope":"UI Automation framework used by desktop test automation","status":"current-check-required","accessed":"2026-09-24"}
   ]
 }
