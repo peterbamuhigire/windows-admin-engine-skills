@@ -1,4 +1,5 @@
 {
+  "name": "windows-admin",
   "version": "1.0.0",
   "skills": [
     "./skills/backup-recovery-and-business-continuity/windows-backup-recovery/",
