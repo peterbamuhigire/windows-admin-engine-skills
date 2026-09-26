@@ -49,7 +49,7 @@ operates within.
 
 Every Kaizen audit, skill edit, reference update, validator change, and
 standardisation decision MUST begin with the Digital Research Engine at
-`C:\wamp64\www\digital-research-skills`. Read its `source-evaluation` and
+`C:\wamp64\www\digital-research-engine`. Read its `source-evaluation` and
 `source-verification` skills and the currentness gate reference
 `docs/continuous-improvement/kaizen-currentness-gate.md`.
 
@@ -143,7 +143,7 @@ visual or rendered operational artefacts require the full overlay.
   eleventh canonical engine in `chwezi-dev-engine/docs/engine-control-plane.json`.
 - Software implementation, APIs, Python, CI, or packaging: `chwezi-dev-engine`.
 - Formal requirements, test, deployment, or governance artefacts: `srs-skills`.
-- Current or uncertain platform/security claims: `digital-research-skills`.
+- Current or uncertain platform/security claims: `digital-research-engine` at `C:\wamp64\www\digital-research-engine`.
 - Linux hosts: `linux-skills`.
 - Accounting or finance operations: `chwezi-accounting-doctrine`.
 
