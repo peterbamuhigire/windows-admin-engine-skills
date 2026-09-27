@@ -34,7 +34,10 @@ R0. Standard-user collection is preferred. Missing privileged fields are
 ## Workflow
 
 1. Resolve the target and record machine fingerprint and time.
-2. Run `Get-WseSystemInventory`; add narrow collectors only when needed.
+2. Run `Get-WseSystemInventory`; for an executable lookup issue, pass only the
+   requested command names with `-ExecutableName`. Its report shows process,
+   user, and machine PATH membership for a resolved directory. Executable
+   checks are opt-in; neither raw PATH values nor executable paths are exported.
 3. Collect object properties, not formatted or localised command text.
 4. Exclude secrets, raw user data, recovery material, and unrestricted exports.
 5. Compare snapshots only when schema and target fingerprint match.
@@ -56,7 +59,8 @@ execution, return the field plan and mark all values unobserved.
 
 ## Outputs
 
-Versioned operation envelope, platform fingerprint, scoped inventory, warnings,
+Versioned operation envelope, platform fingerprint, process/terminal context,
+timestamped scoped inventory, optional executable-resolution results, warnings,
 collector limitations, and evidence pack hash when requested. Each WindowsSkills.Engine
 operation also enters the minimal local activity ledger; use
 `Get-WseAdminActivityReport` for a time-bounded summary.
@@ -85,5 +89,6 @@ Every value has target, source, and timestamp context.
 ## References
 
 - [`docs/research/source-synthesis.md`](../../../docs/research/source-synthesis.md)
+- [`references/powershell-path-and-vscode.md`](references/powershell-path-and-vscode.md)
 - [`engine/schemas/operation-envelope.schema.json`](../../../engine/schemas/operation-envelope.schema.json)
 <!-- dual-compat-end -->
