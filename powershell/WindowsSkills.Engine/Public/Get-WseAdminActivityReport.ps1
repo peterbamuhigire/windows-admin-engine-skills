@@ -90,7 +90,7 @@
         $evidence = @($event.evidence_refs) -join ', '
         $limitations = @($event.limitations) -join '; '
         $cells = @($event.timestamp_utc, $event.engine, $event.activity_type, $event.operation, $event.target_scope, $event.status, [bool]$event.changed, $event.summary, $event.change_ref, $evidence, $limitations)
-        $safeCells = @($cells | ForEach-Object { ([string]$_).Replace('|', '\|').Replace("`r", ' ').Replace("`n", ' ') })
+        $safeCells = @($cells | ForEach-Object { ([string]$_).Replace('&', '&amp;').Replace('<', '&lt;').Replace('>', '&gt;').Replace('|', '\|').Replace("`r", ' ').Replace("`n", ' ') })
         $lines.Add('| ' + ($safeCells -join ' | ') + ' |')
     }
     $lines.Add('')
