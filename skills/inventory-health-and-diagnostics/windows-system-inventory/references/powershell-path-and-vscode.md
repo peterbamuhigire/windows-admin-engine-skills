@@ -12,6 +12,10 @@ process, user, or machine PATH. It also records the diagnostic process ID,
 parent process name, terminal host name, and UTC observation time. It does not
 include PATH values or resolved executable paths.
 
+When process lookup misses the command, the diagnostic checks common Windows
+launchers (`.exe`, `.com`, `.bat`, `.cmd`, and `.ps1`) in persisted PATH entries.
+It reports only the matching directory's membership flags.
+
 Windows processes receive an environment block when they are created. By
 default, a child inherits a copy from its parent, though the parent may supply a
 different block. A comparison in the affected terminal can therefore show that

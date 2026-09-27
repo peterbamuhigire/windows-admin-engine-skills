@@ -40,6 +40,23 @@ Describe 'WindowsSkills.Engine contract' {
         finally { $env:PATH = $originalPath }
     }
 
+    It 'finds Windows command shims when locating a command in persisted PATH entries' {
+        $module = Get-Module WindowsSkills.Engine
+        foreach ($extension in @('.exe', '.com', '.bat', '.cmd', '.ps1')) {
+            $directory = Join-Path $TestDrive ([guid]::NewGuid().ToString('N'))
+            New-Item -ItemType Directory -Path $directory -Force | Out-Null
+            Set-Content -LiteralPath (Join-Path $directory ('codex' + $extension)) -Value 'fixture' -Encoding ASCII
+
+            $resolved = & $module {
+                param($commandName, $pathEntries)
+                Find-WseCommandPathInPathEntries -Name $commandName -Directories $pathEntries
+            } 'codex' @($directory)
+
+            $resolved | Should BeLike ('*' + [System.IO.Path]::DirectorySeparatorChar + 'codex' + $extension)
+            (Test-Path -LiteralPath $resolved -PathType Leaf) | Should Be $true
+        }
+    }
+
     It 'previews a service change without changing EventLog' {
         $before = (Get-Service EventLog).Status
         $result = Invoke-WseServiceState -Name EventLog -DesiredState Stopped -ChangeAuthority TEST -MaintenanceWindow TEST -WhatIf -Confirm:$false

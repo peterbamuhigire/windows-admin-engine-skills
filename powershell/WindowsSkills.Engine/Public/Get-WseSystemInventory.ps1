@@ -52,15 +52,11 @@ function Get-WseSystemInventory {
             $resolved = Get-Command -Name $name -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
             $resolvedPath = if ($resolved) { [string]$resolved.Source } else { $null }
             $foundInProcess = [bool]$resolved
-            # If process resolution fails, look for the exact command in the
-            # persisted user/machine PATHs to identify an inheritance mismatch.
+            # If process resolution fails, look for a Windows command or shell
+            # shim in the persisted user/machine PATHs to identify an
+            # inheritance mismatch.
             if (-not $resolvedPath) {
-                foreach ($entry in @($userPath) + @($machinePath)) {
-                    if ($entry -and (Test-Path -LiteralPath (Join-Path $entry ($name + '.exe')) -PathType Leaf)) {
-                        $resolvedPath = Join-Path $entry ($name + '.exe')
-                        break
-                    }
-                }
+                $resolvedPath = Find-WseCommandPathInPathEntries -Name $name -Directories (@($userPath) + @($machinePath))
             }
             $directory = if ($resolvedPath) { [System.IO.Path]::GetDirectoryName($resolvedPath) } else { $null }
             [pscustomobject][ordered]@{
