@@ -14,6 +14,7 @@ if ($preview.Changed) { throw 'WhatIf service test reported a change.' }
 if (Get-Command Invoke-Pester -ErrorAction SilentlyContinue) {
     $pesterPaths = @(
         (Join-Path $repo 'powershell\WindowsSkills.Engine\Tests\WindowsSkills.Engine.Tests.ps1')
+        (Join-Path $repo 'powershell\WindowsSkills.Engine\Tests\AdminActivity.Tests.ps1')
         (Join-Path $repo 'tests\powershell\Install-WindowsAdmin.Tests.ps1')
         (Join-Path $repo 'tests\powershell\Kaizen-Semantics.Tests.ps1')
     )

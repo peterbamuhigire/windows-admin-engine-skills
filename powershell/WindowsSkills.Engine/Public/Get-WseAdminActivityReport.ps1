@@ -28,6 +28,7 @@
     $validTypes = @('inventory','health_check','security','update','configuration','backup','recovery','incident','report','other')
     $validScopes = @('local','remote','fleet','unknown')
     $validStatuses = @('succeeded','no_change','partial','failed','blocked','not_assessed','pending_reboot')
+    $secretPattern = '(?i)(password|passwd|token|secret|api[_-]?key|private[_-]?key|authorization)\s*[:=]'
     foreach ($rootPath in $RecordRoot) {
         if (-not (Test-Path -LiteralPath $rootPath -PathType Container)) { continue }
         foreach ($file in Get-ChildItem -LiteralPath $rootPath -Filter 'activity-*.jsonl' -File -ErrorAction SilentlyContinue) {
@@ -51,6 +52,14 @@
                         $item.limitations -isnot [array] -or $item.limitations.Count -gt 30) { $invalid++; continue }
                     if (@($item.evidence_refs | Where-Object { $_ -isnot [string] -or $_.Length -gt 180 -or [string]::IsNullOrWhiteSpace($_) }).Count -gt 0 -or
                         @($item.limitations | Where-Object { $_ -isnot [string] -or $_.Length -gt 300 }).Count -gt 0) { $invalid++; continue }
+                    $invalidReference = @($item.evidence_refs | Where-Object {
+                        [System.IO.Path]::IsPathRooted($_) -or $_ -match '^[A-Za-z]:[/\\]' -or $_.StartsWith('\\') -or $_.Contains('..') -or $_ -match $secretPattern -or $_.Contains("`r") -or $_.Contains("`n")
+                    }).Count -gt 0
+                    $invalidText = ($item.operation -match $secretPattern -or $item.operation.Contains("`r") -or $item.operation.Contains("`n") -or
+                        $item.summary -match $secretPattern -or $item.summary.Contains("`r") -or $item.summary.Contains("`n") -or
+                        ($null -ne $item.change_ref -and ($item.change_ref -match $secretPattern -or $item.change_ref.Contains("`r") -or $item.change_ref.Contains("`n"))) -or
+                        @($item.limitations | Where-Object { $_ -match $secretPattern -or $_.Contains("`r") -or $_.Contains("`n") }).Count -gt 0)
+                    if ($invalidReference -or $invalidText) { $invalid++; continue }
                     $time = [datetime]::Parse([string]$item.timestamp_utc).ToUniversalTime()
                     if ($time -lt $from -or $time -gt $to) { continue }
                     if ($seen.ContainsKey([string]$item.event_id)) { continue }
