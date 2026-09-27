@@ -56,7 +56,7 @@ support.
 4. Load the highest-ranked specialist and its dependencies.
 5. Resolve target and management ownership before commands.
 6. Keep first pass read-only unless mutation is explicit.
-7. Verify the named outcome and write a redacted operation record.
+7. Verify the named outcome. WindowsSkills.Engine operation results are recorded as minimal per-user activity metadata; use `Get-WseAdminActivityReport` for a date-ranged report. Add a change reference and relative evidence ID in the operation record when available; keep raw evidence in its existing pack.
 
 ## Mutation, verification, and recovery
 

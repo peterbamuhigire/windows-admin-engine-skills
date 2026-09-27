@@ -17,6 +17,8 @@
         'Get-WseEventEvidence',
         'Invoke-WseServiceState',
         'Write-WseEvidencePack',
+        'Add-WseAdminActivity',
+        'Get-WseAdminActivityReport',
         'Test-WseEngine'
     )
     CmdletsToExport = @()

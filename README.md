@@ -121,6 +121,22 @@ Import-Module ./powershell/WindowsSkills.Engine/WindowsSkills.Engine.psd1 -Force
 Get-WseSystemInventory -EvidenceRoot ./.evidence
 ```
 
+WindowsSkills.Engine operation results also append minimal, redacted activity
+metadata to the current user's LocalApplicationData. `CHWEZI_ACTIVITY_ROOT`
+selects an explicit record root for both automatic records and the report's
+default lookup. Generate a date-ranged report or save it as Markdown:
+
+```powershell
+$report = Get-WseAdminActivityReport -FromUtc ([datetime]::UtcNow.AddDays(-30)) -ToUtc ([datetime]::UtcNow)
+$report.Markdown
+Get-WseAdminActivityReport -OutputPath ./reports/system-admin-report.md
+```
+
+Use `Add-WseAdminActivity` for an engine-mediated task that did not return a
+WindowsSkills.Engine operation result. Do not duplicate a result already
+recorded automatically. The report covers recorded engine activity, not every
+host action; see [activity records and reports](docs/operations/system-admin-activity.md).
+
 Direct `wsa-*` commands can be exposed on the current user's `PATH`. Preview the
 environment change first:
 

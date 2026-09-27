@@ -18,7 +18,7 @@ function New-WseOperationResult {
         [object[]]$Warnings = @()
     )
 
-    [pscustomobject][ordered]@{
+    $result = [pscustomobject][ordered]@{
         PSTypeName = 'WindowsSkills.OperationResult'
         SchemaVersion = '1.0'
         OperationId = $OperationId
@@ -45,4 +45,11 @@ function New-WseOperationResult {
         Errors = @($Errors)
         Warnings = @($Warnings)
     }
+
+    try {
+        Write-WseActivityRecord -OperationResult $result | Out-Null
+    } catch {
+        $result.Warnings = @($result.Warnings) + 'Local activity record could not be written; later reports may omit this operation.'
+    }
+    return $result
 }

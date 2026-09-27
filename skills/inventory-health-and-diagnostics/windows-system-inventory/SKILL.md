@@ -57,7 +57,9 @@ execution, return the field plan and mark all values unobserved.
 ## Outputs
 
 Versioned operation envelope, platform fingerprint, scoped inventory, warnings,
-collector limitations, and evidence pack hash.
+collector limitations, and evidence pack hash when requested. Each WindowsSkills.Engine
+operation also enters the minimal local activity ledger; use
+`Get-WseAdminActivityReport` for a time-bounded summary.
 
 ## Decision rules
 
