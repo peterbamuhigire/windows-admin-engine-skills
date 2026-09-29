@@ -80,6 +80,8 @@ primary sources; quarantine stale/ambiguous/unsupported claims and mark them
    skill specifies. Missing host, lab, source, live, or recovery evidence is `NOT ASSESSED`.
 8. Validate changes with the commands declared in `.skills-engine/engine-manifest.yaml`.
 
+Project context: if the working project root holds a `PROJECT.md` with `project_schema: 1`, read it before planning. It points to this engine's own context sources and never replaces them.
+
 ## Operating rules
 
 - Never guess a hostname, domain, tenant, subscription, cluster, or identity.
