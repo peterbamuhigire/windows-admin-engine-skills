@@ -38,6 +38,11 @@ Book extractions, summaries and chapter-by-chapter notes must never be stored in
 (no `book-extractions/`, `extracted-books/` or `book-study/` folder, no `*-extraction.md` book
 digests). Books enter only as paraphrased, task-oriented skill content with a short citation.
 The portfolio check `chwezi-engine-agents/scripts/validate-no-book-extractions.py` enforces this.
+Knowledge from books enters only as paraphrased, task-oriented skill content and `references/`
+files (procedures, checklists, decision rules) with a short citation (Author (Year) *Title*,
+Publisher). Verbatim quotations stay rare and under 25 words. Staging notes live outside the
+repository and are never linked from skills. The portfolio check fails if an extraction folder
+appears.
 
 ## Rules
 
@@ -70,6 +75,10 @@ primary sources; quarantine stale/ambiguous/unsupported claims and mark them
    authority, risk class, change plan, stop condition, verification, and
    recovery path.
 5. Mark unavailable live or lab evidence `NOT_ASSESSED`; never infer success.
+6. Discovery fallback: glob `skills/**/SKILL.md` and route by frontmatter `description`.
+7. Treat every host, domain, or fleet change as preview-first and approval-gated as the routed
+   skill specifies. Missing host, lab, source, live, or recovery evidence is `NOT ASSESSED`.
+8. Validate changes with the commands declared in `.skills-engine/engine-manifest.yaml`.
 
 ## Operating rules
 
@@ -147,6 +156,26 @@ visual or rendered operational artefacts require the full overlay.
 - Current or uncertain platform/security claims: `digital-research-engine` at `C:\wamp64\www\digital-research-engine`.
 - Linux hosts: `linux-skills`.
 - Accounting or finance operations: `chwezi-accounting-doctrine`.
+
+<!-- design-system-skills:trigger v2 -->
+### Design / typography / UI/UX (cross-cutting — consult IN ADDITION)
+
+Any work touching how an artifact LOOKS — font/typeface choice, type scale, colour, layout/grid,
+visual identity, web/desktop/mobile UI screens, or the visual formatting of a DOCX/PPTX/PDF/XLSX
+— routes to the **`design-system-skills`** engine, the single home for ALL design/UI/UX skills
+and the anti-AI-slop doctrine.
+
+**Resolve its location on THIS device from the active runner's global engine-routing table or
+`AGENTS.md`** — never assume an absolute path; it varies per machine. Then read its
+`README.md` → `doctrine/design-doctrine.md` → glob `skills/**/SKILL.md` fresh and route by
+frontmatter (read SKILL.md directly, not via the Skill tool). Content and structure stay in THIS
+engine; presentation comes from design-system-skills. Hard rule: never use a banned AI-slop font
+as primary type — hard ban: Inter, Geist, Roboto, Open Sans, Lato, Arial, Fraunces, IBM Plex (all
+faces); secondary ban: Space Grotesk, Instrument Serif, Poppins, Montserrat, Nunito, Nunito Sans;
+Roboto Mono and IBM Plex Mono are banned as monospace choices; Source Sans 3 only as a paired
+body face; no bare system stacks alone. State the chosen typeface and reason before producing
+any artifact.
+<!-- /design-system-skills:trigger -->
 
 ## Change discipline
 

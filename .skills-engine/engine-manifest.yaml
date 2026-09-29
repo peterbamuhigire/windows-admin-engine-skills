@@ -2,6 +2,7 @@ schema_version: "1.0"
 engine_id: windows-admin-engine-skills
 display_name: Windows Administration Skills
 contract_version: "1.0"
+version: "1.1.0"
 router:
   path: AGENTS.md
 skills:
@@ -57,3 +58,16 @@ source_of_truth:
   skills: skills/**/SKILL.md
   references: skills/**/references/**
   catalog: engine/catalog.yaml
+plugin_exclusions:
+  - path: "templates/skill"
+    reason: "authoring template copied when a new skill is created; not an active skill"
+claude_only_block: |
+  - Claude Code follows `AGENTS.md` in full; skip only its "Codex-only model setup" section.
+  - Read the `SKILL.md` files directly; they are not registered with the native `Skill` tool.
+invariants:
+  - id: book-extraction-ban
+    phrase: "Book extractions, summaries and chapter-by-chapter notes must never be stored in this repository"
+  - id: not-assessed
+    phrase: "Missing host, lab, source, live, or recovery evidence is `NOT ASSESSED`, never a pass."
+invariant_exemptions:
+  british-english: "No British English output rule exists in this engine's router (AGENTS.md, README.md, rules/); adding one is new doctrine outside M10-02 scope. Recorded for the orchestrator."
