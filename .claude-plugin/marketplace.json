@@ -11,7 +11,7 @@
       "author": { "name": "Peter Bamuhigire" },
       "homepage": "https://github.com/peterbamuhigire/windows-admin-engine-skills",
       "repository": "https://github.com/peterbamuhigire/windows-admin-engine-skills",
-      "license": "MIT",
+      "license": "GPL-3.0-only",
       "keywords": ["windows", "active-directory", "powershell", "sysadmin"],
       "category": "infrastructure",
       "tags": ["windows", "sysadmin", "infrastructure"],
