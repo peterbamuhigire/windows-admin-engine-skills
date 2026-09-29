@@ -257,6 +257,8 @@ Import-Module .\powershell\WindowsSkills.Engine\WindowsSkills.Engine.psd1 -Force
 | `Get-WseEventEvidence` | `-ComputerName`, `-LogName`, `-LookbackHours`, `-MaxEvents`, `-EvidenceRoot` | The event collector behind `wsa-events`. |
 | `Invoke-WseServiceState` | `-Name`, `-DesiredState`, `-ChangeAuthority`, `-MaintenanceWindow`, `-ComputerName`, `-TimeoutSeconds`, `-EvidenceRoot`, `-WhatIf`, `-Confirm` | The controlled R2 service-state primitive. Use the safety procedure in section 11. |
 | `Write-WseEvidencePack` | pipeline `-OperationResult`, `-EvidenceRoot`, `-WhatIf`, `-Confirm` | Redacts an operation value, writes `operation.json`, hashes it, and writes `manifest.json`. |
+| `Add-WseAdminActivity` | `-ActivityType`, `-Operation`, `-Status`, `-TargetScope`, `-Changed`, `-Summary`, `-ChangeReference`, `-EvidenceReference`, `-Limitation`, `-ActivityRoot` | Appends one minimal activity record for an engine-mediated task that did not produce a WSE operation result. See `docs\operations\system-admin-activity.md`. |
+| `Get-WseAdminActivityReport` | `-FromUtc`, `-ToUtc`, `-RecordRoot`, `-OutputPath` | Builds a date-ranged Markdown report from one or more activity roots (default: the last 30 days in the per-user store); deduplicates event IDs and counts malformed records. |
 | `Test-WseEngine` | none | Checks the imported module surface; it is not a live infrastructure test. |
 
 All `-ComputerName` parameters are local-only in release 0.1. Allowed aliases

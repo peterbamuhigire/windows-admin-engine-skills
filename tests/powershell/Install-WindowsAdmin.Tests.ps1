@@ -16,14 +16,14 @@ Describe 'Windows Administration installer reconciliation' {
         $output = & $installer -WhatIf -ForceCollision -CurrentUserPathOverride $fixture -PreviousEngineRootOverride $repo
         $plan = @($output | Where-Object { $_.PSObject.Properties.Name -contains 'ProposedUserPathLength' })[0]
 
-        $plan.Mode | Should Be 'Update'
-        $plan.Changed | Should Be $true
-        $plan.StaleDirectories.Count | Should Be 2
-        $plan.PreservedDirectoryCount | Should Be 1
-        ($plan.StaleDirectories -contains (Join-Path $commands '00-engine')) | Should Be $true
-        ($plan.StaleDirectories -contains (Join-Path $commands '01-inventory\system')) | Should Be $true
-        ($plan.AddedDirectories -contains (Join-Path $commands 'engine\catalog')) | Should Be $true
-        ($plan.AddedDirectories -contains (Join-Path $commands 'inventory\system')) | Should Be $true
+        $plan.Mode | Should -Be 'Update'
+        $plan.Changed | Should -Be $true
+        $plan.StaleDirectories.Count | Should -Be 2
+        $plan.PreservedDirectoryCount | Should -Be 1
+        ($plan.StaleDirectories -contains (Join-Path $commands '00-engine')) | Should -Be $true
+        ($plan.StaleDirectories -contains (Join-Path $commands '01-inventory\system')) | Should -Be $true
+        ($plan.AddedDirectories -contains (Join-Path $commands 'engine\catalog')) | Should -Be $true
+        ($plan.AddedDirectories -contains (Join-Path $commands 'inventory\system')) | Should -Be $true
     }
 
     It 'is idempotent when the proposed path is checked again' {
@@ -33,10 +33,10 @@ Describe 'Windows Administration installer reconciliation' {
         $second = & $installer -WhatIf -ForceCollision -CurrentUserPathOverride ($installedPath -join ';') -PreviousEngineRootOverride $repo
         $secondPlan = @($second | Where-Object { $_.PSObject.Properties.Name -contains 'ProposedUserPathLength' })[0]
 
-        $secondPlan.Mode | Should Be 'NoChange'
-        $secondPlan.Changed | Should Be $false
-        $secondPlan.StaleDirectories.Count | Should Be 0
-        $secondPlan.AddedDirectories.Count | Should Be 0
+        $secondPlan.Mode | Should -Be 'NoChange'
+        $secondPlan.Changed | Should -Be $false
+        $secondPlan.StaleDirectories.Count | Should -Be 0
+        $secondPlan.AddedDirectories.Count | Should -Be 0
     }
 
     It 'removes command paths from a previously registered checkout' {
@@ -44,14 +44,14 @@ Describe 'Windows Administration installer reconciliation' {
         $output = & $installer -WhatIf -ForceCollision -CurrentUserPathOverride $fixture -PreviousEngineRootOverride 'D:\OldWindowsEngine'
         $plan = @($output | Where-Object { $_.PSObject.Properties.Name -contains 'ProposedUserPathLength' })[0]
 
-        $plan.StaleDirectories.Count | Should Be 2
-        $plan.PreservedDirectoryCount | Should Be 1
-        ($plan.StaleDirectories -contains 'D:\OldWindowsEngine\commands\bin') | Should Be $true
-        ($plan.StaleDirectories -contains 'D:\OldWindowsEngine\commands\inventory\system') | Should Be $true
-        $plan.EngineRoot | Should Be $repo
+        $plan.StaleDirectories.Count | Should -Be 2
+        $plan.PreservedDirectoryCount | Should -Be 1
+        ($plan.StaleDirectories -contains 'D:\OldWindowsEngine\commands\bin') | Should -Be $true
+        ($plan.StaleDirectories -contains 'D:\OldWindowsEngine\commands\inventory\system') | Should -Be $true
+        $plan.EngineRoot | Should -Be $repo
     }
 
     It 'refuses path overrides outside WhatIf mode' {
-        { & $installer -CurrentUserPathOverride 'C:\Test' } | Should Throw
+        { & $installer -CurrentUserPathOverride 'C:\Test' } | Should -Throw
     }
 }

@@ -61,5 +61,5 @@ Pass multiple `-RecordRoot` directories to combine exports from Linux or other
 Windows accounts. The report deduplicates event IDs, counts malformed records,
 and retains blocked/failed/partial outcomes. It does not install a service,
 scheduled task, or updater. See the cross-platform
-[activity-record contract](../../../chwezi-engine-agents/docs/operations/system-admin-activity-record-contract-2026-09.md)
+[activity-record contract](https://github.com/peterbamuhigire/chwezi-engine-agents/blob/main/docs/operations/system-admin-activity-record-contract-2026-09.md)
 for evidence sources and the separately researched background-operation options.

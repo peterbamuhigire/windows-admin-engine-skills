@@ -21,26 +21,26 @@ Describe 'WindowsSkills.Engine administration activity records' {
         $result = Add-WseAdminActivity -ActivityType security -Operation 'review local controls' -Status partial `
             -TargetScope local -Changed $false -Summary 'Reviewed <system> | evidence pending.' `
             -EvidenceReference 'case-activity-001' -Limitation 'Two controls were not assessed.'
-        $result.SchemaVersion | Should Be 'chwezi.system-admin-activity.v1'
+        $result.SchemaVersion | Should -Be 'chwezi.system-admin-activity.v1'
 
         $report = Get-WseAdminActivityReport -FromUtc ([datetime]::UtcNow.AddMinutes(-2)) -ToUtc ([datetime]::UtcNow.AddMinutes(2))
-        $report.EventCount | Should Be 1
-        $report.InvalidRecordCount | Should Be 0
-        $report.Markdown | Should Match 'partial'
-        $report.Markdown | Should Match 'case-activity-001'
-        $report.Markdown | Should Match 'Two controls were not assessed\.'
-        $report.Markdown | Should Match ([regex]::Escape('&lt;system&gt; \| evidence pending.'))
+        $report.EventCount | Should -Be 1
+        $report.InvalidRecordCount | Should -Be 0
+        $report.Markdown | Should -Match 'partial'
+        $report.Markdown | Should -Match 'case-activity-001'
+        $report.Markdown | Should -Match 'Two controls were not assessed\.'
+        $report.Markdown | Should -Match ([regex]::Escape('&lt;system&gt; \| evidence pending.'))
     }
 
     It 'automatically records WindowsSkills.Engine operation results' {
         $operation = Get-WseSystemInventory
-        (@('Succeeded','PartiallySucceeded') -contains $operation.Status) | Should Be $true
+        (@('Succeeded','PartiallySucceeded') -contains $operation.Status) | Should -Be $true
 
         $report = Get-WseAdminActivityReport -FromUtc ([datetime]::UtcNow.AddMinutes(-2)) -ToUtc ([datetime]::UtcNow.AddMinutes(2))
-        $report.EventCount | Should Be 1
-        $report.Markdown | Should Match 'windows-admin-engine-skills'
-        $report.Markdown | Should Match 'inventory'
-        $report.Markdown | Should Match 'Recorded activities: 1'
+        $report.EventCount | Should -Be 1
+        $report.Markdown | Should -Match 'windows-admin-engine-skills'
+        $report.Markdown | Should -Match 'inventory'
+        $report.Markdown | Should -Match 'Recorded activities: 1'
     }
 
     It 'reads Linux schema records and deduplicates repeated input roots' {
@@ -65,10 +65,10 @@ Describe 'WindowsSkills.Engine administration activity records' {
         [System.IO.File]::AppendAllText($path, (($record | ConvertTo-Json -Compress -Depth 5) + "`n"), (New-Object System.Text.UTF8Encoding($false)))
 
         $report = Get-WseAdminActivityReport -RecordRoot @($root, $root) -FromUtc ([datetime]::UtcNow.AddMinutes(-2)) -ToUtc ([datetime]::UtcNow.AddMinutes(2))
-        $report.EventCount | Should Be 1
-        $report.Markdown | Should Match 'linux-skills'
-        $report.Markdown | Should Match 'pending_reboot'
-        $report.Markdown | Should Match 'Linux host verification remains pending\.'
+        $report.EventCount | Should -Be 1
+        $report.Markdown | Should -Match 'linux-skills'
+        $report.Markdown | Should -Match 'pending_reboot'
+        $report.Markdown | Should -Match 'Linux host verification remains pending\.'
     }
 
     It 'counts malformed and schema-invalid imported rows and rejects secret-like manual text' {
@@ -108,11 +108,11 @@ Describe 'WindowsSkills.Engine administration activity records' {
         [System.IO.File]::WriteAllText($path, (($lines -join "`n") + "`n"), $utf8)
 
         $report = Get-WseAdminActivityReport -FromUtc ([datetime]::UtcNow.AddMinutes(-2)) -ToUtc ([datetime]::UtcNow.AddMinutes(2))
-        $report.EventCount | Should Be 0
-        $report.InvalidRecordCount | Should Be 4
-        $report.Markdown.Contains('C:\private') | Should Be $false
-        $report.Markdown.Contains('sample-value') | Should Be $false
+        $report.EventCount | Should -Be 0
+        $report.InvalidRecordCount | Should -Be 4
+        $report.Markdown.Contains('C:\private') | Should -Be $false
+        $report.Markdown.Contains('sample-value') | Should -Be $false
         { Add-WseAdminActivity -ActivityType security -Operation 'review local controls' -Status failed `
-            -TargetScope local -Changed $false -Summary 'token: sample-value' } | Should Throw
+            -TargetScope local -Changed $false -Summary 'token: sample-value' } | Should -Throw
     }
 }

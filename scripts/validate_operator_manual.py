@@ -29,11 +29,16 @@ def main() -> int:
     manifest = (REPO / "powershell" / "WindowsSkills.Engine" / "WindowsSkills.Engine.psd1").read_text(
         encoding="utf-8-sig"
     )
+    # Every name in FunctionsToExport must be documented, whatever its verb
+    # (Add-, Get-, Invoke-, Test-, Write-, ...), so the manual cannot lag the manifest.
+    exports = re.search(r"FunctionsToExport\s*=\s*@\(([^)]*)\)", manifest)
     required["module function"] = sorted(
-        set(re.findall(r"'((?:Get|Test|Invoke|Write)-Wse[A-Za-z0-9]+)'", manifest))
+        set(re.findall(r"'([A-Za-z]+-Wse[A-Za-z0-9]+)'", exports.group(1) if exports else ""))
     )
 
     findings: list[str] = []
+    if not required["module function"]:
+        findings.append("manifest FunctionsToExport block not found or empty")
     for kind, values in required.items():
         for value in values:
             if f"`{value}`" not in text:

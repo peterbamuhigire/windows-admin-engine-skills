@@ -94,7 +94,7 @@ exec node "$NODE_SCRIPT" "$@"
   Windows binary) receives a valid path instead of a doubled one like
   `G:\g\projects\...`".
 - This Kaizen operation's own infrastructure, independently: `chwezi-engine-agents`
-  `scripts/install.sh.template` (`C:\wamp64\www\chwezi-engine-agents\scripts\install.sh.template`,
+  `scripts/install.sh.template` (`chwezi-engine-agents/scripts/install.sh.template`,
   lines 5-9, 30-32) — written and fixed during this operation's own work, citing the
   ECC precedent explicitly in its own comment ("This is the same fix documented in
   ECC's install.sh"). This confirms the bug is a real, independently-rediscovered
