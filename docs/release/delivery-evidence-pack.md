@@ -9,7 +9,7 @@
 | Owner | Peter Bamuhigire |
 | Reviewer | Independent reviewer not yet assigned |
 | Date | 2026-08-12 |
-| Related engines | skills-web-dev, srs-skills, digital-research-skills, linux-skills |
+| Related engines | skills-web-dev, chwezi-sdlc-documentation, digital-research-skills, linux-skills |
 
 ## Decisions
 
