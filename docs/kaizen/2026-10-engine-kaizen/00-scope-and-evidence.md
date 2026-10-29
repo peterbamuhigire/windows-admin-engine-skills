@@ -29,6 +29,6 @@ integration or a production rollback.
 | Major | No automated hard file ceiling or native manifest-parity guard | `scripts/validate_engine.py` |
 | Minor | Router contains device-specific sibling bindings | `AGENTS.md` currentness and craft routes |
 
-Native baseline plugin tests: Codex0.165.0 installs and emits20/20 declared
-skill paths; Claude2.1.312 installs and inventories21 components including its
+Native baseline plugin tests: Codex 0.165.0 installs and emits20/20 declared
+skill paths; Claude 2.1.312 installs and inventories21 components including its
 legacy command. Public directory acceptance and hook behaviour NOT_ASSESSED.

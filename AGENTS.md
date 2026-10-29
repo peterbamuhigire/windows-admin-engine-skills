@@ -55,7 +55,7 @@ operates within.
 
 Every Kaizen audit, skill edit, reference update, validator change, and
 standardisation decision MUST begin with the Digital Research Engine at
-`C:\wamp64\www\digital-research-engine`. Read its `source-evaluation` and
+`digital-research-engine` (resolve through the device catalogue). Read its `source-evaluation` and
 `source-verification` skills and the currentness gate reference
 `docs/continuous-improvement/kaizen-currentness-gate.md`.
 
@@ -112,6 +112,14 @@ Project context: if the working project root holds a `PROJECT.md` with `project_
 | R4 | Identity/security-boundary change with peer review and staged rollout |
 | R5 | Destructive or hard-to-reverse change with backup proof and explicit authority |
 
+## October Kaizen evidence
+
+Read [the October cycle](docs/kaizen/2026-10-engine-kaizen/05-final-report.md)
+for tested fixture boundaries, residual Windows-lab gaps and catalogue handoffs.
+The registered validator now checks [marketplace discovery](docs/marketplace.md)
+and the hard 5,000-file limit. A successful package load is not authority to
+execute any Windows operation.
+
 ## Quality gates
 
 Run from the repository root:
@@ -155,7 +163,7 @@ visual or rendered operational artefacts require the full overlay.
   eleventh canonical engine in `chwezi-dev-engine/docs/engine-control-plane.json`.
 - Software implementation, APIs, Python, CI, or packaging: `chwezi-dev-engine`.
 - Formal requirements, test, deployment, or governance artefacts: `chwezi-sdlc-documentation`.
-- Current or uncertain platform/security claims: `digital-research-engine` at `C:\wamp64\www\digital-research-engine`.
+- Current or uncertain platform/security claims: `digital-research-engine` at `digital-research-engine` (resolve through the device catalogue).
 - Linux hosts: `linux-skills`.
 - Accounting or finance operations: `chwezi-accounting-doctrine`.
 
@@ -192,4 +200,4 @@ For a prompt handoff, read the local [domain prompt contract](docs/ai-prompting/
 
 ## PORTFOLIO CRAFT CONTRACT
 
-Load `C:\wamp64\www\chwezi-engine-agents\docs\operations\portfolio-craft-standard-2026-09-04.md` when available. Run administration work as small controlled slices: frame the target and consequence, select one change, inspect the management owner and current state, preview it, apply only the bounded mutation, verify health and failure behaviour, refine the procedure, and record rollback evidence. Do not generate a full fleet change or runbook as an opaque batch. Apply `Observe -> Baseline -> Select -> Experiment -> Check -> Standardise -> Teach -> Re-measure` to kaizen itself. Missing host, lab, source, live, or recovery evidence is `NOT ASSESSED`, never a pass.
+Load `chwezi-engine-agents/docs/operations/portfolio-craft-standard-2026-09-04.md` (resolve through the device catalogue) when available. Run administration work as small controlled slices: frame the target and consequence, select one change, inspect the management owner and current state, preview it, apply only the bounded mutation, verify health and failure behaviour, refine the procedure, and record rollback evidence. Do not generate a full fleet change or runbook as an opaque batch. Apply `Observe -> Baseline -> Select -> Experiment -> Check -> Standardise -> Teach -> Re-measure` to kaizen itself. Missing host, lab, source, live, or recovery evidence is `NOT ASSESSED`, never a pass.

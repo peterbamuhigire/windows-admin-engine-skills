@@ -4,6 +4,13 @@ The Windows Administration Skills Engine governs work on Windows workstations, W
 
 The engine produces operational plans and runbooks; routed PowerShell procedures; 48 `wsa-` direct commands under `commands/`; the `WindowsSkills.Engine` PowerShell module that enforces the safety and evidence boundary; and a Python `windows-admin` CLI that lists and routes the catalogue and validates operation files and evidence packs. It also produces redacted evidence records checked against JSON Schema 2020-12 definitions, pywinauto and UI Automation test suites for native desktop applications, and the Windows portability doctrine that the whole Chwezi estate follows for installers and hooks. Volatile platform claims must rest on current official Microsoft documentation, registered as tier-1 sources in `engine/source-register.yaml` with a 90-day review interval. Security baselines follow the Microsoft Security Compliance Toolkit; CIS, STIG and NIST crosswalks are planned only where they are legally licensed. The engine is for Windows system and identity administrators, endpoint and fleet managers, service operators, and the AI agents and other Chwezi engines that need a Windows-native procedure.
 
+## October 2026 Kaizen
+
+[The cycle evidence](docs/kaizen/2026-10-engine-kaizen/05-final-report.md) records
+service argument/refusal/recovery repairs, diagnostic routing and marketplace
+checks. Synthetic Linux-hosted PowerShell tests do not establish Windows fleet
+readiness; domain and live recovery checks remain NOT_ASSESSED.
+
 ## Installation
 
 **Prerequisites.** Git. Node.js 18 or later for the clone installers and the plugin hooks. Python 3.10 or later for the catalogue CLI and validators, or Python 3.11 or later for the Codex model-policy helper. Windows PowerShell 5.1 or PowerShell 7 for the `WindowsSkills.Engine` module and `wsa-` commands. Pester is optional; when it is absent, record its gate as `NOT_ASSESSED`.
@@ -35,7 +42,12 @@ wsa-route "domain controller replication is failing"
 
 **Catalogue CLI.** Run it without installing through `scripts\windows-admin.cmd`, which accepts `list`, `route`, `validate-operation`, `validate-evidence` and `doctor`. `pip install .` also installs it as the `windows-admin` console script.
 
-**Codex.** No installer is needed. Load `AGENTS.md` and `skills/windows-sysadmin/SKILL.md`, then route by `engine/catalog.yaml`. Before substantive work, check the Codex model policy with `python .codex/ensure_model_policy.py --runtime codex --check`. Claude skips this step.
+**Codex.** The existing Claude-compatible marketplace also installs in Codex
+without a duplicate skill tree. From a local checkout run `codex plugin marketplace add . --json`,
+then `codex plugin add windows-admin@chwezi-windows-admin --json`. Offline native
+checks expose all 20 declared skill paths; see [plugin checks](docs/marketplace.md).
+Both the package and full checkout have an enforced hard 5,000-file ceiling.
+For manual use, no installer is needed. Load `AGENTS.md` and `skills/windows-sysadmin/SKILL.md`, then route by `engine/catalog.yaml`. Before substantive work, check the Codex model policy with `python .codex/ensure_model_policy.py --runtime codex --check`. Claude skips this step.
 
 **Manual use.** Clone the repository anywhere. Read `CLAUDE.md` (Claude Code) or `AGENTS.md` (any runner), then `skills/windows-sysadmin/SKILL.md`. Run the quality gates from the repository root:
 

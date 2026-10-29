@@ -15,7 +15,7 @@ Date: 2026-10-29. Scope: static checkout, Python validators, Linux-hosted PowerS
 | Hygiene | 55 | `validate_engine.py` reports zero findings and active skill local links had zero broken links in the scoped check; cross-engine leakage and all link types were not exhaustively assessed. (inference) |
 | Safety and integrity | 45 | Skills establish authority, preview and recovery expectations, and a service-command boundary exists; argument binding failure may prevent named parameters from reaching that boundary. No live mutation attempted. (inference) |
 
-**Raw:** 493 / 10 = 49.3 /100. **Published capped score:** `min(49.3, 65) = 49.3 /100`. (inference; arithmetic from the reviewer-assigned dimension scores above.) This baseline is frozen before code changes at snapshot `52a2cdc6e29dfd493fbd83f68ebcf64c41439588`. The separate user-requested initial publication cap is `min(49.3,45)=45`. Target95 is not achieved. The preparation draft assigned higher doctrine/depth/hygiene scores; root review reduced them before freezing because native task proof and broad contract assessment are absent. Safety is reduced for the independently reproduced refusal-record failure.
+**Raw:** 493 / 10 = 49.3 /100. **Published capped score:** `min(49.3, 65) = 49.3 /100`. (inference; arithmetic from the reviewer-assigned dimension scores above.) This baseline is frozen before code changes at snapshot `52a2cdc6e29dfd493fbd83f68ebcf64c41439588`. The separate user-requested initial publication cap is `min(49.3,45)=45`. Target 95 is not achieved. The preparation draft assigned higher doctrine/depth/hygiene scores; root review reduced them before freezing because native task proof and broad contract assessment are absent. Safety is reduced for the independently reproduced refusal-record failure.
 
 ## Measured inputs
 
@@ -30,4 +30,4 @@ Date: 2026-10-29. Scope: static checkout, Python validators, Linux-hosted PowerS
 
 ## Additional pre-change observation
 
-A direct module call with `ComputerName=OUTSIDE-FIXTURE` failed while constructing its refusal record: `$changed` was uninitialised under strict mode. No service lookup or mutation occurred. A shell process exit0 accompanied a null result and PowerShell error, so exit status alone is not proof. The wrapper separately loses named arguments through positional array splatting.
+A direct module call with `ComputerName=OUTSIDE-FIXTURE` failed while constructing its refusal record: `$changed` was uninitialised under strict mode. No service lookup or mutation occurred. A shell process exit 0 accompanied a null result and PowerShell error, so exit status alone is not proof. The wrapper separately loses named arguments through positional array splatting.

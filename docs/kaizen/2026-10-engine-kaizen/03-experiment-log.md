@@ -22,8 +22,8 @@ failure, normal change, repeated no-change, partial-mutation recovery, timeout
 recovery, failed recovery and unsupported original-state refusal. This is
 state-machine proof, not Windows service/identity integration.
 
-All three registered Python validators exit0; Python unittest reports23 passes.
-PowerShell syntax reports79 files, zero findings. The Windows behaviour suite
+All three registered Python validators exit 0; Python unittest reports 23 passes.
+PowerShell syntax reports 79 files, zero findings. The Windows behaviour suite
 is separately NOT_ASSESSED on this Linux host because Windows identity APIs
 are unavailable; the new fixture is registered in that suite for Windows CI.
 No score uplift is assigned before final remeasurement. No change reverted.
@@ -36,7 +36,7 @@ Confirm and propagates Failed operation results as a nonzero process exit. Raw
 string-array service arguments are rejected with a typed-entry-point message.
 No expression evaluation or reconstructed command string is used. Microsoft
 [about_Splatting](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting?view=powershell-7.6),
-accessed2026-10-29, distinguishes positional array splatting from named
+accessed 2026-10-29, distinguishes positional array splatting from named
 hashtable splatting; this is the relevant language contract.
 
 The native wrapper fixture executes three invocations with the actual wrapper,
@@ -52,8 +52,8 @@ recognised only backslash paths and positional action names; the manual gate
 required backslash spelling. Both now accept the actual typed/POSIX-relative
 form, and an unresolved command action fails the catalogue check. The existing
 48-command catalogue remains unchanged. The manual documents both new fixture
-scripts; all16 maintenance scripts and12 exported functions are accounted for.
-Python validators and23 unit tests pass; PowerShell syntax checks80 files with
+scripts; all 16 maintenance scripts and 12 exported functions are accounted for.
+Python validators and 23 unit tests pass; PowerShell syntax checks 80 files with
 zero findings. No source behaviour was padded to appease a scanner.
 
 ## W3 — diagnosis before repair
@@ -63,7 +63,30 @@ symptoms and diagnostic requests following a change, while an explicitly
 confirmed cause keeps specialist routing. The file-share/patching task now
 ranks troubleshooting first. A new plural share/service probe exposed missing
 catalogue keywords; adding those exact resource aliases resolves that query.
-The original19 fixtures still rank first correctly; the expanded29-fixture set
-passes at both rankone and rankthree, with five owned-negative primary-route
+The original 19 fixtures still rank first correctly; the expanded 29-fixture set
+passes at both rank one and rank three, with five owned-negative primary-route
 checks. These are lexical oracles, not a model-routing benchmark. Two specialists
 now have at least three positive and two owned-negative cases.
+
+## W4 — marketplace and capacity
+
+The registered validator now enforces exact canonical skill paths, marketplace
+identity/version, portable router bindings and a fixed 5,000-file ceiling on
+both package and complete checkout. Six regression tests cover boundary counts,
+Git/cache accounting, path/identity/duplicate failures, symlinks, malformed
+metadata and accidental slash commands. Existing native CLI compatibility is
+retained without a speculative Codex manifest or copied skill tree.
+
+Native Claude exposed `commands/README.md` as an unintended 21st component. Its
+content is preserved at `docs/operations/direct-command-tree.md`; a new guard
+prevents recurrence. A fresh offline Claude install after the move exposes
+exactly 20 intended skills. Codex local installation also succeeds; its baseline
+prompt-input proof exposed 20/20 canonical paths. No model/hook execution or
+public-directory claim was made. Manifest description and author metadata are
+now explicit. The three device-specific router paths resolve through the
+catalogue instead.
+
+All three registered Python validators pass; all 29 Python tests pass. Additional
+command-tree/manual checks pass with 48 commands, 17 maintenance scripts and 12
+exported functions. Full-checkout and package counts remain below 5,000; final
+release measurement recounts Git object growth.

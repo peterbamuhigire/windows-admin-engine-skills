@@ -353,6 +353,7 @@ manual.
 
 | Script | Scope and acceptance |
 |---|---|
+| `scripts/check_marketplace.py` | Validate exact plugin skill paths, identity, portable router bindings and hard 5,000-file package/full-checkout ceiling. Registered in validate_engine.py. |
 | `scripts/test-service-state-fixture.ps1` | Synthetic normal, repeat, preview, refusal, failure and verified recovery paths; nine assertions, no Windows service access. |
 | `scripts/test-service-wrapper-fixture.ps1` | Three isolated calls through the actual typed wrapper and dispatcher; named arguments, WhatIf, refusal and exit status must survive forwarding. |
 

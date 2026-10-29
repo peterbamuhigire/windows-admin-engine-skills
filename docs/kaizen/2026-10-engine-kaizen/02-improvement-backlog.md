@@ -1,6 +1,6 @@
 # Selected experiments — 29 October 2026
 
-Owner for each item: Peter Bamuhigire. Target95 remains aspirational; score
+Owner for each item: Peter Bamuhigire. Target 95 remains aspirational; score
 contributions are conditional on proof, not promised points. No canonical risk
 classes, identity scope or finance doctrine will change.
 
