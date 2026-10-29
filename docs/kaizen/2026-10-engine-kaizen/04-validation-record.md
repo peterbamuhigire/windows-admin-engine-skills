@@ -92,3 +92,8 @@ remains NOT_ASSESSED and requires an isolated Windows integration experiment.
 At clean `29c4958`, root's final offline Codex prompt-input check discovers
 20/20 skills with explicit Luna/high and a 10,000-token skills budget, no model
 call. Subsequent changes are scoped currentness documentation only.
+
+Root replayed the final syntax and both service fixtures after independent
+review: 80 syntax files, zero findings, nine state assertions and three wrapper
+invocations all passed, exit 0. This resolves the review worker's container-bind
+limitation for these Linux fixtures; Windows OS integration remains unassessed.
