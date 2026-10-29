@@ -3,9 +3,11 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'scripts'))
+import check_marketplace
 from check_marketplace import audit_repository, capacity_findings, count_files
 
 
@@ -37,6 +39,33 @@ class MarketplaceTests(unittest.TestCase):
                 (root / name / 'entry').write_text('fixture')
             self.assertEqual(before, count_files(root, package=True))
             self.assertEqual(before + 2, count_files(root, package=False))
+
+    def test_full_and_package_counts_include_directory_symlinks(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target = root / 'target'
+            target.mkdir()
+            before_full = count_files(root, package=False)
+            before_package = count_files(root, package=True)
+            try:
+                (root / 'linked-directory').symlink_to(target, target_is_directory=True)
+            except OSError as error:
+                self.skipTest(f'directory symlink creation unavailable: {error}')
+            self.assertEqual(before_full + 1, count_files(root, package=False))
+            self.assertEqual(before_package + 1, count_files(root, package=True))
+
+    def test_unreadable_subtree_fails_closed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+
+            def broken_walk(path, *, followlinks, onerror):
+                self.assertFalse(followlinks)
+                onerror(PermissionError('fixture: unreadable subtree'))
+                yield  # pragma: no cover - onerror must abort the inventory
+
+            with patch.object(check_marketplace.os, 'walk', broken_walk):
+                with self.assertRaisesRegex(PermissionError, 'unreadable subtree'):
+                    count_files(root, package=False)
 
     def test_identity_duplicate_and_path_escape_fail_closed(self):
         with tempfile.TemporaryDirectory() as directory:
