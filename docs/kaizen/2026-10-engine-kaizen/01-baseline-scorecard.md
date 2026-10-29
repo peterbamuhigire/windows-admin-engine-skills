@@ -1,0 +1,33 @@
+# Windows engine baseline (pre-change preparation)
+
+Date: 2026-10-29. Scope: static checkout, Python validators, Linux-hosted PowerShell syntax and synthetic route probes only. This is a fresh provisional baseline for root’s sequencing; it does not certify production behaviour. Scores are reviewer judgements (inference) from the evidence listed, not measured probabilities. The Standard requires named evidence and a one-line deficiency per dimension and caps the published result at `min(raw, 65)` `digital-research-engine/docs/continuous-improvement/portfolio-kaizen-standard-2026-08.md` (resolve through the catalogue).
+
+| Dimension | Score /100 | Evidence and named deficiency |
+|---|---:|---|
+| Doctrine | 60 | Hub routes cross-component unknown-cause symptoms to `windows-troubleshooting` (`skills/windows-sysadmin/SKILL.md:3,87`), and risk controls are documented; however, application was not consistent in the file-share routing probe (see `02-practitioner-tasks.md`). (inference) |
+| Taxonomy and routing | 55 | Catalogue has 19 specialist entries; current fixture set has one expected label per specialist and passes, but no owned negatives; the file-share prompt puts storage ahead of troubleshooting, and the WSA prompt returns no routes. Evidence: `engine/catalog.yaml`, `tests/fixtures/routing.json`, `scripts/routing_smoke_test.py`, task outputs below. (inference) |
+| Skill depth | 55 | Hub provides route and handoff rules; targeted GPO skill specifies risk, target/authority and verification/recovery. No full production-task assessment across all 20 skills completed. (inference) |
+| Applied proof | 38 | Registered validators pass; 19 routing fixtures only cover a positive expected route each; Windows integration/Pester tests could not execute on Linux due OS assumptions. (inference) |
+| Standards currency | 42 | Register has 48 records; 38 URL-bearing records and all 38 unique URLs returned reachable in the URL liveness check, but 37 rows remain `current-check-required`; 10 records have no `accessed` date. File `engine/source-register.yaml`; URL liveness output `source-url-report.json`. Liveness does not establish claim support. (inference) |
+| Output readiness | 55 | Documentation defines bounded operational output, but the WSA wrapper probe failed before reaching the target function; end-to-end Windows task output not assessed. (inference) |
+| Accessibility and inclusion | 48 | Local documentation is readable and the validator passed; no systematic accessibility, localization or operator usability review was run. (inference) |
+| Production and handoff | 40 | GPO task guidance names canary, verification, and rollback; prompt lacks actual named target, authority, window and approved rollback inputs. Fleet, production and recovery proof not assessed. (inference) |
+| Hygiene | 55 | `validate_engine.py` reports zero findings and active skill local links had zero broken links in the scoped check; cross-engine leakage and all link types were not exhaustively assessed. (inference) |
+| Safety and integrity | 45 | Skills establish authority, preview and recovery expectations, and a service-command boundary exists; argument binding failure may prevent named parameters from reaching that boundary. No live mutation attempted. (inference) |
+
+**Raw:** 493 / 10 = 49.3 /100. **Published capped score:** `min(49.3, 65) = 49.3 /100`. (inference; arithmetic from the reviewer-assigned dimension scores above.) This baseline is frozen before code changes at snapshot `52a2cdc6e29dfd493fbd83f68ebcf64c41439588`. The separate user-requested initial publication cap is `min(49.3,45)=45`. Target95 is not achieved. The preparation draft assigned higher doctrine/depth/hygiene scores; root review reduced them before freezing because native task proof and broad contract assessment are absent. Safety is reduced for the independently reproduced refusal-record failure.
+
+## Measured inputs
+
+- `validate_engine.py`: exit 0, 19 skills, 0 findings; `routing_smoke_test.py`: exit 0, 19 fixtures, 0 failures; `source_ingestion_guardrail.py`: exit 0, 0 findings; Python unittest: exit 0, 23 tests passed. Logs: `validator-logs/`. (local observation)
+- PowerShell syntax validator: exit 0, 78 files, 0 syntax findings in disposable PowerShell 7.4.2 container. (local observation; source log not captured separately, command recorded in parent preparation notes.)
+- PowerShell behaviour suite: NOT_ASSESSED on Linux. Pester test file cannot use root-level setup as originally authored in the temporary fixture; with Pester 5.7.1 this failed discovery/execution with 0 passed / 4 failed. Separately, the repository behaviour runner encounters unsupported Windows Principal APIs on Linux. Neither failure establishes a Windows product defect. (local observation)
+- Router fixtures: 19/19 expected skills appear in top three (script gate); there are 19 expected labels and no owned negative examples in `tests/fixtures/routing.json`; three-positive-plus-two-owned-negative coverage is 0/19. `precision@1` on current fixtures is NOT_ASSESSED because the test checks expected-in-top-three, not top-1 correctness. (local observation; do not substitute top-three recall for precision.)
+- Active skills: 19 specialist `SKILL.md` plus hub = 20. Explicit heading/phrase scan found 0 matches for `Example`, `Worked example`, or `Example:`. This is a narrow grep measure, not proof of absent examples. (local observation)
+- Link check: active skill link scan reported zero broken local Markdown links. Dangling cross-engine references: NOT_ASSESSED; no complete resolver was run. (local observation)
+- Source register: 48 records, 38 URL records, 38 unique URLs; URL verifier: 38 reachable, 0 failures. 37 status values are `current-check-required`; 10 records lack `accessed`; none can be considered verified solely because a URL resolves. (local observation)
+- Expired records under the register’s 90-day review interval: 0 date-bearing records have passed 90 days as of 2026-10-29 (36 records dated 2026-08-12, 2 dated 2026-09-24); 10 records lack dates and therefore cannot be classified by that calculation. Arithmetic uses `engine/source-register.yaml` review interval and accessed dates. (inference)
+
+## Additional pre-change observation
+
+A direct module call with `ComputerName=OUTSIDE-FIXTURE` failed while constructing its refusal record: `$changed` was uninitialised under strict mode. No service lookup or mutation occurred. A shell process exit0 accompanied a null result and PowerShell error, so exit status alone is not proof. The wrapper separately loses named arguments through positional array splatting.
