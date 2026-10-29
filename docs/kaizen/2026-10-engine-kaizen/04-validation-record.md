@@ -80,3 +80,15 @@ passes 34/34 first-rank fixtures and 7/7 owned-negative checks
 (`python -X utf8 scripts/routing_smoke_test.py`). The commands are lexical or
 synthetic checks; they do not establish Windows service, domain, fleet or
 public-marketplace behavior.
+
+## Independent acceptance review
+
+Luna/high reviewed the real cycle diff and kept additional traversal/symlink
+regressions (`cf416fd`), the synchronous-cmdlet timeout limitation (`29c4958`)
+and the scoped Microsoft update citation (`e87ef73`). Python unittest now passes
+**31 tests**. The service timeout bounds polling after service cmdlets return;
+it cannot guarantee cancellation of a hung synchronous OS call. That case
+remains NOT_ASSESSED and requires an isolated Windows integration experiment.
+At clean `29c4958`, root's final offline Codex prompt-input check discovers
+20/20 skills with explicit Luna/high and a 10,000-token skills budget, no model
+call. Subsequent changes are scoped currentness documentation only.
