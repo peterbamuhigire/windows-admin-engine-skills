@@ -4,6 +4,8 @@ $ErrorActionPreference = 'Stop'
 $repo = Split-Path -Parent $PSScriptRoot
 & (Join-Path $PSScriptRoot 'test-service-state-fixture.ps1')
 if (-not $?) { throw 'Synthetic service-state regression failed.' }
+& (Join-Path $PSScriptRoot 'test-service-wrapper-fixture.ps1')
+if (-not $?) { throw 'Synthetic service-wrapper regression failed.' }
 $manifest = Join-Path $repo 'powershell\WindowsSkills.Engine\WindowsSkills.Engine.psd1'
 Import-Module $manifest -Force
 $doctor = Test-WseEngine

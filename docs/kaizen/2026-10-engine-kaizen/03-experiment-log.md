@@ -27,3 +27,31 @@ PowerShell syntax reports79 files, zero findings. The Windows behaviour suite
 is separately NOT_ASSESSED on this Linux host because Windows identity APIs
 are unavailable; the new fixture is registered in that suite for Windows CI.
 No score uplift is assigned before final remeasurement. No change reverted.
+
+## W2 — typed service wrapper
+
+The service wrapper now declares its parameters and forwards their names and
+values as a hashtable through both dispatcher layers. It preserves WhatIf and
+Confirm and propagates Failed operation results as a nonzero process exit. Raw
+string-array service arguments are rejected with a typed-entry-point message.
+No expression evaluation or reconstructed command string is used. Microsoft
+[about_Splatting](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting?view=powershell-7.6),
+accessed2026-10-29, distinguishes positional array splatting from named
+hashtable splatting; this is the relevant language contract.
+
+The native wrapper fixture executes three invocations with the actual wrapper,
+dispatcher, local target boundary and service function: stop preview, already
+running no-change, and out-of-scope refusal. All three pass with zero fixture
+mutations. The result adapter and OS service commands are explicitly synthetic.
+These are three invocations of the one mutating WSA command, not three distinct
+mutating tools; read-only WSA commands do not promise a WhatIf interface. The
+Windows identity/integration gate remains NOT_ASSESSED.
+
+W2 validation also found two scanner assumptions: command-catalogue parsing
+recognised only backslash paths and positional action names; the manual gate
+required backslash spelling. Both now accept the actual typed/POSIX-relative
+form, and an unresolved command action fails the catalogue check. The existing
+48-command catalogue remains unchanged. The manual documents both new fixture
+scripts; all16 maintenance scripts and12 exported functions are accounted for.
+Python validators and23 unit tests pass; PowerShell syntax checks80 files with
+zero findings. No source behaviour was padded to appease a scanner.

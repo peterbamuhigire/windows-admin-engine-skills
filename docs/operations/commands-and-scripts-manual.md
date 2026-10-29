@@ -168,7 +168,7 @@ success does not erase a `PartiallySucceeded` or `NOT_ASSESSED` result.
 | --- | --- | --- |
 | `wsa-storage` | Returns physical disk metadata, fixed logical volumes, and Windows service state in an operation envelope. | `wsa-storage [-ServiceName NAME] [-EvidenceRoot PATH]`; no disk mutation or cleanup occurs. |
 | `wsa-service` | Uses the same snapshot function, optionally narrowing service output by exact service name. | `wsa-service -ServiceName W32Time [-EvidenceRoot PATH]`; omitting `-ServiceName` returns all services. |
-| `wsa-service-state` | Starts or stops one local service, verifies the result, and records rollback state. This is the only R2 accelerator in release 0.1. | Preview: `wsa-service-state -Name W32Time -DesiredState Running -ChangeAuthority CHG-2026-0042 -MaintenanceWindow '2026-08-12T21:00+03:00' -WhatIf`. Real execution requires the same authority/window fields, appropriate elevation, and confirmation (or an explicitly governed `-Confirm:$false`). Name characters are restricted; timeout is 1–300 seconds. If verification fails, the command attempts to restore the prior running/stopped state. |
+| `wsa-service-state` | Starts or stops one local service, verifies the result, and records rollback state. This is the only R2 accelerator in release 0.1. | Preview: `wsa-service-state -Name W32Time -DesiredState Running -ChangeAuthority CHG-2026-0042 -MaintenanceWindow '2026-08-12T21:00+03:00' -WhatIf`. Real execution requires the same authority/window fields, appropriate elevation, and confirmation (or an explicitly governed `-Confirm:$false`). Name characters are restricted; timeout is 1–300 seconds. On a transition error or timeout, the command restores and verifies the prior running/stopped state. The original operation remains Failed; inspect `RollbackArtifact.State` for VERIFIED or FAILED. Pending/paused original states are refused before mutation. The typed wrapper preserves named arguments and returns a nonzero exit code for a Failed result. |
 | `wsa-shares` | Lists SMB share name, path, description, encryption, enumeration mode, and user limit. | `wsa-shares`; requires SMB cmdlets and suitable access. |
 | `wsa-smb-sessions` | Lists active SMB sessions and connection properties. | `wsa-smb-sessions`; normally requires elevation. It does not close sessions. |
 | `wsa-open-files` | Lists server-side SMB open-file records. | `wsa-open-files`; normally requires elevation. It does not close files. |
@@ -348,3 +348,22 @@ When adding, renaming, or removing a command or script:
 The concise generated overview remains at
 `docs\operations\command-catalog.md`; this file is the explanatory operator
 manual.
+
+### Service wrapper verification
+
+| Script | Scope and acceptance |
+|---|---|
+| `scripts/test-service-state-fixture.ps1` | Synthetic normal, repeat, preview, refusal, failure and verified recovery paths; nine assertions, no Windows service access. |
+| `scripts/test-service-wrapper-fixture.ps1` | Three isolated calls through the actual typed wrapper and dispatcher; named arguments, WhatIf, refusal and exit status must survive forwarding. |
+
+
+Run `pwsh -NoProfile -File scripts/test-service-wrapper-fixture.ps1` from the
+repository root for three isolated preview/refusal invocations. The fixture
+copies the real wrapper, dispatcher and service function into a temporary tree
+and substitutes OS services and the Windows identity adapter. It does not
+validate a live service or Windows identity. For the generic dispatcher, use
+`wsa service-state -NamedArguments $parameters`, where `$parameters` is a
+hashtable with the same named fields as `wsa-service-state`; raw string arrays
+are positional in PowerShell and are rejected for this mutation. Prefer the
+typed `wsa-service-state` entry point. Other read-only wrappers retain their
+existing interfaces; their named-argument coverage remains next-cycle work.

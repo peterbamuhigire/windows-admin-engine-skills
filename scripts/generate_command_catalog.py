@@ -5,7 +5,7 @@ import re
 from pathlib import Path
 
 REPO=Path(__file__).resolve().parents[1]
-PATTERN=re.compile(r"bin\\wsa\.ps1'\)\s+([a-z0-9-]+)")
+PATTERN=re.compile(r"bin[\\/]wsa\.ps1'\)\s+(?:-Command\s+)?([a-z0-9-]+)")
 
 def build()->dict:
     records=[]

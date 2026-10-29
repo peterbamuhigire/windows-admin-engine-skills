@@ -41,7 +41,7 @@ def main() -> int:
         findings.append("manifest FunctionsToExport block not found or empty")
     for kind, values in required.items():
         for value in values:
-            if f"`{value}`" not in text:
+            if f"`{value}`".replace("\\", "/") not in text.replace("\\", "/"):
                 findings.append(f"missing {kind}: {value}")
 
     expected_sections = [

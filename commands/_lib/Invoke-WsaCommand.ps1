@@ -1,9 +1,13 @@
 [CmdletBinding()]
 param(
     [Parameter(Mandatory, Position=0)][string]$Command,
-    [Parameter(ValueFromRemainingArguments=$true)][object[]]$RemainingArguments
+    [Parameter(ValueFromRemainingArguments=$true)][object[]]$RemainingArguments,
+    [hashtable]$NamedArguments=@{}
 )
 $ErrorActionPreference = 'Stop'
+if ($NamedArguments.Count -gt 0 -and $Command -ne 'service-state') {
+    throw 'NamedArguments is currently supported only by service-state.'
+}
 
 function Find-WsaEngineRoot {
     param([string]$Start)
@@ -30,7 +34,11 @@ switch ($Command.ToLowerInvariant()) {
     'security' { & Get-WseSecuritySnapshot @RemainingArguments; break }
     'storage' { & Get-WseStorageServiceSnapshot @RemainingArguments; break }
     'service' { & Get-WseStorageServiceSnapshot @RemainingArguments; break }
-    'service-state' { & Invoke-WseServiceState @RemainingArguments; break }
+    'service-state' {
+        if ($RemainingArguments.Count -gt 0) { throw 'Use wsa-service-state with named parameters, or wsa service-state -NamedArguments @{...}.' }
+        & Invoke-WseServiceState @NamedArguments
+        break
+    }
     'events' { & Get-WseEventEvidence @RemainingArguments; break }
     'doctor' { & Test-WseEngine; break }
     'dns-test' {

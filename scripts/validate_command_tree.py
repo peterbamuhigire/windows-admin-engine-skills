@@ -23,7 +23,10 @@ def main()->int:
             commands.append(path.stem)
             if not path.with_suffix('.cmd').is_file():findings.append(f'missing-cmd-launcher: {rel}')
     if len(commands)<40:findings.append(f'command-count below 40: {len(commands)}')
-    generated=json.dumps(__import__('generate_command_catalog').build(),indent=2,sort_keys=False)+'\n'
+    catalog=__import__('generate_command_catalog').build()
+    for entry in catalog['commands']:
+        if entry['action']=='unknown':findings.append(f"unresolved-command-action: {entry['path']}")
+    generated=json.dumps(catalog,indent=2,sort_keys=False)+'\n'
     target=REPO/'engine'/'command-catalog.json'
     if not target.is_file() or target.read_text(encoding='utf-8-sig')!=generated:findings.append('stale-command-catalog: run scripts/generate_command_catalog.py')
     for finding in findings:print('ERROR: '+finding)
