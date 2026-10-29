@@ -85,6 +85,8 @@ baseline, method, interval, workload, and uncertainty.
 
 ## References
 
+- [File-share failure after patching](../../../docs/operations/file-share-after-patching.md)
+
 - [`docs/research/source-synthesis.md`](../../../docs/research/source-synthesis.md)
 - [`docs/threat-model.md`](../../../docs/threat-model.md)
 <!-- dual-compat-end -->

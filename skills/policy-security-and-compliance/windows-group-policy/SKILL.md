@@ -85,6 +85,8 @@ source. A screenshot is supporting context, not a policy contract.
 
 ## References
 
+- [Worked pilot and fleet decision record](../../../docs/operations/group-policy-pilot.md)
+
 - [`docs/research/source-synthesis.md`](../../../docs/research/source-synthesis.md)
 - [`docs/safety-model.md`](../../../docs/safety-model.md)
 <!-- dual-compat-end -->

@@ -168,5 +168,41 @@
     "forbidden_primary": [
       "windows-troubleshooting"
     ]
+  },
+  {
+    "prompt": "Plan GPO backup and pilot OU rollback",
+    "expected": "windows-group-policy",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "Review GPO inheritance and security filtering",
+    "expected": "windows-group-policy",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "Inspect group policy precedence and GPO links",
+    "expected": "windows-group-policy",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "Diagnose unknown failure after policy changes before selecting a GPO repair",
+    "expected": "windows-troubleshooting",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-group-policy"
+    ]
+  },
+  {
+    "prompt": "Inspect file shares and service state for storage inventory",
+    "expected": "windows-storage-files-services",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-group-policy"
+    ]
   }
 ]

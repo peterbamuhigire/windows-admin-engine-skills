@@ -164,3 +164,9 @@ Citations only. No book text or source conversion is stored in this repository (
 - pytest cache documentation: https://docs.pytest.org/en/stable/how-to/cache.html
 - OpenAI image-generation and image-prompting guides, cited by `docs/ai-prompting/domain-prompt-compilation-contract.md`: https://developers.openai.com/api/docs/guides/image-generation and https://developers.openai.com/api/docs/guides/image-prompting
 - Windows Administration Skills Engine repository: https://github.com/peterbamuhigire/windows-admin-engine-skills
+
+The [October Kaizen report](docs/kaizen/2026-10-engine-kaizen/05-final-report.md)
+records service recovery, routing and native marketplace checks, with explicit
+Windows integration limits. Use the [GPO pilot plan](docs/operations/group-policy-pilot.md)
+and [post-patching file-share diagnosis](docs/operations/file-share-after-patching.md)
+with the [scoped currentness review](docs/research/currentness-2026-10-29.md).

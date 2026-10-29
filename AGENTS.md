@@ -201,3 +201,6 @@ For a prompt handoff, read the local [domain prompt contract](docs/ai-prompting/
 ## PORTFOLIO CRAFT CONTRACT
 
 Load `chwezi-engine-agents/docs/operations/portfolio-craft-standard-2026-09-04.md` (resolve through the device catalogue) when available. Run administration work as small controlled slices: frame the target and consequence, select one change, inspect the management owner and current state, preview it, apply only the bounded mutation, verify health and failure behaviour, refine the procedure, and record rollback evidence. Do not generate a full fleet change or runbook as an opaque batch. Apply `Observe -> Baseline -> Select -> Experiment -> Check -> Standardise -> Teach -> Re-measure` to kaizen itself. Missing host, lab, source, live, or recovery evidence is `NOT ASSESSED`, never a pass.
+
+Scoped October currentness and model review: `docs/research/currentness-2026-10-29.md`.
+Worked GPO pilot and post-patching incident plans: `docs/operations/`.
