@@ -25,6 +25,12 @@ external file named `windows-final-source-urls.json`; no semantic claim depends
 on its machine path. Tests use read-only repository mounts; fixture scratch
 files live outside the checkout.
 
+The service timeout fixture covers a returned transition that never reaches
+the requested state. It does not test a service cmdlet that blocks without
+returning: `TimeoutSeconds` bounds subsequent state polling, not the synchronous
+`Start-Service`/`Stop-Service` call. That path and Windows recovery behavior
+remain NOT_ASSESSED.
+
 ## Native installation
 
 At clean commit `b2ddf50`, Codex 0.165.0 and Claude 2.1.312 both installed the
@@ -50,3 +56,22 @@ missing. Scoped active-skill local-link checks remain clear; three router device
 bindings were removed. The final cap recount includes Git objects and caches.
 No cross-engine live execution, AD/GPO/SMB/IIS/Hyper-V/tenant, fleet canary,
 production restore, Tier 3 or paid behavioural evaluation was assessed.
+
+## Independent acceptance review
+
+The read-only review of `52a2cdc..df3cc80` found the service refusal and
+recovery outcomes conservatively represented: a failed restore remains Failed,
+unknown after-state is not reported as verified, and fixture substitutions are
+disclosed. The `TimeoutSeconds` description has been narrowed to its actual
+scope: status polling after synchronous service calls return; a cmdlet that
+hangs and its recovery remain NOT_ASSESSED.
+
+Marketplace inventory already supplies `os.walk(onerror=...)` and counts
+directory symlinks without following them. Acceptance added regressions for
+unreadable-subtree refusal and directory-symlink counting. The full Python suite
+passes 31 tests (`PYTHONPATH=python python -X utf8 -m unittest discover -s tests/python -v`); engine validation passes with 20 skills, 468 checkout entries
+and 291 package entries (`python -X utf8 scripts/validate_engine.py`); routing
+passes 34/34 first-rank fixtures and 7/7 owned-negative checks
+(`python -X utf8 scripts/routing_smoke_test.py`). The commands are lexical or
+synthetic checks; they do not establish Windows service, domain, fleet or
+public-marketplace behavior.

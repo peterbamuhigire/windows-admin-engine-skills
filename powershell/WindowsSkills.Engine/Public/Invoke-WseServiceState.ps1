@@ -18,7 +18,8 @@ function Invoke-WseServiceState {
     $rollback = $null
     $target = @{Kind='Local'; Name=$ComputerName; Fingerprint=$null}
 
-    # Both the intended transition and recovery have a bounded observation window.
+    # State polling after each service cmdlet returns is bounded; the cmdlet call itself
+    # remains synchronous and is not interrupted by TimeoutSeconds.
     function Wait-WseServiceState {
         param([string]$Expected)
         $watch = [System.Diagnostics.Stopwatch]::StartNew()

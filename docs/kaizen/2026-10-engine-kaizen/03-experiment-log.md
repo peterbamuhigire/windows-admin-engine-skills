@@ -12,6 +12,9 @@ states without a supported inverse, treats mutation attempts conservatively,
 and verifies restoration after transition error or timeout. Failed restoration
 produces `Recovery=FAILED` and unknown after-state, never a success result.
 The original operation remains Failed even when restoration succeeds.
+The timeout bounds state polling after a service cmdlet returns; it does not
+interrupt a hung `Start-Service`/`Stop-Service` invocation. That hung-call path
+and Windows recovery behavior remain NOT_ASSESSED.
 
 `pwsh -NoProfile -File scripts/test-service-state-fixture.ps1` passes nine
 assertions in an offline disposable Linux PowerShell container. The fixture
