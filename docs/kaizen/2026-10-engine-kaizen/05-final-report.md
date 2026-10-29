@@ -36,7 +36,7 @@ measurement was recovered after freeze and is labelled as such.
 | W2 typed wrapper and failure exit | `141c7b4`; real-wrapper process fixture |
 | W3 diagnosis routing | `e8e313e`; positive and owned-negative routing tests |
 | W4 native inventory and immutable cap | `b2ddf50`; six packaging regression tests, native CLI inventories |
-| W5 scoped currentness and worked plans | Dedicated W5 documentation commit follows W4; source register pointer, operations references and five added routing probes |
+| W5 scoped currentness and worked plans | `f798f5b`; source register pointer, operations references and five added routing probes |
 
 No experiment was reverted. Exact commands, outcomes and limits are in
 [04-validation-record.md](04-validation-record.md). Baseline documentation

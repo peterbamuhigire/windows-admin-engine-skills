@@ -28,7 +28,7 @@ links into sibling checkouts. No other engine was edited in this cycle.
   portfolio pointer cannot certify this module's Windows target support. The
   new local scoped review supplements it without editing development doctrine.
 - Windows `commands/_lib/Invoke-WsaCommand.ps1` and coordination
-  `hooks/destructive-command-guard.js`: shell-hook interception is not evidence
+  `hooks/destructive-bash-gate.js`: shell-hook interception is not evidence
   that the PowerShell module enforced its target boundary. Coordination must
   verify its actual hook path and invocation coverage in its own cycle; Windows
   retains the independently tested in-module refusal.
