@@ -55,3 +55,15 @@ form, and an unresolved command action fails the catalogue check. The existing
 scripts; all16 maintenance scripts and12 exported functions are accounted for.
 Python validators and23 unit tests pass; PowerShell syntax checks80 files with
 zero findings. No source behaviour was padded to appease a scanner.
+
+## W3 — diagnosis before repair
+
+The ranker now follows the existing hub rule for explicit unknown-cause
+symptoms and diagnostic requests following a change, while an explicitly
+confirmed cause keeps specialist routing. The file-share/patching task now
+ranks troubleshooting first. A new plural share/service probe exposed missing
+catalogue keywords; adding those exact resource aliases resolves that query.
+The original19 fixtures still rank first correctly; the expanded29-fixture set
+passes at both rankone and rankthree, with five owned-negative primary-route
+checks. These are lexical oracles, not a model-routing benchmark. Two specialists
+now have at least three positive and two owned-negative cases.

@@ -1,21 +1,172 @@
 [
-  {"prompt":"inventory this Windows 11 laptop","expected":"windows-system-inventory"},
-  {"prompt":"why is this server reporting a pending reboot and low disk capacity","expected":"windows-health-assessment"},
-  {"prompt":"DNS resolves incorrectly and the route to the gateway fails","expected":"windows-network-admin"},
-  {"prompt":"WinRM authentication fails with a workgroup machine","expected":"windows-remote-management"},
-  {"prompt":"check AD replication and domain controller health","expected":"windows-active-directory-health"},
-  {"prompt":"offboard a domain user and remove privileged group membership","expected":"windows-identity-lifecycle"},
-  {"prompt":"show resultant set of policy and GPO precedence","expected":"windows-group-policy"},
-  {"prompt":"assess Defender BitLocker and security baseline drift","expected":"windows-security-analysis"},
-  {"prompt":"plan a patch ring and reboot maintenance window","expected":"windows-patch-management"},
-  {"prompt":"diagnose an SMB share ACL and a stopped Windows service","expected":"windows-storage-files-services"},
-  {"prompt":"IIS app pool returns 503 after certificate binding change","expected":"windows-iis"},
-  {"prompt":"inspect Hyper-V VM checkpoints and virtual switch health","expected":"windows-hyper-v"},
-  {"prompt":"the machine hangs with high CPU and no known subsystem","expected":"windows-troubleshooting"},
-  {"prompt":"prove the system state backup can meet the RTO","expected":"windows-backup-recovery"},
-  {"prompt":"apply this change to all machines through Intune canary rings","expected":"windows-fleet-management"},
-  {"prompt":"set up a repeatable developer workstation with WSL and SDKs","expected":"windows-development-workstation"},
-  {"prompt":"run a currentness-gated Kaizen audit of the Windows administration engine","expected":"windows-kaizen-engine-and-product-improvement"},
-  {"prompt":"check whether this install.sh really works on Windows Git Bash with cygpath and CRLF line endings","expected":"windows-portability-doctrine"},
-  {"prompt":"write pywinauto end-to-end tests for our WPF desktop app","expected":"windows-desktop-e2e-testing"}
+  {
+    "prompt": "inventory this Windows 11 laptop",
+    "expected": "windows-system-inventory",
+    "kind": "positive"
+  },
+  {
+    "prompt": "why is this server reporting a pending reboot and low disk capacity",
+    "expected": "windows-health-assessment",
+    "kind": "positive"
+  },
+  {
+    "prompt": "DNS resolves incorrectly and the route to the gateway fails",
+    "expected": "windows-network-admin",
+    "kind": "positive"
+  },
+  {
+    "prompt": "WinRM authentication fails with a workgroup machine",
+    "expected": "windows-remote-management",
+    "kind": "positive"
+  },
+  {
+    "prompt": "check AD replication and domain controller health",
+    "expected": "windows-active-directory-health",
+    "kind": "positive"
+  },
+  {
+    "prompt": "offboard a domain user and remove privileged group membership",
+    "expected": "windows-identity-lifecycle",
+    "kind": "positive"
+  },
+  {
+    "prompt": "show resultant set of policy and GPO precedence",
+    "expected": "windows-group-policy",
+    "kind": "positive"
+  },
+  {
+    "prompt": "assess Defender BitLocker and security baseline drift",
+    "expected": "windows-security-analysis",
+    "kind": "positive"
+  },
+  {
+    "prompt": "plan a patch ring and reboot maintenance window",
+    "expected": "windows-patch-management",
+    "kind": "positive"
+  },
+  {
+    "prompt": "diagnose an SMB share ACL and a stopped Windows service",
+    "expected": "windows-storage-files-services",
+    "kind": "positive"
+  },
+  {
+    "prompt": "IIS app pool returns 503 after certificate binding change",
+    "expected": "windows-iis",
+    "kind": "positive"
+  },
+  {
+    "prompt": "inspect Hyper-V VM checkpoints and virtual switch health",
+    "expected": "windows-hyper-v",
+    "kind": "positive"
+  },
+  {
+    "prompt": "the machine hangs with high CPU and no known subsystem",
+    "expected": "windows-troubleshooting",
+    "kind": "positive"
+  },
+  {
+    "prompt": "prove the system state backup can meet the RTO",
+    "expected": "windows-backup-recovery",
+    "kind": "positive"
+  },
+  {
+    "prompt": "apply this change to all machines through Intune canary rings",
+    "expected": "windows-fleet-management",
+    "kind": "positive"
+  },
+  {
+    "prompt": "set up a repeatable developer workstation with WSL and SDKs",
+    "expected": "windows-development-workstation",
+    "kind": "positive"
+  },
+  {
+    "prompt": "run a currentness-gated Kaizen audit of the Windows administration engine",
+    "expected": "windows-kaizen-engine-and-product-improvement",
+    "kind": "positive"
+  },
+  {
+    "prompt": "check whether this install.sh really works on Windows Git Bash with cygpath and CRLF line endings",
+    "expected": "windows-portability-doctrine",
+    "kind": "positive"
+  },
+  {
+    "prompt": "write pywinauto end-to-end tests for our WPF desktop app",
+    "expected": "windows-desktop-e2e-testing",
+    "kind": "positive"
+  },
+  {
+    "prompt": "Diagnose domain-joined machines that cannot reach a file share after patching; use an evidence-first troubleshooting path",
+    "expected": "windows-troubleshooting",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "An unexplained Windows failure spans network and services; establish ownership first",
+    "expected": "windows-troubleshooting",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "The cause is unknown; diagnose access failure following a patch before changing share permissions",
+    "expected": "windows-troubleshooting",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "Diagnose a file share failure after patching before selecting a storage repair",
+    "expected": "windows-troubleshooting",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-storage-files-services"
+    ]
+  },
+  {
+    "prompt": "Troubleshooting an unexplained application and network failure; no known subsystem",
+    "expected": "windows-troubleshooting",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-storage-files-services"
+    ]
+  },
+  {
+    "prompt": "inspect SMB share permissions and Windows service state",
+    "expected": "windows-storage-files-services",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "inspect file shares and service ownership",
+    "expected": "windows-storage-files-services",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "inspect an identified SMB share ACL and service configuration",
+    "expected": "windows-storage-files-services",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-troubleshooting"
+    ]
+  },
+  {
+    "prompt": "list file shares and Windows services for a planned storage review",
+    "expected": "windows-storage-files-services",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-troubleshooting"
+    ]
+  },
+  {
+    "prompt": "Diagnose the confirmed cause in this SMB share ACL after patching",
+    "expected": "windows-storage-files-services",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-troubleshooting"
+    ]
+  }
 ]

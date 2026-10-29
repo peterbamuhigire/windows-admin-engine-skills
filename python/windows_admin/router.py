@@ -45,6 +45,22 @@ def rank(prompt: str, skills: list[Skill], limit: int = 3) -> list[Route]:
             reasons.append(f"category:{skill.category}")
         if score:
             routes.append(Route(skill=skill, score=score, reasons=tuple(reasons)))
+    unknown_cause = any(phrase in lowered for phrase in (
+        "unknown cause", "cause unknown", "unexplained", "no known subsystem",
+    ))
+    changed_then_failed = bool(tokens & {"diagnose", "troubleshooting"}) and bool(
+        tokens & {"after", "following"}
+    )
+    known_cause = any(phrase in lowered for phrase in (
+        "known cause", "confirmed cause", "cause confirmed", "identified cause",
+    ))
+    if unknown_cause or (changed_then_failed and not known_cause):
+        diagnostic = next((skill for skill in skills if skill.id == "windows-troubleshooting"), None)
+        if diagnostic is not None:
+            # A recent change is a hypothesis, not an established subsystem owner.
+            score = max((route.score for route in routes), default=0) + 1
+            routes = [route for route in routes if route.skill.id != diagnostic.id]
+            routes.append(Route(diagnostic, score, ("intent:diagnose-before-repair",)))
     routes.sort(key=lambda item: (-item.score, item.skill.risk_class, item.skill.id))
     return routes[:limit]
 

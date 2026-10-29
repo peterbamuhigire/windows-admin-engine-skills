@@ -21,6 +21,9 @@ class RouterTests(unittest.TestCase):
             with self.subTest(prompt=fixture["prompt"]):
                 actual = [route.skill.id for route in rank(fixture["prompt"], self.skills)]
                 self.assertIn(fixture["expected"], actual[:3])
+                if fixture.get("expected_rank") == 1:
+                    self.assertEqual(fixture["expected"], actual[0])
+                self.assertNotIn(actual[0], fixture.get("forbidden_primary", []))
 
     def test_blank_prompt_has_no_route(self):
         self.assertEqual(rank("", self.skills), [])

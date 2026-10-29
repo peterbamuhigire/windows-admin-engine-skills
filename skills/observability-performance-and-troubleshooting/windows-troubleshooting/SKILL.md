@@ -33,7 +33,7 @@ scope/retention approval. Containment and repair are separate risk-classed work.
 
 ## Workflow
 
-1. Freeze symptom, time, target, impact, and recent-change facts.
+1. Freeze symptom, time, target, impact, and recent-change facts. A failure after patching is a temporal association, not proof of a patch defect; keep diagnosis first until evidence identifies the owning subsystem.
 2. Run inventory/health/events; preserve evidence before cleanup or restart.
 3. List competing hypotheses with evidence for/against and confidence.
 4. Choose the cheapest next test that best discriminates them.

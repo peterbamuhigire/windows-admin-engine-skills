@@ -94,7 +94,7 @@
       "exclusions": ["database-owned storage", "unapproved format or destructive cleanup"], "dependencies": ["windows-system-inventory"],
       "platforms": ["windows-client", "windows-server", "server-core"], "risk_class": "R2", "script_tier": "controlled-mutation", "maturity": "PARTIAL",
       "owner": "Peter Bamuhigire", "last_verified": "2026-08-12", "sources": ["MS-STORAGE", "MS-SMB", "MS-SERVICE", "BOOK-SYSINTERNALS"],
-      "keywords": ["disk", "volume", "ntfs", "refs", "smb", "share", "acl", "service", "scheduled task", "vss"]
+      "keywords": ["disk", "volume", "ntfs", "refs", "smb", "share", "shares", "acl", "service", "services", "scheduled task", "vss"]
     },
     {
       "id": "windows-iis",
