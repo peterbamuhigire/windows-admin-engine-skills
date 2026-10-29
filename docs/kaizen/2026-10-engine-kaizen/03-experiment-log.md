@@ -104,9 +104,10 @@ frozen; its first-rank metric was subsequently measured as 19/19, correcting the
 preparation's NOT_ASSESSED rather than claiming an improvement from zero.
 
 The source register links a dated scoped review without resetting 48 existing
-rows. A final official-page recheck corrected preparation's stale Server 2025
-October B snapshot to its listed October OOB update. URL checking again returns
-38/38 reachable; semantic support and fleet advisory closure are separate.
+rows. A final official-source recheck distinguishes the Server 2025 October B
+baseline from the separate October 26 OOB KB5134137, which has a narrower CTL
+update scope. URL checking again returns 38/38 reachable; semantic support and
+fleet advisory closure are separate.
 PowerShell patch support is now explicitly distinguished from the old fixture
 runtime. The model policy is retained; no comparative paid evaluation or
 running-root model change is claimed. All registered Python gates pass; the

@@ -66,6 +66,11 @@ disclosed. The `TimeoutSeconds` description has been narrowed to its actual
 scope: status polling after synchronous service calls return; a cmdlet that
 hangs and its recovery remain NOT_ASSESSED.
 
+The currentness review now cites Microsoft's specific KB5134137 notice for the
+Server 2025 OOB update and keeps its CTL-limited applicability separate from
+the October B baseline. This corrects citation scope only; target patch
+applicability and support remain NOT_ASSESSED.
+
 Marketplace inventory already supplies `os.walk(onerror=...)` and counts
 directory symlinks without following them. Acceptance added regressions for
 unreadable-subtree refusal and directory-symlink counting. The full Python suite
