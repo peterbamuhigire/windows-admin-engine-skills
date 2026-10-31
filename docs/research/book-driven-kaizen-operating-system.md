@@ -66,8 +66,9 @@ Books provide durable concepts only. Current Windows, PowerShell, Active
 Directory, Entra, Intune, Azure Arc, security-baseline, lifecycle, protocol,
 policy, and Microsoft-platform claims must pass Digital Research source evaluation
 and source verification. Use the claim-specific entries in
-`engine/source-register.yaml` and the portfolio manifest at
-`C:\wamp64\www\chwezi-dev-engine\docs\source-registers\skills-engine-currentness-2026-09.json`, verify official current documentation, record
+`engine/source-register.yaml` and the portfolio manifest
+`docs/source-registers/skills-engine-currentness-2026-09.json` in `chwezi-dev-engine`
+(resolve it through the device catalogue), verify official current documentation, record
 source scope and access/review dates, and mark stale or unavailable evidence
 `NOT_ASSESSED`. Never promote a historical recipe to a current procedure without
 current-source and disposable-lab evidence.

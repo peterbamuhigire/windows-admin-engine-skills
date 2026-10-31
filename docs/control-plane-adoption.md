@@ -1,7 +1,8 @@
 # Control-plane adoption
 
 This repository is the eleventh engine registered in the shared control plane
-at `C:\wamp64\www\chwezi-dev-engine\docs\engine-control-plane.json`. Windows
+in `docs/engine-control-plane.json` of the `chwezi-dev-engine` engine (resolve the
+engine through the device catalogue). Windows
 host, domain, fleet, and hybrid-administration doctrine remains authoritative
 in this repository.
 

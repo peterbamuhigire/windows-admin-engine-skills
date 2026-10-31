@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'scripts'))
 sys.path.insert(0, str(ROOT / 'python'))
-from check_content_hygiene import audit_references  # noqa: E402
+from check_content_hygiene import audit_content, audit_portability, audit_references  # noqa: E402
 
 
 def skill(skill_id):
@@ -76,6 +76,45 @@ class ReferenceTests(unittest.TestCase):
 
     def test_live_repository_has_no_reference_findings(self):
         self.assertEqual([], audit_references(ROOT))
+
+
+class PortabilityTests(unittest.TestCase):
+    def findings(self, files):
+        directory = tempfile.TemporaryDirectory()
+        self.addCleanup(directory.cleanup)
+        root = Path(directory.name)
+        for name, data in files.items():
+            (root / name).parent.mkdir(parents=True, exist_ok=True)
+            (root / name).write_bytes(data if isinstance(data, bytes) else data.encode('utf-8'))
+        return audit_portability(root, sorted(files))
+
+    def test_personal_checkout_and_home_paths_are_reported(self):
+        for path in (r'C:\wamp64\www\engine', r'D:\Users\Alice\Desktop\x', '/home/alice/work', '/Users/bob/work'):
+            with self.subTest(path=path):
+                found = self.findings({'docs/a.md': f'line one\nsee {path} here\n'})
+                self.assertEqual(1, len(found))
+                self.assertTrue(found[0].startswith('docs/a.md:2: machine-specific path '))
+
+    def test_standard_operating_system_locations_pass(self):
+        text = '\n'.join([r'C:\Users\Public\Documents', r'C:\Users\Default\NTUSER.DAT', r'C:\Windows\System32',
+                          r'G:\g\projects', '%USERPROFILE%', '~/notes', '/home', '/usr/local/bin', '/etc/hosts'])
+        self.assertEqual([], self.findings({'docs/a.md': text}))
+
+    def test_named_exemption_and_undecodable_files_are_skipped(self):
+        found = self.findings({'tests/python/test_marketplace.py': r'C:\wamp64\www\x', 'bin/blob.dat': b'\xff\xfe/home/alice/x\x80'})
+        self.assertEqual([], found)
+
+    def test_audit_content_combines_both_checks(self):
+        directory = tempfile.TemporaryDirectory()
+        self.addCleanup(directory.cleanup)
+        root = Path(directory.name)
+        (root / 'engine').mkdir()
+        (root / 'engine/catalog.yaml').write_text(json.dumps({'schema_version': '1.0', 'skills': [skill('windows-alpha')]}))
+        (root / 'a.md').write_text('[x](gone.md) /home/alice/x\n')
+        self.assertEqual(2, len(audit_content(root, ['a.md'])))
+
+    def test_live_repository_has_no_portability_findings(self):
+        self.assertEqual([], audit_portability(ROOT))
 
 
 if __name__ == '__main__':

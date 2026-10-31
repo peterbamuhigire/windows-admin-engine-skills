@@ -3,6 +3,10 @@
 
 Reference check, over tracked Markdown: a local link that does not resolve, and
 a windows-* skill identifier that is not in the catalogue.
+
+Portability check, over every tracked text file: a machine-specific absolute
+path (a personal Windows profile, a development-drive checkout or a Unix home
+directory), which would not resolve on another device.
 """
 from __future__ import annotations
 
@@ -31,6 +35,17 @@ NON_SKILL_IDENTIFIERS = {
     "windows-latest": "CI runner label used by the desktop test skill",
     "windows-desktop-e2e": "log prefix inside a quoted code sample",
 }
+
+# Tracked files that hold such a path on purpose.
+PORTABILITY_EXEMPT = {
+    "tests/python/test_marketplace.py": "asserts the router machine-binding detector",
+    "tests/python/test_content_hygiene.py": "fixtures for the portability check",
+}
+
+MACHINE_PATH = re.compile(
+    r"(?<![A-Za-z0-9])[A-Za-z]:\\(?:wamp64\b|Users\\(?!Public\b|Default\b|All Users\b)[^\\\s`'\"]+)"
+    r"|/home/[A-Za-z0-9._-]+/|/Users/[A-Za-z0-9._-]+/"
+)
 
 FENCE = re.compile(r"^\s*(```|~~~)")
 INLINE_CODE = re.compile(r"`[^`\n]*`")
@@ -108,8 +123,29 @@ def audit_references(repo: Path, files: list[str] | None = None) -> list[str]:
     return findings
 
 
+def audit_portability(repo: Path, files: list[str] | None = None) -> list[str]:
+    repo = repo.resolve()
+    findings: list[str] = []
+    for name in files if files is not None else tracked_files(repo):
+        if name in PORTABILITY_EXEMPT:
+            continue
+        text = read_text(repo, name)
+        if text is None:
+            continue
+        for number, line in enumerate(text.splitlines(), 1):
+            match = MACHINE_PATH.search(line)
+            if match:
+                findings.append(f"{name}:{number}: machine-specific path {match.group(0)}")
+    return findings
+
+
+def audit_content(repo: Path, files: list[str] | None = None) -> list[str]:
+    names = files if files is not None else tracked_files(repo.resolve())
+    return audit_references(repo, names) + audit_portability(repo, names)
+
+
 def main() -> int:
-    findings = audit_references(REPO)
+    findings = audit_content(REPO)
     for finding in findings:
         print(f"ERROR: {finding}")
     print(f"content_hygiene_findings={len(findings)}")

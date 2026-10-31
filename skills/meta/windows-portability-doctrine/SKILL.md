@@ -89,7 +89,7 @@ exec node "$NODE_SCRIPT" "$@"
 ```
 
 **Sources:**
-- ECC `install.sh` (`C:\Users\Peter\Downloads\ECC-main\install.sh`, lines 27-32), comment:
+- ECC `install.sh` (repository root of the ECC checkout, lines 27-32), comment:
   "On MSYS2/Git Bash, convert the POSIX path to a Windows path so Node.js (a native
   Windows binary) receives a valid path instead of a doubled one like
   `G:\g\projects\...`".
@@ -149,7 +149,7 @@ to require WSL2, Linux, or macOS, and the tool detects repeated non-survival and
 explicitly rather than pretending the feature works.
 
 **Source:** ECC `continuous-learning-v2` skill
-(`C:\Users\Peter\Downloads\ECC-main\skills\continuous-learning-v2\SKILL.md`, "Observer
+(`skills/continuous-learning-v2/SKILL.md` in the ECC checkout, "Observer
 platform support" section): *"The background observer requires WSL2, Linux, or macOS.
 On native Windows (Git Bash / MSYS2) it starts and reports success, but the process is
 killed when the spawning hook exits and its Job Object closes, so no analysis ever
@@ -178,7 +178,7 @@ verify after any edit made through a Windows-native editor or PowerShell `Set-Co
 (which defaults to CRLF).
 
 **Source:** ECC `TROUBLESHOOTING.md`
-(`C:\Users\Peter\Downloads\ECC-main\TROUBLESHOOTING.md`, "spawn UNKNOWN" section):
+(`TROUBLESHOOTING.md` at the root of the ECC checkout, "spawn UNKNOWN" section):
 *"Windows-specific: Ensure scripts use correct line endings... Convert CRLF to LF...
 `find ~/.claude/plugins -name "*.sh" -exec dos2unix {} \;`"*.
 

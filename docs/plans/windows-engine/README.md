@@ -2,8 +2,8 @@
 
 Status: implementation plan; no feature implementation is authorised by this document alone.
 Prepared: 11 August 2026
-Repository: C:\wamp64\www\windows-admin-engine-skills
-Reference engine: C:\wamp64\www\linux-skills
+Repository: `windows-admin-engine-skills`
+Reference engine: `linux-skills`
 
 ## Outcome
 

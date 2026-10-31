@@ -90,7 +90,7 @@ def main() -> int:
     hub = REPO / "skills" / "windows-sysadmin" / "SKILL.md"
     if hub.is_file():
         errors.extend(validate_local_links(hub, hub.read_text(encoding="utf-8-sig")))
-    from check_content_hygiene import audit_references
+    from check_content_hygiene import audit_content
     from check_marketplace import audit_repository
     try:
         packaging_findings, packaging_counts = audit_repository(REPO)
@@ -98,7 +98,7 @@ def main() -> int:
         print(f"package_files={packaging_counts['package']} checkout_files={packaging_counts['checkout']} hard_limit=5000")
     except (OSError, ValueError) as exc:
         errors.append(f"package inventory failed closed: {exc}")
-    errors.extend(audit_references(REPO))
+    errors.extend(audit_content(REPO))
     for error in errors:
         print(f"ERROR: {error}")
     print(f"validated_skills={len(skills)} findings={len(errors)}")
