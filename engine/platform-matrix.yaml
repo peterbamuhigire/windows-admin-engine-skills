@@ -9,7 +9,7 @@
     {"id": "domain-controller", "scope": "multi-DC disposable forest", "status": "NOT_ASSESSED", "evidence": null, "last_tested": null},
     {"id": "hyper-v-host", "scope": "standalone Hyper-V", "status": "NOT_ASSESSED", "evidence": null, "last_tested": null},
     {"id": "powershell-5.1", "scope": "module compatibility baseline", "status": "LAB_VALIDATED", "evidence": "local import and smoke tests", "last_tested": "2026-08-12"},
-    {"id": "powershell-7", "scope": "preferred cross-platform runtime", "status": "NOT_ASSESSED", "evidence": "pwsh absent on development host", "last_tested": "2026-08-12"},
+    {"id": "powershell-7", "scope": "preferred cross-platform runtime", "status": "PARTIAL", "evidence": "PowerShell 7.4.2 in a Linux container, 2026-10-29: syntax check over 80 files and the service fixtures only. Not a Windows run and not a supported patch level (see MS-PS-LIFECYCLE: 7.4 LTS and 7.5 end support on 2026-11-10; current LTS is 7.6).", "last_tested": "2026-10-29"},
     {"id": "python-3.12", "scope": "catalogue, routing, schema, CLI", "status": "LAB_VALIDATED", "evidence": "unittest and CLI smoke tests", "last_tested": "2026-08-12"},
     {"id": "non-english-locale", "scope": "culture-neutral collectors", "status": "NOT_ASSESSED", "evidence": null, "last_tested": null},
     {"id": "remote-winrm", "scope": "domain and workgroup", "status": "NOT_ASSESSED", "evidence": null, "last_tested": null}

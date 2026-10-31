@@ -2,7 +2,7 @@
 """Release gate: fail when a source-register row is undated or past its review interval.
 
 engine/source-register.yaml declares policy.review_interval_days. This script
-applies it. It reads dates only; it makes no network request and does not judge
+applies it, and also any row-level review_by date. It reads dates only; it makes no network request and does not judge
 whether a source supports a claim (see verify_source_urls.py for liveness).
 """
 from __future__ import annotations
@@ -60,6 +60,12 @@ def audit_register(register: dict, as_of: date) -> tuple[list[str], list[str], d
             continue
         if row.get("status") not in STATUS_VOCABULARY:
             findings.append(f"{ident}: unknown status {row.get('status')!r}")
+        if "review_by" in row:
+            due = parse_day(row["review_by"])
+            if due is None:
+                findings.append(f"{ident}: review_by is not an ISO date: {row['review_by']!r}")
+            elif due < as_of:
+                findings.append(f"{ident}: review_by {due} has passed (as of {as_of})")
         if not row.get("url"):
             continue
         counts["url_rows"] += 1

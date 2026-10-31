@@ -78,6 +78,16 @@ class SourceRegisterTests(unittest.TestCase):
                 data['policy']['review_interval_days'] = bad
                 self.assertEqual(['policy.review_interval_days must be a positive integer'], audit_register(data, DAY)[0])
 
+    def test_row_review_by_date_is_checked(self):
+        self.assertEqual([], audit_register(register(accessed='2026-10-30', review_by='2026-10-31'), DAY)[0])
+        self.assertEqual(['MS-ONE: review_by 2026-10-30 has passed (as of 2026-10-31)'],
+                         audit_register(register(accessed='2026-10-30', review_by='2026-10-30'), DAY)[0])
+        self.assertEqual(["MS-ONE: review_by is not an ISO date: 'later'"],
+                         audit_register(register(accessed='2026-10-30', review_by='later'), DAY)[0])
+        book = {'id': 'BOOK-X', 'tier': 4, 'status': 'historical-only', 'review_by': '2026-01-01'}
+        data = {'policy': {'review_interval_days': 90}, 'sources': [book]}
+        self.assertEqual(['BOOK-X: review_by 2026-01-01 has passed (as of 2026-10-31)'], audit_register(data, DAY)[0])
+
     def test_policy_review_dates_are_checked(self):
         data = register(accessed='2026-10-30')
         data['policy']['next_review_date'] = '2026-10-30'

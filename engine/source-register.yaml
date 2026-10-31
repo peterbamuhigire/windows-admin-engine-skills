@@ -7,7 +7,8 @@
     "portfolio_currentness_manifest": "chwezi-dev-engine/docs/source-registers/skills-engine-currentness-2026-09.json",
     "portfolio_gate": "digital-research-skills/docs/continuous-improvement/kaizen-currentness-gate.md",
     "scoped_october_review": "docs/research/currentness-2026-10-29.md",
-    "scoped_october_review_date": "2026-11-05"
+    "scoped_october_review_date": "2026-11-05",
+    "scoped_latest_review": "docs/research/currentness-2026-10-31.md"
   },
   "sources": [
     {
@@ -79,8 +80,14 @@
       "title": "Security Compliance Toolkit",
       "url": "https://learn.microsoft.com/en-us/windows/security/operating-system-security/device-management/windows-security-configuration-framework/security-compliance-toolkit-10",
       "scope": "versioned Microsoft security baselines",
-      "status": "current-check-required",
-      "accessed": "2026-08-12"
+      "status": "verified-scoped",
+      "accessed": "2026-08-12",
+      "verified": "2026-10-31",
+      "as_of": "2026-10-08",
+      "review_by": "2026-11-30",
+      "freshness": "time-sensitive",
+      "support_state": "verified",
+      "limitation": "Lists baselines for Windows 11 26H2 to 23H2 and Windows Server 2025 to 2016. Baseline contents and applicability to a target estate were not checked."
     },
     {
       "id": "MS-SYSINTERNALS",
@@ -449,6 +456,126 @@
       "scope": "UI Automation framework used by desktop test automation",
       "status": "current-check-required",
       "accessed": "2026-09-24"
+    },
+    {
+      "id": "MS-PS-LIFECYCLE",
+      "tier": 1,
+      "title": "PowerShell support lifecycle",
+      "url": "https://learn.microsoft.com/en-us/powershell/scripting/install/powershell-support-lifecycle",
+      "scope": "PowerShell 7 release lines and end-of-support dates; Windows PowerShell 5.1 support route",
+      "status": "verified-scoped",
+      "accessed": "2026-10-31",
+      "verified": "2026-10-31",
+      "as_of": "2026-09-09",
+      "freshness": "time-sensitive",
+      "review_by": "2026-11-10",
+      "support_state": "verified",
+      "limitation": "7.4 LTS and 7.5 end support on 2026-11-10. Windows PowerShell 5.1 follows the Windows lifecycle and is not covered by this page's dates."
+    },
+    {
+      "id": "MS-WIN11-RELEASE",
+      "tier": 1,
+      "title": "Windows 11 release information",
+      "url": "https://learn.microsoft.com/en-us/windows/release-health/windows11-release-information",
+      "scope": "Windows 11 servicing versions, end-of-updates dates and latest update per version",
+      "status": "verified-scoped",
+      "accessed": "2026-10-31",
+      "verified": "2026-10-31",
+      "as_of": "2026-10-28",
+      "freshness": "time-sensitive",
+      "review_by": "2026-11-10",
+      "support_state": "verified",
+      "limitation": "A release table; does not establish a target device's eligibility, safeguard holds or channel."
+    },
+    {
+      "id": "MS-WINSERVER-RELEASE",
+      "tier": 1,
+      "title": "Windows Server release information",
+      "url": "https://learn.microsoft.com/en-us/windows/release-health/windows-server-release-info",
+      "scope": "Windows Server 2016 to 2025 lifecycle dates and latest update",
+      "status": "verified-scoped",
+      "accessed": "2026-10-31",
+      "verified": "2026-10-31",
+      "as_of": "2026-10-28",
+      "freshness": "time-sensitive",
+      "review_by": "2026-11-10",
+      "support_state": "verified",
+      "limitation": "A release table; update applicability (for example the 2026-10 out-of-band update) depends on target edition, channel and certificate trust list status."
+    },
+    {
+      "id": "MS-IIS-LIFECYCLE",
+      "tier": 1,
+      "title": "Internet Information Services lifecycle",
+      "url": "https://learn.microsoft.com/en-us/lifecycle/products/internet-information-services-iis",
+      "scope": "IIS follows the Windows component lifecycle",
+      "status": "verified-scoped",
+      "accessed": "2026-10-31",
+      "verified": "2026-10-31",
+      "as_of": "2024-01-24",
+      "freshness": "time-sensitive",
+      "review_by": "2027-01-31",
+      "support_state": "partial",
+      "limitation": "The release table stops at IIS 10 on Windows Server 2019 and 2016; no Server 2022 or 2025 row. IIS version and support for Server 2025 stay NOT_ASSESSED."
+    },
+    {
+      "id": "MS-HYPERV-OVERVIEW",
+      "tier": 1,
+      "title": "Hyper-V overview for Windows Server and Windows",
+      "url": "https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/overview",
+      "scope": "Hyper-V availability on Windows Server 2025 editions and Windows 11 Pro, Enterprise and Education",
+      "status": "verified-scoped",
+      "accessed": "2026-10-31",
+      "verified": "2026-10-31",
+      "as_of": "2026-02-24",
+      "freshness": "time-sensitive",
+      "review_by": "2027-01-31",
+      "support_state": "verified",
+      "limitation": "Overview page; operational limits need the focused requirements pages. No host was queried."
+    },
+    {
+      "id": "MS-ARC-AGENT-RELEASE",
+      "tier": 1,
+      "title": "Azure Connected Machine agent release notes",
+      "url": "https://learn.microsoft.com/en-us/azure/azure-arc/servers/agent-release-notes",
+      "scope": "Azure Arc Connected Machine agent versions and support window",
+      "status": "verified-scoped",
+      "accessed": "2026-10-31",
+      "verified": "2026-10-31",
+      "as_of": "2026-10-29",
+      "freshness": "time-sensitive",
+      "review_by": "2026-11-30",
+      "support_state": "verified",
+      "limitation": "Page states only versions released in the last year are supported. Fleet agent versions were not inventoried."
+    },
+    {
+      "id": "MS-INTUNE-WHATS-NEW",
+      "tier": 1,
+      "title": "What's new in Microsoft Intune",
+      "url": "https://learn.microsoft.com/en-us/mem/intune/fundamentals/whats-new",
+      "scope": "Intune release items including Windows security baselines",
+      "status": "verified-scoped",
+      "accessed": "2026-10-31",
+      "verified": "2026-10-31",
+      "as_of": "2026-10-30",
+      "freshness": "time-sensitive",
+      "review_by": "2026-11-30",
+      "support_state": "partial",
+      "limitation": "Only the first 100,000 characters were read. Tenant rollout and feature flags vary; no tenant was queried."
+    },
+    {
+      "id": "MS-ENTRA-WHATS-NEW",
+      "tier": 1,
+      "title": "Microsoft Entra releases and announcements",
+      "url": "https://learn.microsoft.com/en-us/entra/fundamentals/whats-new",
+      "scope": "Entra release notes",
+      "status": "verified-scoped",
+      "accessed": "2026-10-31",
+      "verified": "2026-10-31",
+      "as_of": "2026-06-26",
+      "freshness": "time-sensitive",
+      "review_by": "2026-11-30",
+      "support_state": "partial",
+      "limitation": "The newest section on the page is June 2026, so July to October 2026 Entra changes are NOT_ASSESSED. No tenant was queried."
     }
   ]
 }
