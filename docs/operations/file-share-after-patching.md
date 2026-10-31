@@ -18,7 +18,9 @@ no logs or target inventory were supplied, so there is no diagnosed cause.
 3. If transport works, inspect time synchronisation, domain reachability,
    secure-channel and Kerberos evidence. Compare access using the normal
    server name; accessing by IP is not an equivalent authentication test.
-   Route a proved identity problem to `windows-identity-ad`. Do not reset the
+   Route a proved identity problem to `windows-active-directory-health`; a repair
+   that changes accounts or trust is separate R4 work under
+   `windows-identity-lifecycle`. Do not reset the
    machine trust, purge sessions or change credentials before preserving proof.
 4. If identity succeeds, inspect the exact share and NTFS permissions, effective
    access for the affected principal, SMB client/server events and negotiated

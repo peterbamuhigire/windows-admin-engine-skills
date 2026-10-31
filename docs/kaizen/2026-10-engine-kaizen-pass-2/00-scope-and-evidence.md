@@ -13,7 +13,7 @@ backlog input is that cycle's open items; each was re-confirmed before use.
 | `git status --porcelain` at start | empty (0 lines); no foreign uncommitted files to preserve |
 | Working branch | `kaizen/2026-10-pass2`, created from that HEAD with `git switch -c` |
 | Other local branch | `kaizen/2026-10` (29 October work, already merged into `main`); not touched |
-| Remote branch `origin/peterbamuhigire-patch-1` | not touched; see the reading in [06-next-cycle.md](06-next-cycle.md) |
+| Remote branch `origin/peterbamuhigire-patch-1` | not touched; see the reading in `06-next-cycle.md` |
 | Push, tag, release, pull request | none made |
 
 Read before acting: the Portfolio Kaizen Standard, the currentness gate, the
@@ -39,7 +39,7 @@ or `.psd1` file, because a PowerShell edit could not be verified. A local image
 `mcr.microsoft.com/powershell:latest` exists in the rootless Podman store; it
 was not used, because the instruction for this run is to treat PowerShell as
 NOT_ASSESSED. Whether to allow a throwaway container run is a decision for
-Peter (see [06-next-cycle.md](06-next-cycle.md)).
+Peter (see `06-next-cycle.md`).
 
 ## Step 1: observe
 
@@ -135,7 +135,7 @@ Static findings from reading the boundary code (not executed):
 | D14 | Minor | `windows-admin doctor` and the catalogue report `engine: 0.1.0`; the plugin and engine manifest say `1.1.0` | `python/windows_admin/cli.py:68`, `engine/catalog.yaml:3` |
 
 D5 is the only critical defect. It is empirical, not inferred: the mutated
-manifests and findings counts are in [04-validation-record.md](04-validation-record.md)
+manifests and findings counts are in `04-validation-record.md`
 (before and after).
 
 ## Guidance missing, contradictory or ignored
@@ -152,7 +152,7 @@ manifests and findings counts are in [04-validation-record.md](04-validation-rec
 - Canary: the fleet manifest has no field that represents a canary ring. The
   skill text and plans require one; the data contract cannot carry it. This is
   a design question, not a defect to patch silently (see
-  [06-next-cycle.md](06-next-cycle.md)).
+  `06-next-cycle.md`).
 
 ## Cross-engine references checked (read-only)
 

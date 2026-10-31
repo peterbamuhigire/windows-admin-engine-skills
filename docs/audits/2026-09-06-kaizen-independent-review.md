@@ -11,7 +11,7 @@ Remaining validation gaps; the focused tests pass, but do not cover the reproduc
 
 ## Dated disposition — 2026-09-07
 
-The two residual validator defects identified here were repaired before resumed verification: extreme expiry values now have guarded handling and canonical hostname emptiness is rejected. The resumed Windows suite recorded 19 passing tests. This closes the bounded local repair item only; live fleet behaviour, authorisation, contact, recovery and broader release evidence remain **NOT ASSESSED**. Next review: 2026-09-13 ([log](../../skills-web-dev/docs/audits/2026-09-06-kaizen/resume-2026-09-07/windows-admin-engine-skills-tests.log)).
+The two residual validator defects identified here were repaired before resumed verification: extreme expiry values now have guarded handling and canonical hostname emptiness is rejected. The resumed Windows suite recorded 19 passing tests. This closes the bounded local repair item only; live fleet behaviour, authorisation, contact, recovery and broader release evidence remain **NOT ASSESSED**. Next review: 2026-09-13 (log held in the development engine's `docs/audits/2026-09-06-kaizen/resume-2026-09-07/windows-admin-engine-skills-tests.log` (resolve the engine through the catalogue)).
 
 ## Reproducible local evidence
 

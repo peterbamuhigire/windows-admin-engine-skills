@@ -1,7 +1,7 @@
 # Group Policy pilot and fleet decision record
 
 This worked example is a synthetic plan, not an executed domain change.
-Route: `windows-group-policy`, with `windows-identity-ad` for replication and
+Route: `windows-group-policy`, with `windows-active-directory-health` for replication and
 `windows-troubleshooting` when effective ownership is uncertain. Risk is R4
 under the existing skill contract. Status: **BLOCKED for execution** until the
 named domain, approved GPO GUID, target manifest, independent approver, change
