@@ -204,5 +204,143 @@
     "forbidden_primary": [
       "windows-group-policy"
     ]
+  },
+  {
+    "prompt": "create a gMSA and register its SPN for the web tier",
+    "expected": "windows-identity-lifecycle",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "rotate the LAPS policy and join a computer account to the domain for the new laptop",
+    "expected": "windows-identity-lifecycle",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "check Kerberos secure channel and trust health on the domain controller for this user",
+    "expected": "windows-active-directory-health",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-identity-lifecycle"
+    ]
+  },
+  {
+    "prompt": "show the resultant group policy for this user and the GPO precedence",
+    "expected": "windows-group-policy",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-identity-lifecycle"
+    ]
+  },
+  {
+    "prompt": "plan a drift report across all machines enrolled in Azure Arc",
+    "expected": "windows-fleet-management",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "stage a change to the whole estate through Windows Admin Center with a canary ring",
+    "expected": "windows-fleet-management",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "compare Intune and Entra device state to find drift",
+    "expected": "windows-fleet-management",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "list the installed software on this single laptop as a baseline for later drift comparison",
+    "expected": "windows-system-inventory",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-fleet-management"
+    ]
+  },
+  {
+    "prompt": "assess the health, capacity and pending reboot of this one server; any fleet rollout is a separate request",
+    "expected": "windows-health-assessment",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-fleet-management"
+    ]
+  },
+  {
+    "prompt": "verify the bare metal restore meets the RPO for the file server",
+    "expected": "windows-backup-recovery",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "test a system state restore in the lab and record the RTO",
+    "expected": "windows-backup-recovery",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "document the recovery steps and backup frequency for the payroll server",
+    "expected": "windows-backup-recovery",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "diagnose why VSS snapshots keep failing on the NTFS volume",
+    "expected": "windows-storage-files-services",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-backup-recovery"
+    ]
+  },
+  {
+    "prompt": "restore the GPO from last night's backup and review the group policy inheritance",
+    "expected": "windows-group-policy",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-backup-recovery"
+    ]
+  },
+  {
+    "prompt": "which hotfix is missing on this server before servicing",
+    "expected": "windows-patch-management",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "approve the winget update ring for the finance team",
+    "expected": "windows-patch-management",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "schedule the monthly Windows update servicing and reboot window",
+    "expected": "windows-patch-management",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "unexplained failures after the update; diagnose before any patch decision",
+    "expected": "windows-troubleshooting",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-patch-management"
+    ]
+  },
+  {
+    "prompt": "list installed software and roles on this server",
+    "expected": "windows-system-inventory",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-patch-management"
+    ]
   }
 ]
