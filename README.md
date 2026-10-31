@@ -4,16 +4,42 @@ The Windows Administration Skills Engine governs work on Windows workstations, W
 
 The engine produces operational plans and runbooks; routed PowerShell procedures; 48 `wsa-` direct commands under `commands/`; the `WindowsSkills.Engine` PowerShell module that enforces the safety and evidence boundary; and a Python `windows-admin` CLI that lists and routes the catalogue and validates operation files and evidence packs. It also produces redacted evidence records checked against JSON Schema 2020-12 definitions, pywinauto and UI Automation test suites for native desktop applications, and the Windows portability doctrine that the whole Chwezi estate follows for installers and hooks. Volatile platform claims must rest on current official Microsoft documentation, registered as tier-1 sources in `engine/source-register.yaml` with a 90-day review interval. Security baselines follow the Microsoft Security Compliance Toolkit; CIS, STIG and NIST crosswalks are planned only where they are legally licensed. The engine is for Windows system and identity administrators, endpoint and fleet managers, service operators, and the AI agents and other Chwezi engines that need a Windows-native procedure.
 
-## October 2026 Kaizen
+## Quality and improvement
 
-[The cycle evidence](docs/kaizen/2026-10-engine-kaizen/05-final-report.md) records
-service argument/refusal/recovery repairs, diagnostic routing and marketplace
-checks. Synthetic Linux-hosted PowerShell tests do not establish Windows fleet
-readiness; domain and live recovery checks remain NOT_ASSESSED.
+The evidence is in two folders: [29 October 2026](docs/kaizen/2026-10-engine-kaizen/05-final-report.md) and [pass 2, 31 October 2026](docs/kaizen/2026-10-engine-kaizen-pass-2/05-final-report.md). Each holds the scope, baseline scorecard, backlog, experiment log, validation record, final report and next-cycle list. The router (`AGENTS.md`) points agents at both.
+
+**Latest published score: 59.5.** The pass-2 raw score is 59.5 and the published score is `min(raw, 65)`, which is also 59.5. The fresh baseline for that pass was 56.7 raw, and the 29 October final was 57.9 raw. The scores are reviewer judgements over ten equally weighted dimensions. The target of 95 is not met.
+
+Pass 2 improved the parts that Python can check: the fleet-manifest validator, link and path scans, a source-register date gate, and routing fixtures. No PowerShell ran in that pass, and no Windows host, domain, tenant or fleet was touched. Synthetic Linux-hosted PowerShell tests do not establish Windows fleet readiness.
+
+**`scripts/validate_fleet_manifest.py` refuses manifests that the validator before pass 2 accepted.** Run today against the 17 fixtures in `tests/fixtures/fleet-manifest/`, the current validator exits 1 on the 16 refused manifests and 0 on the accepted one. The version at `8d6faea` exited 0 on nine of those 16: a revoked authority; an R4 or R5 target whose approved authority has the same owner and approver; a change or maintenance window written as free text; an inverted change window; a maintenance window outside the change window; and a wildcard, list or CIDR hostname. Both versions refuse an expired manifest, a duplicate host, a missing authority, a blank approver, empty targets, more targets than `max_hosts`, and an unknown risk tier. The validator reads one file and contacts no host. Its output states that approval authenticity and fleet readiness are `NOT_ASSESSED`.
+
+**Open findings that matter to a user** (full list: [next-cycle file](docs/kaizen/2026-10-engine-kaizen-pass-2/06-next-cycle.md)):
+
+- `Invoke-WseServiceState` takes `-ChangeAuthority` and `-MaintenanceWindow` as text and does not evaluate either. This is a static finding from reading the source. Treat the window and the authority as the operator's responsibility.
+- No Windows integration exists for service state, Group Policy, AD or SMB, and no fleet window, canary or timed restore has run. R3 to R5 work stays blocked until recovery proof exists.
+- The fleet manifest has no canary field, although `windows-fleet-management` requires a canary.
+- `wsa-dns-test` and `wsa-port-test` query or connect to whatever name or host the operator types. Neither is bound to a fleet manifest, although `docs/safety-model.md` says only manifest targets may be contacted. Both are read-only probes.
+- PowerShell fixtures last ran on 7.4.2 (support ends 2026-11-10). They have not run on 7.6 LTS or on Windows PowerShell 5.1.
+- `windows-admin doctor` and `engine/catalog.yaml` report engine version `0.1.0`; the plugin and engine manifests say `1.1.0`.
+
+**Calendar of date-triggered gates.** `scripts/check_source_register.py` fails on a date, by design, unless the register is re-verified from primary sources. Each row below was measured with `--as-of`, which evaluates the register at a chosen day.
+
+| Date | Result of `check_source_register.py --as-of <date>` | Cause |
+|---|---|---|
+| 2026-11-05 | exit 0, 0 findings (last green day) | `policy.scoped_october_review_date` is 2026-11-05; the pass-2 re-audit is due the same day |
+| 2026-11-06 | exit 1, 1 finding | that policy review date has passed |
+| 2026-11-11 | exit 1, 39 findings | 35 URL rows past the 90-day interval (last dated 2026-08-12), three `review_by` rows dated 2026-11-10 (PowerShell lifecycle, Windows 11 release, Windows Server release) and the policy date |
+| 2026-12-01 | exit 1, 43 findings | four rows with `review_by` 2026-11-30: `MS-SCT`, `MS-ARC-AGENT-RELEASE`, `MS-INTUNE-WHATS-NEW`, `MS-ENTRA-WHATS-NEW` |
+| 2026-12-24 | exit 1, 45 findings | `MS-JOB-OBJECTS` and `MS-UIA`, last dated 2026-09-24, pass 90 days |
+| 2027-01-30 | exit 1, 54 findings | nine rows verified on 2026-10-31 pass 90 days |
+| 2027-02-01 | exit 1, 56 findings | `MS-IIS-LIFECYCLE` and `MS-HYPERV-OVERVIEW` pass their `review_by` of 2027-01-31 |
+
+On 2026-11-10 the check still reports only the policy finding, but the 35 rows have reached the end of their interval; PowerShell 7.4 and 7.5 support and Windows 11 23H2 Enterprise servicing also end that day. Two further review dates are read by no validator: the six architecture decisions and the threat model fall due on 2026-11-12. To clear the gate, re-read each row's source, set `verified` on rows actually read, move `policy.scoped_october_review_date`, and record the review in `docs/research/`. The scoped reviews so far are [29 October](docs/research/currentness-2026-10-29.md) and [31 October](docs/research/currentness-2026-10-31.md). Two worked plans cover [a Group Policy pilot](docs/operations/group-policy-pilot.md) and [file-share diagnosis after patching](docs/operations/file-share-after-patching.md). The index of every document is [docs/README.md](docs/README.md).
 
 ## Installation
 
-**Prerequisites.** Git. Node.js 18 or later for the clone installers and the plugin hooks. Python 3.10 or later for the catalogue CLI and validators, or Python 3.11 or later for the Codex model-policy helper. Windows PowerShell 5.1 or PowerShell 7 for the `WindowsSkills.Engine` module and `wsa-` commands. Pester is optional; when it is absent, record its gate as `NOT_ASSESSED`.
+**Prerequisites.** Git. Node.js 18 or later for the clone installers and the plugin hooks. Python 3.10 or later for the catalogue CLI and validators, or Python 3.11 or later for the Codex model-policy helper; the Python code uses the standard library only, so there is no requirements file and no PyYAML. Windows PowerShell 5.1 or PowerShell 7 for the `WindowsSkills.Engine` module and `wsa-` commands. `scripts/test-powershell.ps1` requires Pester 5 or later and stops with an error when it is missing; record that gate as `NOT_ASSESSED`, never as a pass.
 
 **Claude Code plugin (recommended).** The repository is its own marketplace (`.claude-plugin/marketplace.json`, marketplace `chwezi-windows-admin`, plugin `windows-admin`, version 1.1.0):
 
@@ -40,23 +66,49 @@ wsa-list
 wsa-route "domain controller replication is failing"
 ```
 
-**Catalogue CLI.** Run it without installing through `scripts\windows-admin.cmd`, which accepts `list`, `route`, `validate-operation`, `validate-evidence` and `doctor`. `pip install .` also installs it as the `windows-admin` console script.
+**Catalogue CLI.** It accepts `list`, `route`, `validate-operation`, `validate-evidence` and `doctor`. On Windows, run it without installing through `scripts\windows-admin.cmd`. On Linux or macOS, run it from the repository root with `PYTHONPATH=python python3 -X utf8 -m windows_admin.cli route "domain controller replication is failing"`. `pip install .` also installs it as the `windows-admin` console script.
 
 **Codex.** The existing Claude-compatible marketplace also installs in Codex
 without a duplicate skill tree. From a local checkout run `codex plugin marketplace add . --json`,
 then `codex plugin add windows-admin@chwezi-windows-admin --json`. Offline native
 checks expose all 20 declared skill paths; see [plugin checks](docs/marketplace.md).
 Both the package and full checkout have an enforced hard 5,000-file ceiling.
-For manual use, no installer is needed. Load `AGENTS.md` and `skills/windows-sysadmin/SKILL.md`, then route by `engine/catalog.yaml`. Before substantive work, check the Codex model policy with `python .codex/ensure_model_policy.py --runtime codex --check`. Claude skips this step.
+For manual use, no installer is needed. Load `AGENTS.md` and `skills/windows-sysadmin/SKILL.md`, then route by `engine/catalog.yaml`. Before substantive work, check the Codex model policy with `python3 .codex/ensure_model_policy.py --runtime codex --check` (`python` on Windows). It needs Python 3.11 or later and exits 1 when the Codex configuration drifts from the shipped policy. Claude skips this step.
 
-**Manual use.** Clone the repository anywhere. Read `CLAUDE.md` (Claude Code) or `AGENTS.md` (any runner), then `skills/windows-sysadmin/SKILL.md`. Run the quality gates from the repository root:
+**Manual use.** Clone the repository anywhere. Read `CLAUDE.md` (Claude Code) or `AGENTS.md` (any runner), then `skills/windows-sysadmin/SKILL.md`. The quality gates are listed below.
 
-```powershell
-python -X utf8 scripts/validate_engine.py
-python -X utf8 scripts/routing_smoke_test.py
-python -X utf8 -m unittest discover -s tests/python -v
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-powershell.ps1
-```
+## Validation
+
+Run each command from the repository root. On Windows, use `python` where this section says `python3`. The Python gates need Python 3.10 or later and nothing else: they use the standard library, and no requirements file exists. `pytest` is optional; `python3 -m pytest -p no:cacheprovider` runs the same test files as `unittest`. Node.js 18 or later runs the hook tests. The PowerShell gates need `pwsh` or Windows PowerShell and, for `scripts/test-powershell.ps1`, Pester 5 or later. No validator needs a sibling engine checkout; the results below were also reproduced from a standalone clone.
+
+**Runs on Linux, macOS and Windows.** Measured on Linux with Python 3.14.8 and Node.js 22 on 2026-10-31. Every row exited 0.
+
+| Command | Result |
+|---|---|
+| `python3 -X utf8 scripts/validate_engine.py` | 19 specialist skills validated, 0 findings. It also runs the marketplace check (`scripts/check_marketplace.py`, 20 skill paths, 5,000-file ceiling) and the content-hygiene scan (`scripts/check_content_hygiene.py`: Markdown links, `windows-*` skill identifiers and machine-specific paths in every tracked file). |
+| `python3 -X utf8 scripts/routing_smoke_test.py` | 73 fixtures, 0 failures; first rank 73/73; owned negatives 23/23; 11 of 19 specialists meet the three-positive, two-negative threshold (floor 11). The oracle is lexical, so this is not a measure of model routing. |
+| `python3 -X utf8 scripts/source_ingestion_guardrail.py` | 0 findings. |
+| `python3 -X utf8 scripts/check_source_register.py` | 56 rows, 46 URL rows, 0 expired, 35 warnings. Exit 0 today, and date-triggered: see the calendar above. `--as-of YYYY-MM-DD` evaluates another day. It reads dates only and makes no network request. |
+| `python3 -X utf8 scripts/validate_command_tree.py` | 48 direct commands, 0 findings. |
+| `python3 -X utf8 scripts/validate_operator_manual.py` | 48 commands, 19 scripts, 12 functions named in the manual, 0 findings. |
+| `python3 -X utf8 scripts/validate_fleet_manifest.py tests/fixtures/fleet-manifest.valid.json` | 1 target, 0 findings, `contact_attempted=false`. |
+| `python3 -X utf8 -m unittest discover -s tests/python -v` | 72 tests, OK. |
+| `python3 -X utf8 -m unittest tests/test_approval_adapter.py` | 1 test, OK. It sits outside the discovery root above, so the registered command does not run it. `pytest` from the repository root collects 73 tests and all pass. |
+| `node hooks/test-destructive-bash-gate.js` | 61 of 61 passed. |
+| `node hooks/test-plugin-hook-config.js` | 7 of 7 passed. |
+
+`.skills-engine/engine-manifest.yaml` registers six validators: `validate_engine.py`, `routing_smoke_test.py`, `source_ingestion_guardrail.py`, the unit tests, `check_source_register.py` and, for Windows only, `test-powershell.ps1`. CI (`.github/workflows/ci.yml`) runs those on `windows-latest` with Python 3.12, plus the command-tree, operator-manual and fleet-manifest checks and the PowerShell syntax check and installer preview. CI does not run the hook tests or `tests/test_approval_adapter.py`.
+
+**Needs PowerShell: `NOT_ASSESSED` on the Linux host.** There is no `pwsh` or Windows PowerShell on this machine; running any command below returns `pwsh: command not found` with exit 127. On 29 October 2026, in a PowerShell 7.4.2 Linux container, the syntax check passed over 80 files and the service fixtures ran. `test-powershell.ps1` passed its fixture steps there and then failed on a Windows-only API, so it needs a Windows host. The last recorded Pester run is 2026-08-12 ([test plan](docs/testing/test-plan.md)).
+
+| Command | What it checks |
+|---|---|
+| `pwsh -NoProfile -File scripts/test-powershell-syntax.ps1` | Parses every `.ps1` file (80 are tracked) and fails on a syntax error. |
+| `pwsh -NoProfile -File scripts/test-service-state-fixture.ps1` and `scripts/test-service-wrapper-fixture.ps1` | Synthetic fixtures. The state fixture asserts the normal, repeat, preview, refusal, failure and verified-recovery paths (nine assertions); the wrapper fixture makes three isolated calls through the typed wrapper and dispatcher. Neither touches a Windows service. |
+| `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-powershell.ps1` | The two fixtures, module import and doctor, local inventory, a `-WhatIf` service preview, then four Pester suites. Needs Pester 5. |
+| `.\scripts\install-windows-admin.ps1 -WhatIf` | Previews the PATH and environment changes of the direct command tree. |
+
+Every `wsa-` command, and every Windows, Active Directory, Group Policy, IIS, Hyper-V, Intune, Entra or Arc behaviour, is also `NOT_ASSESSED` without a Windows host or lab. Static checks do not replace those gates.
 
 ## Capabilities
 
@@ -164,9 +216,3 @@ Citations only. No book text or source conversion is stored in this repository (
 - pytest cache documentation: https://docs.pytest.org/en/stable/how-to/cache.html
 - OpenAI image-generation and image-prompting guides, cited by `docs/ai-prompting/domain-prompt-compilation-contract.md`: https://developers.openai.com/api/docs/guides/image-generation and https://developers.openai.com/api/docs/guides/image-prompting
 - Windows Administration Skills Engine repository: https://github.com/peterbamuhigire/windows-admin-engine-skills
-
-The [October Kaizen report](docs/kaizen/2026-10-engine-kaizen/05-final-report.md)
-records service recovery, routing and native marketplace checks, with explicit
-Windows integration limits. Use the [GPO pilot plan](docs/operations/group-policy-pilot.md)
-and [post-patching file-share diagnosis](docs/operations/file-share-after-patching.md)
-with the [scoped currentness review](docs/research/currentness-2026-10-29.md).
