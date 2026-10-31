@@ -110,7 +110,7 @@ in-page links: 13 anchors used; BROKEN 0
 RESULT: OK
 ```
 
-In the output above the literal `anchor` after the hash is written as `<anchor>`, because the checker reads the text it prints as a link to a heading called "anchor" and reports it BROKEN. The first run reported six LOST links (the kaizen backlog, two experiment logs, two validation records and `docs/safety-model.md`). They had moved into the relocated page, where the check does not recognise a re-based relative path as the same target. The fix commit restored direct links in the README. No command was replaced or removed.
+In the output above the literal `anchor` after the hash is written as `<anchor>`, because the checker reads the text it prints as a link to a heading called "anchor" and reports it BROKEN. The first run reported six LOST links (the kaizen backlog, two experiment logs, two validation records and `docs/safety-model.md`). They had moved into the relocated page, where the check does not recognise a re-based relative path as the same target. The fix commit restored direct links in the README. The checker has since been changed to resolve relative links against each file's location, so those six would now be reported as moved; the direct links stay because they are useful to a reader. No command was replaced or removed.
 
 Metrics after (`README.md`):
 
