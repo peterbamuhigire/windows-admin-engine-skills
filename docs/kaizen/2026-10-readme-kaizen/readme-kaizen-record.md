@@ -72,7 +72,7 @@ Validators before any edit (all on Linux, 2026-10-31):
 
 Deliberate corrections and changes of fact, all checked before they were written:
 
-- The README no longer states "325 package and 744 checkout files". The checkout count includes `.git`, so it changes on every commit (753 before this cycle, 770 after the first commits). The relocated page keeps the figure, dated as measured at the time, with the command that gives the current value. The package count is 327 after the two new pages (325 before).
+- The README no longer states "325 package and 744 checkout files". The checkout count includes `.git`, so it changes on every commit (753 before this cycle, 783 at the final run). The relocated page keeps the figure, dated as measured at the time, with the command that gives the current value. The package count is 328 after the three new files (325 before).
 - "Run today" and "Exit 0 today" became "Run on 2026-10-31" and "Exit 0 on 2026-10-31", so the text does not go stale.
 - The calendar gained a 2026-11-10 row and a bold first-red-day line (2026-11-06). The row was measured: `--as-of 2026-11-10` exits 1 with one finding.
 - The "Installation" heading became "Install and update", and "Capabilities" became "What is inside". The "Install and update" section now says how to update the direct command tree (run the installer again after `git pull`; a repeat run with nothing to change reports `Mode=NoChange`), sourced to `docs/release/idempotent-installer-2026-08-12.md`. No update command was invented for the plugin or the clone installer.
@@ -85,7 +85,7 @@ Validators after the last edit, same commands and exit codes as before:
 
 | Command | Exit before | Exit after |
 |---|---|---|
-| `validate_engine.py` | 0 | 0 (19 skills, 0 findings; package 325 to 327 files, checkout 753 to 770) |
+| `validate_engine.py` | 0 | 0 (19 skills, 0 findings; package 325 to 328 files, checkout 753 to 783 at the final run) |
 | `routing_smoke_test.py`, `source_ingestion_guardrail.py`, `validate_command_tree.py`, `validate_operator_manual.py`, `validate_fleet_manifest.py` | 0 | 0, output byte-identical |
 | `check_source_register.py` | 0 | 0 |
 | `unittest discover -s tests/python`, `unittest tests/test_approval_adapter.py` | 0 | 0 (72 tests; 1 test) |
@@ -105,12 +105,12 @@ Preservation check (`readme-preserve-check.py <repo> main kaizen/2026-10-readme-
 ```text
 links: old README 67 targets; new README 22; moved to docs 50; LOST 0
 commands: old README 32; kept in README 32; moved to docs 0; LOST 0
-anchors: 5 README.md#anchor links in tracked files; BROKEN 0
+anchors: 5 README.md#<anchor> links in tracked files; BROKEN 0
 in-page links: 13 anchors used; BROKEN 0
 RESULT: OK
 ```
 
-The first run reported six LOST links (the kaizen backlog, two experiment logs, two validation records and `docs/safety-model.md`). They had moved into the relocated page, where the check does not recognise a re-based relative path as the same target. The fix commit restored direct links in the README. No command was replaced or removed.
+In the output above the literal `anchor` after the hash is written as `<anchor>`, because the checker reads the text it prints as a link to a heading called "anchor" and reports it BROKEN. The first run reported six LOST links (the kaizen backlog, two experiment logs, two validation records and `docs/safety-model.md`). They had moved into the relocated page, where the check does not recognise a re-based relative path as the same target. The fix commit restored direct links in the README. No command was replaced or removed.
 
 Metrics after (`README.md`):
 
