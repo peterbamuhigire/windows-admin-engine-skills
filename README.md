@@ -41,6 +41,7 @@ Steps 2 and 3 need only Python 3.10 or later, run on Linux, macOS or Windows (us
 ## Contents
 
 - [Start here](#start-here)
+- [Capabilities](#capabilities)
 - [When to use it and find the right skill](#when-to-use-it-and-find-the-right-skill)
 - [How it works](#how-it-works)
 - [What is inside](#what-is-inside)
@@ -50,6 +51,10 @@ Steps 2 and 3 need only Python 3.10 or later, run on Linux, macOS or Windows (us
 - [What the October 2026 kaizen improved](#what-the-october-2026-kaizen-improved)
 - [References](#references)
 - [Contributing, author and licence](#contributing-author-and-licence)
+
+## Capabilities
+
+The engine holds 20 skills (one hub and 19 specialists) in 12 folders, plus 48 `wsa-` direct commands, grouped under [What is inside](#what-is-inside). The next section maps common tasks to the skill that handles each.
 
 ## When to use it and find the right skill
 
