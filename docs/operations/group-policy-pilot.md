@@ -37,9 +37,11 @@ domain policy or change enforcement, filtering and settings in one operation.
    state did not change. Observe for the approved window; an absent measurement
    is NOT_ASSESSED, never a pass.
 6. Expand only with a separately approved finite manifest, maximum host count,
-   expiry, maintenance window and failure threshold. Run the stronger
-   `scripts/validate_fleet_manifest.py`; the JSON schema alone does not enforce
-   all its controls. Keep per-target results and cancellation evidence. A
+   expiry, maintenance window and failure threshold. Run
+   `scripts/validate_fleet_manifest.py`; it is authoritative. The JSON schema
+   covers structure only and cannot check expiry, window nesting, unique targets
+   or approver separation. The manifest has no canary field yet, so name the
+   canary ring in the change packet. Keep per-target results and cancellation evidence. A
    successful pilot does not authorise an unbounded fleet operation.
 7. On failure, stop scheduling targets, reverse only the introduced link where
    appropriate and restore the identified GPO backup under recovery authority.
