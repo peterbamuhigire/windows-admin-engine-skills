@@ -236,9 +236,10 @@ Every `wsa-` command, and every Windows, Active Directory, Group Policy, IIS, Hy
 
 ## Quality and improvement
 
-The evidence is in two folders: [29 October 2026](docs/kaizen/2026-10-engine-kaizen/05-final-report.md) and [pass 2, 31 October 2026](docs/kaizen/2026-10-engine-kaizen-pass-2/05-final-report.md).
+The evidence is in two folders. Each holds the scope, baseline scorecard, backlog, experiment log, validation record, final report and next-cycle list. The router (`AGENTS.md`) points agents at both.
 
-Each holds the scope, baseline scorecard, backlog, experiment log, validation record, final report and next-cycle list. The router (`AGENTS.md`) points agents at both.
+- 29 October 2026: the [final report](docs/kaizen/2026-10-engine-kaizen/05-final-report.md), [experiment log](docs/kaizen/2026-10-engine-kaizen/03-experiment-log.md) and [validation record](docs/kaizen/2026-10-engine-kaizen/04-validation-record.md).
+- Pass 2, 31 October 2026: the [final report](docs/kaizen/2026-10-engine-kaizen-pass-2/05-final-report.md), [backlog](docs/kaizen/2026-10-engine-kaizen-pass-2/02-improvement-backlog.md), [experiment log](docs/kaizen/2026-10-engine-kaizen-pass-2/03-experiment-log.md) and [validation record](docs/kaizen/2026-10-engine-kaizen-pass-2/04-validation-record.md).
 
 ### Score
 
@@ -263,6 +264,7 @@ No PowerShell ran in that pass, and no Windows host, domain, tenant or fleet was
   - a wildcard, list or CIDR hostname.
 - Both versions refuse an expired manifest, a duplicate host, a missing authority, a blank approver, empty targets, more targets than `max_hosts`, and an unknown risk tier.
 - The validator reads one file and contacts no host. Its output states that approval authenticity and fleet readiness are `NOT_ASSESSED`.
+- [docs/safety-model.md](docs/safety-model.md) requires an independent approver for R4 and R5 production work.
 
 ### Open findings that matter to a user
 
