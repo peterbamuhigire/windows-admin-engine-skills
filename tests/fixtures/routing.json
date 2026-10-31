@@ -342,5 +342,149 @@
     "forbidden_primary": [
       "windows-patch-management"
     ]
+  },
+  {
+    "prompt": "the website returns 503 and the app pool keeps stopping",
+    "expected": "windows-iis",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "check the IIS binding and certificate expiry for the intranet website",
+    "expected": "windows-iis",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "http.sys reservation conflicts on the web server",
+    "expected": "windows-iis",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "the website name will not resolve through DNS; check the route to the web server",
+    "expected": "windows-network-admin",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-iis"
+    ]
+  },
+  {
+    "prompt": "an SMB share on the file server shows a certificate warning to users",
+    "expected": "windows-storage-files-services",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-iis"
+    ]
+  },
+  {
+    "prompt": "list the VM checkpoints on the Hyper-V host",
+    "expected": "windows-hyper-v",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "the virtual switch has no connectivity for the guest VM",
+    "expected": "windows-hyper-v",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "plan Hyper-V cluster failover for host maintenance",
+    "expected": "windows-hyper-v",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "set up WSL and git on my developer workstation",
+    "expected": "windows-development-workstation",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-hyper-v"
+    ]
+  },
+  {
+    "prompt": "a container build is slow and shows high CPU; troubleshoot it",
+    "expected": "windows-troubleshooting",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-hyper-v"
+    ]
+  },
+  {
+    "prompt": "the VPN client cannot reach the proxy and the port is blocked by the firewall",
+    "expected": "windows-network-admin",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "check the IP address and route table on this server",
+    "expected": "windows-network-admin",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "DNS name resolution fails for the internal zone",
+    "expected": "windows-network-admin",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "WinRM fails over the firewall port with a double hop to the second server",
+    "expected": "windows-remote-management",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-network-admin"
+    ]
+  },
+  {
+    "prompt": "IIS returns 503 for the website; check the firewall port and the binding",
+    "expected": "windows-iis",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-network-admin"
+    ]
+  },
+  {
+    "prompt": "set up PowerShell remoting over SSH to a Windows Server",
+    "expected": "windows-remote-management",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "a CIM session fails with a CredSSP delegation error",
+    "expected": "windows-remote-management",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "RDP authentication fails because of the double hop",
+    "expected": "windows-remote-management",
+    "kind": "positive",
+    "expected_rank": 1
+  },
+  {
+    "prompt": "RDP is unreachable; check the route, the firewall and the port",
+    "expected": "windows-network-admin",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-remote-management"
+    ]
+  },
+  {
+    "prompt": "enable SSH on the developer workstation for git and Visual Studio Code",
+    "expected": "windows-development-workstation",
+    "kind": "negative",
+    "expected_rank": 1,
+    "forbidden_primary": [
+      "windows-remote-management"
+    ]
   }
 ]
