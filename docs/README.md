@@ -1,6 +1,6 @@
 # Documentation index
 
-This folder holds the safety doctrine, operator manuals, evidence records and kaizen history for the Windows Administration Skills Engine. Start with the repository [README](../README.md) for installation, validation, the current quality status and the [list of what the October 2026 kaizen improved](../README.md#what-the-october-2026-kaizen-improved), and with [AGENTS.md](../AGENTS.md) for the router that agents follow.
+This folder holds the safety doctrine, operator manuals, evidence records and kaizen history for the Windows Administration Skills Engine. Start with the repository [README](../README.md). It opens with an at-a-glance list and three start-here steps, then covers how to find a skill, installation, validation, the current quality status and a [summary of what the October 2026 kaizen improved](../README.md#what-the-october-2026-kaizen-improved). The [full itemised list](kaizen/october-2026-improvements.md) is in this folder. Agents follow [AGENTS.md](../AGENTS.md), the router.
 
 Dated records describe the repository on the day they were written. Their counts (skills, fixtures, tests) are not refreshed. The current measured counts are in the [README validation section](../README.md#validation).
 
@@ -49,7 +49,7 @@ Dated records describe the repository on the day they were written. Their counts
 | [research/book-driven-kaizen-operating-system.md](research/book-driven-kaizen-operating-system.md) | Improvement doctrine synthesised from books; not a source of current commands |
 | [research/source-url-verification-2026-08-12.json](research/source-url-verification-2026-08-12.json) | URL liveness results for the source register on 2026-08-12 |
 
-The live source register is `engine/source-register.yaml`. Its date gate fails on a calendar date unless rows are re-verified; the calendar is in the README ([Quality and improvement](../README.md#quality-and-improvement)).
+The live source register is `engine/source-register.yaml`. Its date gate fails on a calendar date unless rows are re-verified; the calendar is in the README ([Calendar of date-triggered gates](../README.md#calendar-of-date-triggered-gates), under Quality and improvement).
 
 ## Audits
 
