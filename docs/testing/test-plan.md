@@ -15,6 +15,8 @@
 
 ## Executed locally on 2026-08-12
 
+This section is the dated August record. Its counts have since changed; the current measured results and the checks that need PowerShell are in the [README validation section](../../README.md#validation).
+
 - Catalogue validator: 16 specialist skills, zero findings.
 - Routing smoke: 16 fixtures, zero failures.
 - Source ingestion: zero findings.
