@@ -119,29 +119,52 @@ and [its second pass](docs/kaizen/2026-10-engine-kaizen-pass-2/05-final-report.m
 for tested fixture boundaries, residual Windows-lab gaps and catalogue handoffs.
 The registered validator now checks [marketplace discovery](docs/marketplace.md)
 and the hard 5,000-file limit. A successful package load is not authority to
-execute any Windows operation.
+execute any Windows operation. The latest published kaizen score, the open
+findings that matter to a user and the calendar of date-triggered gates are in
+`README.md`, "Quality and improvement"; the document index is `docs/README.md`.
 
 ## Quality gates
 
-Run from the repository root:
+Run from the repository root. Use `python3` on Linux and macOS and `python` on
+Windows. The Python gates use the standard library only; `pytest` is optional.
 
 ```powershell
-python -X utf8 scripts/validate_engine.py
-python -X utf8 scripts/routing_smoke_test.py
-python -X utf8 scripts/source_ingestion_guardrail.py
-python -X utf8 scripts/check_source_register.py
-python -X utf8 -m unittest discover -s tests/python -v
+python3 -X utf8 scripts/validate_engine.py
+python3 -X utf8 scripts/routing_smoke_test.py
+python3 -X utf8 scripts/source_ingestion_guardrail.py
+python3 -X utf8 scripts/check_source_register.py
+python3 -X utf8 -m unittest discover -s tests/python -v
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-powershell.ps1
 ```
+
+These six are the validators registered in `.skills-engine/engine-manifest.yaml`;
+the last one is registered for Windows only. Beyond them, run
+`scripts/validate_command_tree.py`, `scripts/validate_operator_manual.py`,
+`python3 -X utf8 -m unittest tests/test_approval_adapter.py` (outside the
+registered discovery root) and `node hooks/test-destructive-bash-gate.js` and
+`node hooks/test-plugin-hook-config.js` when a change touches commands, the
+manual, the approval adapter or the hooks. `README.md`, "Validation", lists each
+command with its measured result and which ones need PowerShell.
 
 `validate_engine.py` also fails on a local Markdown link or `windows-*` skill
 identifier that does not resolve and on a machine-specific path in any tracked
 file (`scripts/check_content_hygiene.py`). `check_source_register.py` fails on
-an undated or overdue source row. `validate_fleet_manifest.py` is the
-authoritative fleet-manifest gate; refuse any manifest it refuses.
+an undated or overdue source row and is date-triggered: it exits 0 until
+2026-11-05 and fails from 2026-11-06 unless rows are re-verified from primary
+sources (`--as-of YYYY-MM-DD` evaluates another day; the calendar is in
+`README.md`). `validate_fleet_manifest.py` is the authoritative fleet-manifest
+gate; refuse any manifest it refuses. It refuses a revoked authority, free-text
+or inverted windows, a maintenance window outside the change window, a wildcard,
+list or CIDR hostname, and an R4 or R5 target whose approved authority has the
+same owner and approver. It does not verify that an approval is genuine or that
+a host is reachable.
 
-Pester and live Windows-lab checks are separate gates. If their runtime or lab
-is absent, record `NOT_ASSESSED`; static checks do not replace them.
+Pester and live Windows-lab checks are separate gates. `scripts/test-powershell.ps1`
+needs Pester 5 and stops with an error when it is missing. On a host without
+`pwsh` or Windows PowerShell (the Linux workstation, for example) every
+PowerShell gate is `NOT_ASSESSED`: record the exact error (`pwsh: command not
+found`, exit 127) and do not report a pass. Static checks do not replace the
+PowerShell or lab gates.
 
 ## Cross-engine routes
 
