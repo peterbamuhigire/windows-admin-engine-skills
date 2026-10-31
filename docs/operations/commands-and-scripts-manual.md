@@ -214,7 +214,7 @@ success does not erase a `PartiallySucceeded` or `NOT_ASSESSED` result.
 
 | Command | Purpose and output | Syntax and important notes |
 | --- | --- | --- |
-| `wsa-fleet-validate` | Validates a fleet-manifest JSON file for schema version, nonempty unique targets, blast-radius limit, and per-target fingerprint. | `wsa-fleet-validate .\fleet-manifest.json`; validation contacts no target and reports `contact_attempted=false`. It does not authorize fleet execution. |
+| `wsa-fleet-validate` | Validates a fleet-manifest JSON file for schema version, nonempty unique targets, blast-radius limit, and per-target fingerprint. It refuses a revoked authority, a change or maintenance window that is not a `<start>/<end>` pair of zoned ISO-8601 instants with the end after the start, a target window outside the change window, a hostname that is a wildcard, list, range or path, and an R4 or R5 target whose approved authority has the same owner and approver. | `wsa-fleet-validate .\fleet-manifest.json`; validation contacts no target and reports `contact_attempted=false`. It does not authorize fleet execution. |
 
 ## 18. `wsa` dispatcher subcommands
 
@@ -294,7 +294,7 @@ Run these from the repository root unless a row says otherwise.
 | `scripts\source_ingestion_guardrail.py` | Checks that restricted source text was not copied into implementation areas: `python -X utf8 scripts\source_ingestion_guardrail.py`. |
 | `scripts\validate_command_tree.py` | Checks launcher/wrapper/catalog agreement and command naming: `python -X utf8 scripts\validate_command_tree.py`. |
 | `scripts\validate_engine.py` | Validates catalogue records, referenced skills, schemas, and repository structure: `python -X utf8 scripts\validate_engine.py`. |
-| `scripts\validate_fleet_manifest.py` | Validates one manifest without contacting targets: `python -X utf8 scripts\validate_fleet_manifest.py tests\fixtures\fleet-manifest.valid.json`. |
+| `scripts\validate_fleet_manifest.py` | Validates one manifest without contacting targets, applying the checks listed under `wsa-fleet-validate` in section 17: `python -X utf8 scripts\validate_fleet_manifest.py tests\fixtures\fleet-manifest.valid.json`. |
 | `scripts\validate_operator_manual.py` | Confirms that every catalogued command, dispatcher, exported module function, and script in `scripts` is named in this manual: `python -X utf8 scripts\validate_operator_manual.py`. |
 | `scripts\verify_source_urls.py` | Makes network requests to verify registered official-source URLs. Print JSON to stdout or use `--out PATH`: `python -X utf8 scripts\verify_source_urls.py --out .\source-url-report.json`. This is not part of offline CI because network state is variable. |
 | `scripts\test-powershell-syntax.ps1` | Parses every repository `.ps1` and fails on PowerShell syntax errors: `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\test-powershell-syntax.ps1`. |
