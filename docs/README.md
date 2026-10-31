@@ -1,6 +1,6 @@
 # Documentation index
 
-This folder holds the safety doctrine, operator manuals, evidence records and kaizen history for the Windows Administration Skills Engine. Start with the repository [README](../README.md) for installation, validation and the current quality status, and with [AGENTS.md](../AGENTS.md) for the router that agents follow.
+This folder holds the safety doctrine, operator manuals, evidence records and kaizen history for the Windows Administration Skills Engine. Start with the repository [README](../README.md) for installation, validation, the current quality status and the [list of what the October 2026 kaizen improved](../README.md#what-the-october-2026-kaizen-improved), and with [AGENTS.md](../AGENTS.md) for the router that agents follow.
 
 Dated records describe the repository on the day they were written. Their counts (skills, fixtures, tests) are not refreshed. The current measured counts are in the [README validation section](../README.md#validation).
 
