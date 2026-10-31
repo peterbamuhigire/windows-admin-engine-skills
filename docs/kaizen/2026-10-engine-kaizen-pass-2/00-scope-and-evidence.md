@@ -166,7 +166,10 @@ engine's `docs/source-registers/skills-engine-currentness-2026-09.json` and
 development engine's control plane lists for this engine
 (`wsa-route`, `wsa-inventory`, `wsa-health`, `wsa-security`,
 `wsa-service-state`, `wsa-evidence-validate`) all exist in
-`engine/command-catalog.json`. One naming drift: `engine/source-register.yaml:8`
-and `docs/release/delivery-evidence-pack.md:12` say `digital-research-skills`,
-while `AGENTS.md` says `digital-research-engine`. Dangling cross-engine
+`engine/command-catalog.json`. Two names for the research engine appear: `engine/source-register.yaml:8` and
+`docs/release/delivery-evidence-pack.md:12` say `digital-research-skills`,
+`AGENTS.md` says `digital-research-engine`. The coordination package's
+`catalog/engines.yaml` (lines 80-82) uses `digital-research-skills` as the
+engine id and `digital-research-engine` as its catalogue path, so both are
+legitimate; they are an id and a path, not a drift. Dangling cross-engine
 references: 0.

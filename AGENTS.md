@@ -115,6 +115,7 @@ Project context: if the working project root holds a `PROJECT.md` with `project_
 ## October Kaizen evidence
 
 Read [the October cycle](docs/kaizen/2026-10-engine-kaizen/05-final-report.md)
+and [its second pass](docs/kaizen/2026-10-engine-kaizen-pass-2/05-final-report.md)
 for tested fixture boundaries, residual Windows-lab gaps and catalogue handoffs.
 The registered validator now checks [marketplace discovery](docs/marketplace.md)
 and the hard 5,000-file limit. A successful package load is not authority to
@@ -128,9 +129,16 @@ Run from the repository root:
 python -X utf8 scripts/validate_engine.py
 python -X utf8 scripts/routing_smoke_test.py
 python -X utf8 scripts/source_ingestion_guardrail.py
+python -X utf8 scripts/check_source_register.py
 python -X utf8 -m unittest discover -s tests/python -v
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-powershell.ps1
 ```
+
+`validate_engine.py` also fails on a local Markdown link or `windows-*` skill
+identifier that does not resolve and on a machine-specific path in any tracked
+file (`scripts/check_content_hygiene.py`). `check_source_register.py` fails on
+an undated or overdue source row. `validate_fleet_manifest.py` is the
+authoritative fleet-manifest gate; refuse any manifest it refuses.
 
 Pester and live Windows-lab checks are separate gates. If their runtime or lab
 is absent, record `NOT_ASSESSED`; static checks do not replace them.
@@ -202,5 +210,5 @@ For a prompt handoff, read the local [domain prompt contract](docs/ai-prompting/
 
 Load `chwezi-engine-agents/docs/operations/portfolio-craft-standard-2026-09-04.md` (resolve through the device catalogue) when available. Run administration work as small controlled slices: frame the target and consequence, select one change, inspect the management owner and current state, preview it, apply only the bounded mutation, verify health and failure behaviour, refine the procedure, and record rollback evidence. Do not generate a full fleet change or runbook as an opaque batch. Apply `Observe -> Baseline -> Select -> Experiment -> Check -> Standardise -> Teach -> Re-measure` to kaizen itself. Missing host, lab, source, live, or recovery evidence is `NOT ASSESSED`, never a pass.
 
-Scoped October currentness and model review: `docs/research/currentness-2026-10-29.md`.
+Scoped currentness reviews: `docs/research/currentness-2026-10-29.md` and, for Windows, PowerShell, Hyper-V, Arc, Intune and baselines, `docs/research/currentness-2026-10-31.md`.
 Worked GPO pilot and post-patching incident plans: `docs/operations/`.
