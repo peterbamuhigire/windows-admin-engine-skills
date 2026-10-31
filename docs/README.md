@@ -69,6 +69,7 @@ The live source register is `engine/source-register.yaml`. Its date gate fails o
 | [kaizen/2026-10-engine-kaizen-pass-2/](kaizen/2026-10-engine-kaizen-pass-2/05-final-report.md) | The 31 October 2026 pass: the same seven files, with the [final report](kaizen/2026-10-engine-kaizen-pass-2/05-final-report.md) and [next cycle](kaizen/2026-10-engine-kaizen-pass-2/06-next-cycle.md) |
 | [kaizen/2026-10-engine-kaizen-pass-2/07-docs-followups.md](kaizen/2026-10-engine-kaizen-pass-2/07-docs-followups.md) | Skill, manifest and validator changes the documentation pass found but left alone |
 | [kaizen/october-2026-improvements.md](kaizen/october-2026-improvements.md) | The full itemised list of what the October 2026 kaizen improved; the README holds a summary |
+| [kaizen/2026-10-readme-kaizen/readme-kaizen-record.md](kaizen/2026-10-readme-kaizen/readme-kaizen-record.md) | The 31 October 2026 README kaizen: metrics before and after, what moved to this folder, and the README conventions |
 | [kaizen/tool-controller-contract.md](kaizen/tool-controller-contract.md) | The typed controller and object-output contract |
 | [kaizen/pipeline-binding-review.md](kaizen/pipeline-binding-review.md) | Pipeline binding and trace safety for the service-state controller |
 
