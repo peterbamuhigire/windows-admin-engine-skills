@@ -44,6 +44,7 @@ Dated records describe the repository on the day they were written. Their counts
 |---|---|
 | [research/currentness-2026-10-31.md](research/currentness-2026-10-31.md) | Scoped primary-source review of Windows, PowerShell, Hyper-V, Arc, Intune and baselines |
 | [research/currentness-2026-10-29.md](research/currentness-2026-10-29.md) | The earlier scoped review |
+| [references.md](references.md) | The books, repositories, standards, Microsoft sources and websites the skills cite; moved out of the README |
 | [research/source-synthesis.md](research/source-synthesis.md) | Source admission decisions and their consequences |
 | [research/book-driven-kaizen-operating-system.md](research/book-driven-kaizen-operating-system.md) | Improvement doctrine synthesised from books; not a source of current commands |
 | [research/source-url-verification-2026-08-12.json](research/source-url-verification-2026-08-12.json) | URL liveness results for the source register on 2026-08-12 |
@@ -67,6 +68,7 @@ The live source register is `engine/source-register.yaml`. Its date gate fails o
 | [kaizen/2026-10-engine-kaizen/](kaizen/2026-10-engine-kaizen/05-final-report.md) | The 29 October 2026 cycle: scope, baseline, backlog, experiments, validation, [final report](kaizen/2026-10-engine-kaizen/05-final-report.md) and [next cycle](kaizen/2026-10-engine-kaizen/06-next-cycle.md) |
 | [kaizen/2026-10-engine-kaizen-pass-2/](kaizen/2026-10-engine-kaizen-pass-2/05-final-report.md) | The 31 October 2026 pass: the same seven files, with the [final report](kaizen/2026-10-engine-kaizen-pass-2/05-final-report.md) and [next cycle](kaizen/2026-10-engine-kaizen-pass-2/06-next-cycle.md) |
 | [kaizen/2026-10-engine-kaizen-pass-2/07-docs-followups.md](kaizen/2026-10-engine-kaizen-pass-2/07-docs-followups.md) | Skill, manifest and validator changes the documentation pass found but left alone |
+| [kaizen/october-2026-improvements.md](kaizen/october-2026-improvements.md) | The full itemised list of what the October 2026 kaizen improved; the README holds a summary |
 | [kaizen/tool-controller-contract.md](kaizen/tool-controller-contract.md) | The typed controller and object-output contract |
 | [kaizen/pipeline-binding-review.md](kaizen/pipeline-binding-review.md) | Pipeline binding and trace safety for the service-state controller |
 
