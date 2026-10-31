@@ -40,6 +40,14 @@ validation:
       - windows
       - linux
       - macos
+  - id: source-currency
+    command: >-
+      python -X utf8 scripts/check_source_register.py
+    working_directory: .
+    platforms:
+      - windows
+      - linux
+      - macos
   - id: powershell-tests
     command: >-
       powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-powershell.ps1

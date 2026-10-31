@@ -289,6 +289,8 @@ Run these from the repository root unless a row says otherwise.
 
 | Script | Effect and usage |
 | --- | --- |
+| `scripts\check_content_hygiene.py` | Reads every tracked file without contacting any host. Fails on a local Markdown link that does not resolve, on a `windows-*` skill identifier in Markdown that is not in the catalogue (`docs/plans/` and `docs/kaizen/` are exempt from the identifier check only), and on a machine-specific absolute path in any tracked text file (two named test files hold such paths on purpose). Registered in validate_engine.py; `python -X utf8 scripts\check_content_hygiene.py` runs it alone. |
+| `scripts\check_source_register.py` | Release gate for `engine\source-register.yaml`; reads dates only and contacts no host. Fails when a URL row has no valid `accessed` date, when a row is older than `policy.review_interval_days` (a `verified` date overrides `accessed`), when a `*_review_date` policy entry has passed, or when a status is not in the script's vocabulary. Rows ending their interval within 14 days print a `WARN` line. `--as-of YYYY-MM-DD` evaluates a chosen day: `python -X utf8 scripts\check_source_register.py`. It makes no network request; `scripts\verify_source_urls.py` does. |
 | `scripts\generate_command_catalog.py` | Regenerates `engine\command-catalog.json` from direct command launchers. This writes a tracked file: `python -X utf8 scripts\generate_command_catalog.py`. Review the diff afterward. |
 | `scripts\routing_smoke_test.py` | Tests routing fixtures and returns nonzero on a mismatch: `python -X utf8 scripts\routing_smoke_test.py`. |
 | `scripts\source_ingestion_guardrail.py` | Checks that restricted source text was not copied into implementation areas: `python -X utf8 scripts\source_ingestion_guardrail.py`. |
@@ -354,7 +356,6 @@ manual.
 | Script | Scope and acceptance |
 |---|---|
 | `scripts/check_marketplace.py` | Validate exact plugin skill paths, identity, portable router bindings and hard 5,000-file package/full-checkout ceiling. Registered in validate_engine.py. |
-| `scripts/check_content_hygiene.py` | Reads every tracked file without contacting any host. Fails on a local Markdown link that does not resolve, on a `windows-*` skill identifier in Markdown that is not in the catalogue (`docs/plans/` and `docs/kaizen/` are exempt from the identifier check only), and on a machine-specific absolute path in any tracked text file (two named test files hold such paths on purpose). Registered in validate_engine.py; `python -X utf8 scripts/check_content_hygiene.py` runs it alone. |
 | `scripts/test-service-state-fixture.ps1` | Synthetic normal, repeat, preview, refusal, failure and verified recovery paths; nine assertions, no Windows service access. |
 | `scripts/test-service-wrapper-fixture.ps1` | Three isolated calls through the actual typed wrapper and dispatcher; named arguments, WhatIf, refusal and exit status must survive forwarding. |
 
